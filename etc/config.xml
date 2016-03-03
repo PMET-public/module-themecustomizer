@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+  <default>
+    <designsettings>
+      <themesettings>
+        <topbarcolor>#3399cc</topbarcolor>
+        <primaryfontcolor>#636363</primaryfontcolor>
+        <primarylinkcolor>#3399cc</primarylinkcolor>
+        <primarylinkhovercolor>#2e8ab8</primarylinkhovercolor>
+        <navbackgroundcolor>#ffffff</navbackgroundcolor>
+        <navlinkcolor>#636363</navlinkcolor>
+        <navlinkhovercolor>#3399cc</navlinkhovercolor>
+        <navdropdownbackgroundcolor>#fbfbfb</navdropdownbackgroundcolor>
+        <navdropdownlinkcolor>#636363</navdropdownlinkcolor>
+        <navdropdownlinkhovercolor>#3399cc</navdropdownlinkhovercolor>
+        <primaryheadingcolor>#3399cc</primaryheadingcolor>
+        <primarypricecolor>#3399cc</primarypricecolor>
+        <backgroundcolor>#ffffff</backgroundcolor>
+        <categorygridbackgroundcolor>#fffff</categorygridbackgroundcolor>
+        <productviewbackgroundcolor>#ffffff</productviewbackgroundcolor>
+        <blockcontentbackgroundcolor>#ffffff</blockcontentbackgroundcolor>
+        <buttonbackgroundcolor>#3399cc</buttonbackgroundcolor>
+        <buttonlinkcolor>#ffffff</buttonlinkcolor>
+        <buttonlinkhovercolor>#ffffff</buttonlinkhovercolor>
+      </themesettings>
+    </designsettings>
+  </default>
+</config>

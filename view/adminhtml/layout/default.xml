@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<head>
+    <link src="EEsc_Wysiwygdesign::js/prototype.js"/>
+    <link src="EEsc_Wysiwygdesign::js/procolor-1.0/procolor.compressed.js"/>
+</head>
+</page>
