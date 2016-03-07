@@ -65,12 +65,12 @@ class Destroy extends \Magento\Config\Block\System\Config\Form\Field
      */
     protected function _getElementHtml(\Magento\Framework\Data\Form\Element\AbstractElement $element)
     {
-        //$originalData = $element->getOriginalData();
+        $originalData = $element->getOriginalData();
         $this->addData(
             [
-                'id'        => 'destroy',
-                'button_label'     => _('Destroy'),
-                'onclick'   => 'javascript:checkDestroy(); return false;'
+                'id'        => $originalData['id'],
+                'button_label'     => $originalData['label'],
+                'onclick'   => 'javascript:checkApply(); return false;'
             ]
         );
         return $this->_toHtml();

@@ -20,100 +20,100 @@
       </group>
       <group id="themesettings" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
         <label>Theme Settings</label>
-        <field id="topbarcolor" translate="label" showInDefault="1" showInWebsite="1" showInStore="1">
+        <field id="topbarcolor" type="text" translate="label" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Top Bar Color</label>
           <comment>See userguide for visual reference</comment>
-          <frontend_model>EEsc\Wysiwygdesign\Block\Adminhtml\System\Config\Form\Field\Colorpicker</frontend_model>
+          <frontend_class>colorpicker</frontend_class>
         </field>
-        <field id="primaryfontcolor" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+        <field id="primaryfontcolor" type="text"  translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Primary Font Color</label>
           <comment>See userguide for visual reference</comment>
-          <frontend_model>EEsc\Wysiwygdesign\Block\Adminhtml\System\Config\Form\Field\Colorpicker</frontend_model>
+          <frontend_class>colorpicker</frontend_class>
         </field>
-        <field id="primarylinkcolor" translate="label" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+        <field id="primarylinkcolor" type="text"  translate="label" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Primary Link Color</label>
           <comment>See userguide for visual reference</comment>
-          <frontend_model>EEsc\Wysiwygdesign\Block\Adminhtml\System\Config\Form\Field\Colorpicker</frontend_model>
+          <frontend_class>colorpicker</frontend_class>
         </field>
-        <field id="primarylinkhovercolor" translate="label" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+        <field id="primarylinkhovercolor" type="text"  translate="label" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Primary Link Hover Color</label>
           <comment>See userguide for visual reference</comment>
-          <frontend_model>EEsc\Wysiwygdesign\Block\Adminhtml\System\Config\Form\Field\Colorpicker</frontend_model>
+          <frontend_class>colorpicker</frontend_class>
         </field>
-        <field id="navbackgroundcolor" translate="label" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+        <field id="navbackgroundcolor" type="text"  translate="label" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Navigation Background Color</label>
           <comment>See userguide for visual reference</comment>
-          <frontend_model>EEsc\Wysiwygdesign\Block\Adminhtml\System\Config\Form\Field\Colorpicker</frontend_model>
+          <frontend_class>colorpicker</frontend_class>
         </field>
-        <field id="navlinkcolor" translate="label" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+        <field id="navlinkcolor" type="text"  translate="label" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Navigation Link Color</label>
           <comment>See userguide for visual reference</comment>
-          <frontend_model>EEsc\Wysiwygdesign\Block\Adminhtml\System\Config\Form\Field\Colorpicker</frontend_model>
+          <frontend_class>colorpicker</frontend_class>
         </field>
-        <field id="navlinkhovercolor" translate="label" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+        <field id="navlinkhovercolor" type="text"  translate="label" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Navigation Link Hover Color</label>
           <comment>See userguide for visual reference</comment>
-          <frontend_model>EEsc\Wysiwygdesign\Block\Adminhtml\System\Config\Form\Field\Colorpicker</frontend_model>
+          <frontend_class>colorpicker</frontend_class>
         </field>
-        <field id="navdropdownbackgroundcolor" translate="label" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+        <field id="navdropdownbackgroundcolor" type="text"  translate="label" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Navigation Dropdown Background Color</label>
           <comment>See userguide for visual reference</comment>
-          <frontend_model>EEsc\Wysiwygdesign\Block\Adminhtml\System\Config\Form\Field\Colorpicker</frontend_model>
+          <frontend_class>colorpicker</frontend_class>
         </field>
-        <field id="navdropdownlinkcolor" translate="label" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+        <field id="navdropdownlinkcolor" type="text"  translate="label" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Navigation Dropdown Link Color</label>
           <comment>See userguide for visual reference</comment>
-          <frontend_model>EEsc\Wysiwygdesign\Block\Adminhtml\System\Config\Form\Field\Colorpicker</frontend_model>
+          <frontend_class>colorpicker</frontend_class>
         </field>
-        <field id="navdropdownlinkhovercolor" translate="label" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+        <field id="navdropdownlinkhovercolor" type="text"  translate="label" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Navigation Drodown Link Hover Color</label>
           <comment>See userguide for visual reference</comment>
-          <frontend_model>EEsc\Wysiwygdesign\Block\Adminhtml\System\Config\Form\Field\Colorpicker</frontend_model>
+          <frontend_class>colorpicker</frontend_class>
         </field>
-        <field id="primaryheadingcolor" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+        <field id="primaryheadingcolor" type="text"  translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Primary Heading Color</label>
           <comment>See userguide for visual reference</comment>
-          <frontend_model>EEsc\Wysiwygdesign\Block\Adminhtml\System\Config\Form\Field\Colorpicker</frontend_model>
+          <frontend_class>colorpicker</frontend_class>
         </field>
-        <field id="primarypricecolor" translate="label" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+        <field id="primarypricecolor" type="text"  translate="label" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Primary Price Color</label>
           <comment>See userguide for visual reference</comment>
-          <frontend_model>EEsc\Wysiwygdesign\Block\Adminhtml\System\Config\Form\Field\Colorpicker</frontend_model>
+          <frontend_class>colorpicker</frontend_class>
         </field>
-        <field id="backgroundcolor" translate="label" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+        <field id="backgroundcolor" type="text"  translate="label" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Background Color</label>
           <comment>See userguide for visual reference</comment>
-          <frontend_model>EEsc\Wysiwygdesign\Block\Adminhtml\System\Config\Form\Field\Colorpicker</frontend_model>
+          <frontend_class>colorpicker</frontend_class>
         </field>
-        <field id="categorygridbackgroundcolor" translate="label" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="1">
+        <field id="categorygridbackgroundcolor" type="text"  translate="label" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Category Grid Background Color</label>
           <comment>See userguide for visual reference</comment>
-          <frontend_model>EEsc\Wysiwygdesign\Block\Adminhtml\System\Config\Form\Field\Colorpicker</frontend_model>
+          <frontend_class>colorpicker</frontend_class>
         </field>
-        <field id="productviewbackgroundcolor" translate="label" sortOrder="14" showInDefault="1" showInWebsite="1" showInStore="1">
+        <field id="productviewbackgroundcolor" type="text"  translate="label" sortOrder="14" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Product View Background Color</label>
           <comment>See userguide for visual reference</comment>
-          <frontend_model>EEsc\Wysiwygdesign\Block\Adminhtml\System\Config\Form\Field\Colorpicker</frontend_model>
+          <frontend_class>colorpicker</frontend_class>
         </field>
-        <field id="blockcontentbackgroundcolor" translate="label" sortOrder="14" showInDefault="1" showInWebsite="1" showInStore="1">
+        <field id="blockcontentbackgroundcolor" type="text"  translate="label" sortOrder="14" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Block Content Background Color</label>
           <comment>See userguide for visual reference</comment>
-          <frontend_model>EEsc\Wysiwygdesign\Block\Adminhtml\System\Config\Form\Field\Colorpicker</frontend_model>
+          <frontend_class>colorpicker</frontend_class>
         </field>
-        <field id="buttonbackgroundcolor" translate="label" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+        <field id="buttonbackgroundcolor" type="text"  translate="label" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Button Background Color</label>
           <comment>See userguide for visual reference</comment>
-          <frontend_model>EEsc\Wysiwygdesign\Block\Adminhtml\System\Config\Form\Field\Colorpicker</frontend_model>
+          <frontend_class>colorpicker</frontend_class>
         </field>
-        <field id="buttonlinkcolor" translate="label" sortOrder="16" showInDefault="1" showInWebsite="1" showInStore="1">
+        <field id="buttonlinkcolor" type="text"  translate="label" sortOrder="16" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Button Link Color</label>
           <comment>See userguide for visual reference</comment>
-          <frontend_model>EEsc\Wysiwygdesign\Block\Adminhtml\System\Config\Form\Field\Colorpicker</frontend_model>
+          <frontend_class>colorpicker</frontend_class>
         </field>
-        <field id="buttonlinkhovercolor" translate="label" sortOrder="17" showInDefault="1" showInWebsite="1" showInStore="1">
+        <field id="buttonlinkhovercolor" type="text"  translate="label" sortOrder="17" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Button Link HoverColor</label>
           <comment>See userguide for visual reference</comment>
-          <frontend_model>EEsc\Wysiwygdesign\Block\Adminhtml\System\Config\Form\Field\Colorpicker</frontend_model>
+          <frontend_class>colorpicker</frontend_class>
         </field>
         <field id="additionalstyles" translate="label" sortOrder="18" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Additional CSS</label>

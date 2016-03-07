@@ -65,11 +65,11 @@ class Apply extends \Magento\Config\Block\System\Config\Form\Field
      */
     protected function _getElementHtml(\Magento\Framework\Data\Form\Element\AbstractElement $element)
     {
-        //$originalData = $element->getOriginalData();
+        $originalData = $element->getOriginalData();
         $this->addData(
             [
-                'id'        => 'generate',
-                'button_label'     => _('Apply'),
+                'id'        => $originalData['id'],
+                'button_label'     => $originalData['label'],
                 'onclick'   => 'javascript:checkApply(); return false;'
             ]
         );
