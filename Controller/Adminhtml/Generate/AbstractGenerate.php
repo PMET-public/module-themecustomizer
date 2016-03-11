@@ -138,8 +138,8 @@ abstract class AbstractGenerate extends Action
         $css_content .= '.slideshow-pager span.cycle-pager-active:before, .slideshow-pager span:hover:before { background-color:'.$button_background_color. '!important}'."\n";
         
         if($helper->getAssetLogo()){
-            $css_content .= 'a.logo img {display:none!important;}'."\n";
-            $css_content .= 'a.logo {background: url('.$asset_logo.') top left no-repeat!important; min-width:300px; min-height:90px; max-width:300px!important; max-height:90px!important;}'."\n";
+            $css_content .= '.logo img {display:none!important;}'."\n";
+            $css_content .= '.logo {background: url('.$asset_logo.') top left no-repeat!important; min-width:300px; min-height:90px; max-width:300px!important; max-height:90px!important;}'."\n";
         }
         
         //misc fixes

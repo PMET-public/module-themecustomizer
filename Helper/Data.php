@@ -256,7 +256,7 @@ class Data extends AbstractHelper
         if(!$values){
             return false;
         } else {
-            $full_path = $this->_frameworkUrlInterface->getBaseUrl('media').'/theme/'.$values;
+            $full_path = $this->_frameworkUrlInterface->getBaseUrl('media').'pub/media/theme/'.$values;
             return $full_path;
         }
     }

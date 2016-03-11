@@ -20,6 +20,7 @@
       </group>
       <group id="themesettings" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
         <label>Theme Settings</label>
+
         <field id="topbarcolor" type="text" translate="label" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Top Bar Color</label>
           <comment>See userguide for visual reference</comment>
@@ -53,67 +54,67 @@
         <field id="navlinkhovercolor" type="text"  translate="label" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Navigation Link Hover Color</label>
           <comment>See userguide for visual reference</comment>
-          <frontend_class>colorpicker</frontend_class>
+            <frontend_class>colorpicker</frontend_class>
         </field>
         <field id="navdropdownbackgroundcolor" type="text"  translate="label" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Navigation Dropdown Background Color</label>
           <comment>See userguide for visual reference</comment>
-          <frontend_class>colorpicker</frontend_class>
+            <frontend_class>colorpicker</frontend_class>
         </field>
         <field id="navdropdownlinkcolor" type="text"  translate="label" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Navigation Dropdown Link Color</label>
           <comment>See userguide for visual reference</comment>
-          <frontend_class>colorpicker</frontend_class>
+            <frontend_class>colorpicker</frontend_class>
         </field>
         <field id="navdropdownlinkhovercolor" type="text"  translate="label" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Navigation Drodown Link Hover Color</label>
           <comment>See userguide for visual reference</comment>
-          <frontend_class>colorpicker</frontend_class>
+            <frontend_class>colorpicker</frontend_class>
         </field>
         <field id="primaryheadingcolor" type="text"  translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Primary Heading Color</label>
           <comment>See userguide for visual reference</comment>
-          <frontend_class>colorpicker</frontend_class>
+            <frontend_class>colorpicker</frontend_class>
         </field>
         <field id="primarypricecolor" type="text"  translate="label" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Primary Price Color</label>
           <comment>See userguide for visual reference</comment>
-          <frontend_class>colorpicker</frontend_class>
+            <frontend_class>colorpicker</frontend_class>
         </field>
         <field id="backgroundcolor" type="text"  translate="label" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Background Color</label>
           <comment>See userguide for visual reference</comment>
-          <frontend_class>colorpicker</frontend_class>
+            <frontend_class>colorpicker</frontend_class>
         </field>
         <field id="categorygridbackgroundcolor" type="text"  translate="label" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Category Grid Background Color</label>
           <comment>See userguide for visual reference</comment>
-          <frontend_class>colorpicker</frontend_class>
+            <frontend_class>colorpicker</frontend_class>
         </field>
         <field id="productviewbackgroundcolor" type="text"  translate="label" sortOrder="14" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Product View Background Color</label>
           <comment>See userguide for visual reference</comment>
-          <frontend_class>colorpicker</frontend_class>
+            <frontend_class>colorpicker</frontend_class>
         </field>
         <field id="blockcontentbackgroundcolor" type="text"  translate="label" sortOrder="14" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Block Content Background Color</label>
           <comment>See userguide for visual reference</comment>
-          <frontend_class>colorpicker</frontend_class>
+            <frontend_class>colorpicker</frontend_class>
         </field>
         <field id="buttonbackgroundcolor" type="text"  translate="label" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Button Background Color</label>
           <comment>See userguide for visual reference</comment>
-          <frontend_class>colorpicker</frontend_class>
+            <frontend_class>colorpicker</frontend_class>
         </field>
         <field id="buttonlinkcolor" type="text"  translate="label" sortOrder="16" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Button Link Color</label>
           <comment>See userguide for visual reference</comment>
-          <frontend_class>colorpicker</frontend_class>
+            <frontend_class>colorpicker</frontend_class>
         </field>
         <field id="buttonlinkhovercolor" type="text"  translate="label" sortOrder="17" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Button Link HoverColor</label>
           <comment>See userguide for visual reference</comment>
-          <frontend_class>colorpicker</frontend_class>
+            <frontend_class>colorpicker</frontend_class>
         </field>
         <field id="additionalstyles" translate="label" sortOrder="18" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Additional CSS</label>
