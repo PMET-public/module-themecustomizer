@@ -12,10 +12,10 @@
  * to license@magentocommerce.com so we can send you a copy immediately.
 
  * @category    EE Solutions Consulting Tools
- * @package     EEsc Prodgen
+ * @package     MagentoEse Prodgen
  * @author      Justin Morrow <jumorrow@ebay.com>
  */
-namespace EEsc\Wysiwygdesign\Block\Adminhtml\System\Config\Form;
+namespace MagentoEse\Wysiwygdesign\Block\Adminhtml\System\Config\Form;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 
@@ -57,7 +57,7 @@ class Restore extends \Magento\Config\Block\System\Config\Form\Field
      */
     public function getAjaxCheckUrl()
     {
-        return $this->getUrl('eesc_wysiwygdesign/generate/restore'); //hit controller by ajax call on button click.
+        return $this->getUrl('magentoese_wysiwygdesign/generate/restore'); //hit controller by ajax call on button click.
     }
 
     /**

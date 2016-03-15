@@ -12,12 +12,12 @@
  * to license@magentocommerce.com so we can send you a copy immediately.
 
  * @category    EE Solutions Consulting Tools
- * @package     EEsc Wysiwygdesigner
+ * @package     MagentoEse Wysiwygdesigner
  * @author      Justin Morrow <jumorrow@ebay.com>
  */
-namespace EEsc\Wysiwygdesign\Controller\Adminhtml\Generate;
+namespace MagentoEse\Wysiwygdesign\Controller\Adminhtml\Generate;
 
-use EEsc\Wysiwygdesign\Helper\Data as HelperData;
+use MagentoEse\Wysiwygdesign\Helper\Data as HelperData;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\CacheInterface;
@@ -174,7 +174,7 @@ abstract class AbstractGenerate extends Action
     {
         //concat file path
         //$skin_directory = 'skin/frontend/rwd/default/css';
-        $skin_directory='app/code/EEsc/Wysiwygdesign/view/frontend/web/css/';
+        $skin_directory='app/code/MagentoEse/Wysiwygdesign/view/frontend/web/css/';
         $filename = $skin_directory . 'demo.css';
 
         return $filename;

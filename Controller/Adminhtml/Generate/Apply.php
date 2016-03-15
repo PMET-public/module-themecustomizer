@@ -1,8 +1,8 @@
 <?php
 
-namespace EEsc\Wysiwygdesign\Controller\Adminhtml\Generate;
+namespace MagentoEse\Wysiwygdesign\Controller\Adminhtml\Generate;
 
-use EEsc\Wysiwygdesign\Helper\Data as HelperData;
+use MagentoEse\Wysiwygdesign\Helper\Data as HelperData;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\CacheInterface;
 

@@ -7,7 +7,7 @@
     <section id="designsettings" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
       <label>Design Settings</label>
       <tab>wysiwgdesigner</tab>
-      <resource>EEsc_Wysiwygdesign::system_config</resource>
+      <resource>MagentoEse::system_config</resource>
       <group id="assets" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
         <label>Assets</label>
         <field id="logoimage" translate="label comment" sortOrder="1" type="image" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -125,7 +125,7 @@
     <section id="updatedesign" translate="label" sortOrder="1" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
       <label>Apply/Remove Design</label>
       <tab>wysiwgdesigner</tab>
-      <resource>EEsc_Wysiwygdesign::system_config</resource>
+      <resource>MagentoEse_Wysiwygdesign::system_config</resource>
       <group id="apply" translate="label" sortOrder="1" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
         <label>Apply/Remove Design</label>
         <field id="clearcache" translate="label" sortOrder="6" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -135,15 +135,15 @@
         </field>
         <field id="generate" translate="label" sortOrder="20" type="button" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Apply Design</label>
-          <frontend_model>EEsc\Wysiwygdesign\Block\Adminhtml\System\Config\Form\Apply</frontend_model>
+          <frontend_model>MagentoEse\Wysiwygdesign\Block\Adminhtml\System\Config\Form\Apply</frontend_model>
         </field>
         <field id="destroy" translate="label" sortOrder="30" type="button" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Remove Design</label>
-          <frontend_model>EEsc\Wysiwygdesign\Block\Adminhtml\System\Config\Form\Destroy</frontend_model>
+          <frontend_model>MagentoEse\Wysiwygdesign\Block\Adminhtml\System\Config\Form\Destroy</frontend_model>
         </field>
         <field id="restore" translate="label" sortOrder="50" type="button" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Restore Default Values</label>
-          <frontend_model>EEsc\Wysiwygdesign\Block\Adminhtml\System\Config\Form\Restore</frontend_model>
+          <frontend_model>MagentoEse\Wysiwygdesign\Block\Adminhtml\System\Config\Form\Restore</frontend_model>
         </field>
       </group>
     </section>
