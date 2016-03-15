@@ -7,7 +7,7 @@
     <section id="designsettings" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
       <label>Design Settings</label>
       <tab>wysiwgdesigner</tab>
-      <resource>MagentoEse::system_config</resource>
+      <resource>MagentoEse_Wysiwygdesign::system_config</resource>
       <group id="assets" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
         <label>Assets</label>
         <field id="logoimage" translate="label comment" sortOrder="1" type="image" showInDefault="1" showInWebsite="1" showInStore="1">
