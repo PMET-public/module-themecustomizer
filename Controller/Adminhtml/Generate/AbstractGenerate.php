@@ -58,7 +58,7 @@ abstract class AbstractGenerate extends Action
 
             $filename = ''; //huh?
             $filename = $this->_getFile($filename);
-
+            $filename = str_replace("pub","",$_SERVER['DOCUMENT_ROOT']).$filename;
             //reset the file, trash it (probably a better way)
             file_put_contents($filename, "");
 
@@ -174,7 +174,7 @@ abstract class AbstractGenerate extends Action
     {
         //concat file path
         //$skin_directory = 'skin/frontend/rwd/default/css';
-        $skin_directory='app/code/MagentoEse/Wysiwygdesign/view/frontend/web/css/';
+        $skin_directory='vendor/magentoese/module-wysiwygdesign/view/frontend/web/css/';
         $filename = $skin_directory . 'demo.css';
 
         return $filename;
