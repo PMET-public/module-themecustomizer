@@ -34,9 +34,9 @@ abstract class AbstractGenerate extends Action
      */
     protected $_appCacheInterface;
 
-    public function __construct(Context $context, 
-        HelperData $helperData, 
-        CacheInterface $appCacheInterface)
+    public function __construct(Context $context,
+                                HelperData $helperData,
+                                CacheInterface $appCacheInterface)
     {
         $this->_helperData = $helperData;
         $this->_appCacheInterface = $appCacheInterface;
@@ -47,7 +47,7 @@ abstract class AbstractGenerate extends Action
 
 
 
-    
+
     /**
      * Create the CSS files, prep for content
      * @param string $contents
@@ -70,7 +70,7 @@ abstract class AbstractGenerate extends Action
             file_put_contents($filename, $current);
         }
     }
-    
+
     /**
      * Prep the CSS content
      * @param string $package (for future CSS profile feature)
@@ -100,15 +100,15 @@ abstract class AbstractGenerate extends Action
         $button_background_color = $helper->getButtonBackgroundColor();
         $button_link_color = $helper->getButtonLinkColor();
         $button_link_hover_color = $helper->getButtonLinkHoverColor();
-        
+
         //logo assets
         $asset_logo = $helper->getAssetLogo();
-        
+
         $additional_css = $helper->getAdditionalCSS();
-        
+
         //future : switch statement based on param for design / css profile
         //will support LUMA and default EE theme
-        
+
         //build content
         $css_content = '/* THIS FILE IS AUTO-GENERATED, DO NOT MAKE MODIFICATIONS DIRECTLY */' . "\n";
         $css_content .= '.header-language-background { background-color:' . $top_bar_color . ';}' . "\n";
@@ -116,7 +116,7 @@ abstract class AbstractGenerate extends Action
         $css_content .= 'a { color:' . $primary_link_color . '!important;}' . "\n";
         $css_content .= 'a:hover { color:' . $primary_link_hover_color . '!important;}' . "\n";
         $css_content .= '.no-touch .product-image:hover {border-color:'.$primary_link_hover_color. '!important}'."\n";
-        
+
         $css_content .= 'h1,h2,h3,h4,h5,h6,h7, .product-name .h1, .block-title h2, .block-title h3, .block-title strong, .footer .block-title, .footer address{ color:' . $primary_heading_color . '!important;}' . "\n";
         $css_content .= '.price-box .price { color:' . $primary_price_color . '!important;}';
         $css_content .= 'body, .wrapper, .skip-link { background-color:' . $background_color . '!important;}' . "\n";
@@ -130,18 +130,18 @@ abstract class AbstractGenerate extends Action
         $css_content .= '.nav-primary li.level1 a  { color:' . $nav_dropdown_link_color . '!important;}' . "\n";
         $css_content .= '.nav-primary li.level1 a:hover  { color:' . $nav_dropdown_link_hover_color . '!important;}' . "\n";
         $css_content .= '.button, .cart-table .product-cart-actions .button, #co-shipping-method-form .buttons-set .button, .footer .button  { background-color:' . $button_background_color . '!important;}' . "\n";
-        
+
         $css_content .= 'a.button  { color:' . $button_link_color . '!important;}' . "\n";
         $css_content .= 'a.button:hover  { color:' . $button_link_hover_color . '!important;}' . "\n";
         $css_content .= '.input-text:focus {border-color:'.$button_background_color. '!important}'."\n";
         $css_content .= '.slideshow-next:hover:before {border-color:transparent transparent transparent '.$button_background_color. '!important}'."\n";
         $css_content .= '.slideshow-pager span.cycle-pager-active:before, .slideshow-pager span:hover:before { background-color:'.$button_background_color. '!important}'."\n";
-        
+
         if($helper->getAssetLogo()){
             $css_content .= '.logo img {display:none!important;}'."\n";
             $css_content .= '.logo {background: url('.$asset_logo.') top left no-repeat!important; min-width:300px; min-height:90px; max-width:300px!important; max-height:90px!important;}'."\n";
         }
-        
+
         //misc fixes
         $css_content .= 'button.search-button { background:none repeat scroll 0 0 rgba(0, 0, 0, 0)!important;}' . "\n";
         //$css_content .= '.minicart-actions .checkout-button { background-color:#3399cc!important; color:#fff;}' . "\n";
@@ -153,7 +153,7 @@ abstract class AbstractGenerate extends Action
 
     /**
      * Destroy previous design
-     * 
+     *
      * @return void
      */
     public function _destroyCss($filename)
@@ -166,7 +166,7 @@ abstract class AbstractGenerate extends Action
 
     /**
      * Concat and return file path
-     * 
+     *
      * @return string
      * @todo make it selectable from config (hardcoded now)
      */
@@ -174,7 +174,7 @@ abstract class AbstractGenerate extends Action
     {
         //concat file path
         //$skin_directory = 'skin/frontend/rwd/default/css';
-        $skin_directory='vendor/magentoese/module-wysiwygdesign/view/frontend/web/css/';
+        $skin_directory='pub/static/frontend/Magento/luma/en_US/MagentoEse_Wysiwygdesign/css/';
         $filename = $skin_directory . 'demo.css';
 
         return $filename;
@@ -182,7 +182,7 @@ abstract class AbstractGenerate extends Action
 
     /**
      * Clear cache
-     * 
+     *
      * @return void
      */
     public function _clearCache()
