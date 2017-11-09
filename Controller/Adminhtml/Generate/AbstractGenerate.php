@@ -21,6 +21,8 @@ use MagentoEse\Wysiwygdesign\Helper\Data as HelperData;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\CacheInterface;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 
 abstract class AbstractGenerate extends Action
 {
@@ -48,18 +50,15 @@ abstract class AbstractGenerate extends Action
 
 
 
-    /**
-     * Create the CSS files, prep for content
-     * @param string $contents
-     */
+
     public function _createCSSFile($contents)
     {
         if ($contents != NULL) {
 
-            $filename = ''; //huh?
+            $filename = '';
             $filename = $this->_getFile($filename);
             $filename = str_replace("pub","",$_SERVER['DOCUMENT_ROOT']).$filename;
-            //reset the file, trash it (probably a better way)
+            //reset the file
             file_put_contents($filename, "");
 
             //create new file and prep for insertion
@@ -68,6 +67,9 @@ abstract class AbstractGenerate extends Action
 
             //rewrite it out
             file_put_contents($filename, $current);
+
+            //check if in production mode. Then do a quick static deploy
+
         }
     }
 
