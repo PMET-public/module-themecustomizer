@@ -2,8 +2,8 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
         <css  src="MagentoEse_Wysiwygdesign::css/colorpicker.css" />
-        <script src="MagentoEse_Wysiwygdesign::js/jquerymin.js" />
+        <!--<script src="MagentoEse_Wysiwygdesign::js/jquerymin.js" />
         <script src="MagentoEse_Wysiwygdesign::js/jqColorPicker.min.js" />
-        <script src="MagentoEse_Wysiwygdesign::js/colorPickerInit.js" />
+        <script src="MagentoEse_Wysiwygdesign::js/colorPickerInit.js" />-->
     </head>
 </page>
