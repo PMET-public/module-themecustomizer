@@ -36,6 +36,9 @@ abstract class AbstractGenerate extends Action
      */
     protected $_appCacheInterface;
 
+    protected $skinDirectory ='/static/frontend/Magento/luma/en_US/MagentoEse_Wysiwygdesign/css/';
+    protected $cssFilename = 'demo.css';
+
     public function __construct(Context $context,
                                 HelperData $helperData,
                                 CacheInterface $appCacheInterface)
@@ -53,22 +56,22 @@ abstract class AbstractGenerate extends Action
 
     public function _createCSSFile($contents)
     {
-        if ($contents != NULL) {
-
-            $filename = '';
-            $filename = $this->_getFile($filename);
-            $filename = str_replace("pub","",$_SERVER['DOCUMENT_ROOT']).$filename;
-            //reset the file
-            file_put_contents($filename, "");
-
-            //create new file and prep for insertion
-            $current = file_get_contents($filename);
-            $current .= $contents;
-
-            //rewrite it out
-            file_put_contents($filename, $current);
-
-            //check if in production mode. Then do a quick static deploy
+           if ($contents != NULL) {
+                $filename = '';
+                $filename = $_SERVER['DOCUMENT_ROOT'].$this->skinDirectory . $this->cssFilename;
+                //$filename = str_replace("pub","",$_SERVER['DOCUMENT_ROOT']).$filename;
+                if (!file_exists($filename)) {
+                    mkdir($_SERVER['DOCUMENT_ROOT'].$this->skinDirectory,0744,true);
+                    $fh = fopen($filename, 'w');
+                    fclose($fh);
+                }
+                //reset the file
+                file_put_contents($filename, "");
+                //create new file and prep for insertion
+                $current = file_get_contents($filename);
+                $current .= $contents;
+                //rewrite it out
+                file_put_contents($filename, $current);
 
         }
     }
@@ -113,14 +116,14 @@ abstract class AbstractGenerate extends Action
 
         //build content
         $css_content = '/* THIS FILE IS AUTO-GENERATED, DO NOT MAKE MODIFICATIONS DIRECTLY */' . "\n";
-        $css_content .= '.header-language-background { background-color:' . $top_bar_color . ';}' . "\n";
-        $css_content .= 'body { color:' . $primary_font_color . ';}' . "\n";
+        $css_content .= '.page-header .panel.wrapper { background-color:' . $top_bar_color . ' !important;}' . "\n";
+        $css_content .= 'body { color:' . $primary_font_color . ' !important;}' . "\n";
         $css_content .= 'a { color:' . $primary_link_color . '!important;}' . "\n";
         $css_content .= 'a:hover { color:' . $primary_link_hover_color . '!important;}' . "\n";
         $css_content .= '.no-touch .product-image:hover {border-color:'.$primary_link_hover_color. '!important}'."\n";
 
         $css_content .= 'h1,h2,h3,h4,h5,h6,h7, .product-name .h1, .block-title h2, .block-title h3, .block-title strong, .footer .block-title, .footer address{ color:' . $primary_heading_color . '!important;}' . "\n";
-        $css_content .= '.price-box .price { color:' . $primary_price_color . '!important;}';
+        $css_content .= '.price-box .price { color:' . $primary_price_color . '!important;}'. "\n";
         $css_content .= 'body, .wrapper, .skip-link { background-color:' . $background_color . '!important;}' . "\n";
         $css_content .= '.category-products{ background-color:' . $category_grid_background_color . '!important;}' . "\n";
         $css_content .= '.product-view{ background-color:' . $product_view_background_color . '!important;}' . "\n";
@@ -158,12 +161,10 @@ abstract class AbstractGenerate extends Action
      *
      * @return void
      */
-    public function _destroyCss($filename)
+    public function _destroyCss($r)
     {
-        if ($filename != NULL) {
-            //reset the file, trash it (probably a better way)
-            file_put_contents($filename, "");
-        }
+        $content = '/* THIS FILE IS INTENTIONALLY EMPTY */';
+        $this->_createCSSFile($content);
     }
 
     /**
@@ -190,7 +191,8 @@ abstract class AbstractGenerate extends Action
     public function _clearCache()
     {
         //clear it
-        $this->_appCacheInterface->flush();
+        //$this->_appCacheInterface->flush();
+        $this->_appCacheInterface->clean(['FPC']);
     }
 
 }

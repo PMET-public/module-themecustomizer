@@ -128,11 +128,11 @@
       <resource>MagentoEse_Wysiwygdesign::system_config</resource>
       <group id="apply" translate="label" sortOrder="1" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
         <label>Apply/Remove Design</label>
-        <field id="clearcache" translate="label" sortOrder="6" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+        <!--<field id="clearcache" translate="label" sortOrder="6" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Clear Cache After</label>
           <comment>Clears cache after apply/remove</comment>
           <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-        </field>
+        </field>-->
         <field id="generate" translate="label" sortOrder="20" type="button" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Apply Design</label>
           <frontend_model>MagentoEse\Wysiwygdesign\Block\Adminhtml\System\Config\Form\Apply</frontend_model>
@@ -141,10 +141,10 @@
           <label>Remove Design</label>
           <frontend_model>MagentoEse\Wysiwygdesign\Block\Adminhtml\System\Config\Form\Destroy</frontend_model>
         </field>
-        <field id="restore" translate="label" sortOrder="50" type="button" showInDefault="1" showInWebsite="1" showInStore="1">
+        <!--<field id="restore" translate="label" sortOrder="50" type="button" showInDefault="1" showInWebsite="1" showInStore="1">
           <label>Restore Default Values</label>
           <frontend_model>MagentoEse\Wysiwygdesign\Block\Adminhtml\System\Config\Form\Restore</frontend_model>
-        </field>
+        </field>-->
       </group>
     </section>
   </system>

@@ -6,7 +6,7 @@ use MagentoEse\Wysiwygdesign\Helper\Data as HelperData;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\CacheInterface;
 use Magento\Framework\Filesystem;
-use Magento\Config\Model\Config as Config;
+use Magento\Config\Model\ResourceModel\Config  as Config;
 
 class Restore extends AbstractGenerate
 {
@@ -17,7 +17,7 @@ class Restore extends AbstractGenerate
 
     public function __construct(Context $context,
         HelperData $helperData,
-        CacheInterface $appCacheInterface, 
+        CacheInterface $appCacheInterface,
         Filesystem $frameworkFilesystem)
     {
         $this->_frameworkFilesystem = $frameworkFilesystem;
