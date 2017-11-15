@@ -12,10 +12,10 @@
  * to license@magentocommerce.com so we can send you a copy immediately.
 
  * @category    EE Solutions Consulting Tools
- * @package     MagentoEse Wysiwygdesigner
+ * @package     MagentoEse ThemeCustomizerer
  * @author      Justin Morrow <jumorrow@ebay.com>
  */
-namespace MagentoEse\Wysiwygdesign\Helper;
+namespace MagentoEse\ThemeCustomizer\Helper;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\Helper\AbstractHelper;

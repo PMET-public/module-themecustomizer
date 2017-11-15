@@ -1,8 +1,8 @@
 <?php
 
-namespace MagentoEse\Wysiwygdesign\Controller\Adminhtml\Generate;
+namespace MagentoEse\ThemeCustomizer\Controller\Adminhtml\Generate;
 
-use MagentoEse\Wysiwygdesign\Helper\Data as HelperData;
+use MagentoEse\ThemeCustomizer\Helper\Data as HelperData;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\CacheInterface;
 use Magento\Framework\Filesystem;

@@ -2,6 +2,6 @@
 
 \Magento\Framework\Component\ComponentRegistrar::register(
     \Magento\Framework\Component\ComponentRegistrar::MODULE,
-    'MagentoEse_Wysiwygdesign',
+    'MagentoEse_ThemeCustomizer',
     __DIR__
 );

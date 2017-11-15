@@ -15,7 +15,7 @@
  * @package     MagentoEse Prodgen
  * @author      Justin Morrow <jumorrow@ebay.com>
  */
-namespace MagentoEse\Wysiwygdesign\Block\Adminhtml\System\Config\Form;
+namespace MagentoEse\ThemeCustomizer\Block\Adminhtml\System\Config\Form;
 //http://webkul.com/blog/add-button-magento2/
 use Magento\Framework\App\Config\ScopeConfigInterface;
 
@@ -55,7 +55,7 @@ class Apply extends \Magento\Config\Block\System\Config\Form\Field
      */
     public function getAjaxCheckUrl()
     {
-        return $this->getUrl('magentoese_wysiwygdesign/generate/apply'); //hit controller by ajax call on button click.
+        return $this->getUrl('magentoese_themecustomizer/generate/apply'); //hit controller by ajax call on button click.
     }
     /**
      * Get the button and scripts contents

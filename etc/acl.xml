@@ -2,13 +2,13 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
   <acl>
     <resources>
-      <resource id="MagentoEse_Wysiwygdesign::UNKNOWN_all" title="Allow Everything"/>
+      <resource id="MagentoEse_ThemeCustomizer::UNKNOWN_all" title="Allow Everything"/>
       <resource id="Magento_Backend::admin">
         <resource id="Magento_Backend::stores">
           <resource id="Magento_Backend::stores_settings">
             <resource id="Magento_Config::config">
-              <resource id="MagentoEse_Wysiwygdesign::config_designsettings" title="Design Settings Section"/>
-              <resource id="MagentoEse_Wysiwygdesign::config_updatedesign" title="Update Design Section" sortOrder="1"/>
+              <resource id="MagentoEse_ThemeCustomizer::config_designsettings" title="Design Settings Section"/>
+              <resource id="MagentoEse_ThemeCustomizer::config_updatedesign" title="Update Design Section" sortOrder="1"/>
             </resource>
           </resource>
         </resource>

@@ -12,12 +12,12 @@
  * to license@magentocommerce.com so we can send you a copy immediately.
 
  * @category    EE Solutions Consulting Tools
- * @package     MagentoEse Wysiwygdesigner
+ * @package     MagentoEse ThemeCustomizerer
  * @author      Justin Morrow <jumorrow@ebay.com>
  */
-namespace MagentoEse\Wysiwygdesign\Controller\Adminhtml\Generate;
+namespace MagentoEse\ThemeCustomizer\Controller\Adminhtml\Generate;
 
-use MagentoEse\Wysiwygdesign\Helper\Data as HelperData;
+use MagentoEse\ThemeCustomizer\Helper\Data as HelperData;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\CacheInterface;
@@ -36,7 +36,7 @@ abstract class AbstractGenerate extends Action
      */
     protected $_appCacheInterface;
 
-    protected $skinDirectory ='/static/frontend/Magento/luma/en_US/MagentoEse_Wysiwygdesign/css/';
+    protected $skinDirectory ='/static/frontend/Magento/luma/en_US/MagentoEse_ThemeCustomizer/css/';
     protected $cssFilename = 'demo.css';
 
     public function __construct(Context $context,
@@ -177,7 +177,7 @@ abstract class AbstractGenerate extends Action
     {
         //concat file path
         //$skin_directory = 'skin/frontend/rwd/default/css';
-        $skin_directory='pub/static/frontend/Magento/luma/en_US/MagentoEse_Wysiwygdesign/css/';
+        $skin_directory='pub/static/frontend/Magento/luma/en_US/MagentoEse_ThemeCustomizer/css/';
         $filename = $skin_directory . 'demo.css';
 
         return $filename;
