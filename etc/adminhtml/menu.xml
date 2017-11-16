@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="MagentoEse_ThemeCustomizer::Config" title="Theme Customizer" module="MagentoEse_ThemeCustomizer" sortOrder="100" parent="Magento_Backend::system_design" action="themecustomizer/config" resource="MagentoEse_ThemeCustomizer::Config"/>
+     </menu>
+</config>
