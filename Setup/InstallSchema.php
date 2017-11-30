@@ -35,119 +35,125 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
             ['name'],
             ['type' => \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_UNIQUE]
         )->addColumn(
-            'topbarcolor',
+            'top_bar_color',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
             10,
             [ 'nullable' => true, ],
-            'topbarcolor'
+            'top_bar_color'
         )->addColumn(
-            'primaryfontcolor',
+            'primary_font_color',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
             10,
             [ 'nullable' => true, ],
-            'primaryfontcolor'
+            'primary_font_color'
         )->addColumn(
-            'primarylinkcolor',
+            'primary_link_color',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
             10,
             [ 'nullable' => true, ],
-            'primarylinkcolor'
+            'primary_link_color'
         )->addColumn(
-            'primarylinkhovercolor',
+            'primary_link_hover_color',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
             10,
             [ 'nullable' => true, ],
-            'primarylinkhovercolor'
+            'primary_link_hover_color'
         )->addColumn(
-            'navbackgroundcolor',
+            'primary_heading_color',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
             10,
             [ 'nullable' => true, ],
-            'navbackgroundcolor'
+            'primary_heading_color'
         )->addColumn(
-            'navlinkcolor',
+            'primary_price_color',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
             10,
             [ 'nullable' => true, ],
-            'navlinkcolor'
+            'primary_price_color'
         )->addColumn(
-            'navlinkhovercolor',
+            'background_color',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
             10,
             [ 'nullable' => true, ],
-            'navlinkhovercolor'
+            'background_color'
         )->addColumn(
-            'navdropdownbackgroundcolor',
+            'category_grid_background_color',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
             10,
             [ 'nullable' => true, ],
-            'navdropdownbackgroundcolor'
+            'category_grid_background_color'
         )->addColumn(
-            'navdropdownlinkcolor',
+            'product_view_background_color',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
             10,
             [ 'nullable' => true, ],
-            'navdropdownlinkcolor'
+            'product_view_background_color'
         )->addColumn(
-            'navdropdownlinkhovercolor',
+            'block_content_background_color',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
             10,
             [ 'nullable' => true, ],
-            'navdropdownlinkhovercolor'
+            'block_content_background_color'
         )->addColumn(
-            'primaryheadingcolor',
+            'nav_background_color',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
             10,
             [ 'nullable' => true, ],
-            'primaryheadingcolor'
+            'nav_background_color'
         )->addColumn(
-            'primarypricecolor',
+            'nav_link_color',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
             10,
             [ 'nullable' => true, ],
-            'primarypricecolor'
+            'nav_link_color'
         )->addColumn(
-            'backgroundcolor',
+            'nav_link_hover_color',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
             10,
             [ 'nullable' => true, ],
-            'backgroundcolor'
+            'nav_link_hover_color'
         )->addColumn(
-            'categorygridbackgroundcolor',
+            'nav_dropdown_background_color',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
             10,
             [ 'nullable' => true, ],
-            'categorygridbackgroundcolor'
+            'nav_dropdown_background_color'
         )->addColumn(
-            'productviewbackgroundcolor',
+            'nav_dropdown_link_color',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
             10,
             [ 'nullable' => true, ],
-            'productviewbackgroundcolor'
+            'nav_dropdown_link_color'
         )->addColumn(
-            'blockcontentbackgroundcolor',
+            'nav_dropdown_link_hover_color',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
             10,
             [ 'nullable' => true, ],
-            'blockcontentbackgroundcolor'
+            'nav_dropdown_link_hover_color'
         )->addColumn(
-            'buttonbackgroundcolor',
+            'button_background_color',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
             10,
             [ 'nullable' => true, ],
-            'buttonbackgroundcolor'
+            'button_background_color'
         )->addColumn(
-            'buttonlinkcolor',
+            'button_link_color',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
             10,
             [ 'nullable' => true, ],
-            'buttonlinkcolor'
+            'button_link_color'
         )->addColumn(
-            'buttonlinkhovercolor',
+            'button_link_hover_color',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
             10,
             [ 'nullable' => true, ],
-            'buttonlinkhovercolor'
+            'button_link_hover_color'
+        )->addColumn(
+            'button_background_color',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+            10,
+            [ 'nullable' => true, ],
+            'button_background_color'
         )->addColumn(
             'additional_css',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
