@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <head>
-        <css  src="MagentoEse_ThemeCustomizer::css/colorpicker.css" />
-        <script src="MagentoEse_ThemeCustomizer::js/jquerymin.js" />
-        <script src="MagentoEse_ThemeCustomizer::js/jqColorPicker.min.js" />
-        <script src="MagentoEse_ThemeCustomizer::js/colorPickerInit.js" />
-    </head>
-</page>
