@@ -52,6 +52,7 @@ class Fieldset extends BaseFieldset
         foreach($elementData as $element){
             array_push($fields,['label' => __($element['frontend_label']),
                 'formElement' => 'input',
+                //'additionalClasses' => 'colorpicker',
                 'id'=> $element['element_code']]);
         }
 
@@ -80,7 +81,9 @@ class Fieldset extends BaseFieldset
             $fieldInstance->setData(
                 [
                     'config' => $fieldConfig,
-                    'name' => $name
+                    'name' => $name,
+                    'additionalClasses' => 'colorpicker'
+
                 ]
             );
 
