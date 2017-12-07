@@ -24,15 +24,15 @@ class Apply extends \Magento\Backend\App\Action
     public function execute()
     {
         // check if we know what should be deleted
-        $id = $this->getRequest()->getParam('object_id');
+        $skinId = $this->getRequest()->getParam('object_id');
         /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
-        if ($id) {
+        if ($skinId) {
             $title = "";
             try {
                 // init model
                 $model = $this->_objectManager->create('MagentoEse\ThemeCustomizer\Model\Skin');
-                $model->load($id);
+                $model->load($skinId);
                 $this->deploy($model);
                 // display success message
                 $this->messageManager->addSuccess(__('You have applied the skin.'));
@@ -42,7 +42,7 @@ class Apply extends \Magento\Backend\App\Action
                 // display error message
                 $this->messageManager->addError($e->getMessage());
                 // go back to edit form
-                return $resultRedirect->setPath('*/*/edit', ['skin_id' => $id]);
+                return $resultRedirect->setPath('*/*/edit', ['skin_id' => $skinId]);
             }
         }
         // display error message
@@ -60,28 +60,22 @@ class Apply extends \Magento\Backend\App\Action
         $this->_createCSSFile($css_content);
     }
 
-    private function generateCssContent($model)
+    private function generateCssContent($skinModel)
     {
-        $id = $this->getRequest()->getParam('object_id');
-        $skin = $this->_objectManager->create('MagentoEse\ThemeCustomizer\Model\ResourceModel\Skin\Collection');
-        $skinModel = $skin->load($id);
         $elementData = $this->_objectManager->create('MagentoEse\ThemeCustomizer\Model\Element');
-        //$data1 = $data->create();
         $elements = $elementData->load(1);
         $css_content = '/* THIS FILE IS AUTO-GENERATED, DO NOT MAKE MODIFICATIONS DIRECTLY */' . "\n";
         foreach ($elements->getCollection()->getData() as $element )
         {
             $inString = $element['css_code'];
             $toFind = "$".$element['element_code'];
-            $replaceWith = $skinModel->getData()[0][$element['element_code']];
+            $replaceWith = $skinModel->getData($element['element_code']);
             if($replaceWith != null){
-                $css_content.= str_replace($toFind,$replaceWith,$inString);
+                $css_content.= str_replace($toFind,$replaceWith,$inString). "\n";
             }
-            //$css_content.= str_replace($element['element_code'],$skinModel->getData())
-
         }
 
-        $css_content .= $skinModel->getData()[0]['additional_css'];
+        $css_content .= $skinModel->getData('additional_css');
         return $css_content;
     }
     public function _createCSSFile($contents)

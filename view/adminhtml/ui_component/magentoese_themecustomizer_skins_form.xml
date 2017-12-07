@@ -41,8 +41,8 @@
     <fieldset name="general">
         <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
-                <item name="label" xsi:type="string">Form Data</item>
-                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="label" xsi:type="string">Configuration</item>
+                <!--<item name="collapsible" xsi:type="boolean">true</item>-->
             </item>
         </argument>
         <field name="skin_id">
@@ -69,7 +69,7 @@
                 </item>
             </argument>
         </field>
-        <field name="top_bar_color">
+        <!--<field name="top_bar_color">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="dataType" xsi:type="string">text</item>
@@ -77,6 +77,33 @@
                     <item name="formElement" xsi:type="string">input</item>
                     <item name="sortOrder" xsi:type="number">10</item>
                     <item name="dataScope" xsi:type="string">top_bar_color</item>
+                </item>
+            </argument>
+        </field>-->
+    </fieldset>
+    <fieldset name="css_styles" class="MagentoEse\ThemeCustomizer\Ui\Component\Form\Fieldset">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Styles</item>
+                <item name="sortOrder" xsi:type="number">10</item>
+            </item>
+        </argument>
+    </fieldset>
+    <fieldset name="additional_css">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string">Additional CSS</item>
+                <!--<item name="collapsible" xsi:type="boolean">true</item>-->
+            </item>
+        </argument>
+         <field name="additional_css">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">textarea</item>
+                    <item name="sortOrder" xsi:type="number">1000</item>
+                    <item name="dataScope" xsi:type="string">additional_css</item>
+                    <item name="label" xsi:type="string" translate="true">Will be appended to very end of stylesheet, highest specificity.</item>
                 </item>
             </argument>
         </field>

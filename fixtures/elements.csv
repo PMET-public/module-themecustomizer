@@ -3,17 +3,17 @@ top_bar_color,Top Bar Color,.page-header .panel.wrapper { background-color:$top_
 primary_font_color,Primary Font Color,body { color:$primary_font_color !important;}
 primary_link_color,Primary Link Color,a { color:$primary_link_color !important;}
 primary_link_hover_color,Primary Link Hover Color,a:hover { color:$primary_link_hover_color !important;} .no-touch .product-image:hover {border-color:$primary_link_hover_color !important}
-primary_heading_color,Primary Heading Color,"h1,h2,h3,h4,h5,h6,h7, .product-name .h1, .block-title h2, .block-title h3, .block-title strong, .footer .block-title, .footer address{ color:$primary_heading_color !important;}"
+primary_heading_color,Primary Heading Color,"h1,h2,h3,h4,h5,h6 .product-name .h1, .block-title h2, .block-title h3, .block-title strong, .footer .block-title, .footer address{ color:$primary_heading_color !important;}"
 primary_price_color,Primary Price Color,.price-box .price { color:$primary_price_color !important;}
 background_color,Background Color,"body, .wrapper, .skip-link { background-color:$background_color !important;}"
 category_grid_background_color,Category Grid Background Color,.category-products{ background-color:$category_grid_background_color !important;}
 product_view_background_color,Product View Background Color,.product-view{ background-color:$product_view_background_color !important;}
 block_content_background_color,Block Content Background Color,.block-content{ background-color:$block_content_background_color !important;}
 nav_background_color,Nav Background Color,.nav-primary { background-color:$nav_background_color !important;}
-nav_link_color,Nav Link Color,.nav-primary a { color:$nav_link_color !important;};
+nav_link_color,Nav Link Color,.nav-primary a { color:$nav_link_color !important;}
 nav_link_hover_color,Nav Link Hover Color,.nav-primary a:hover { color:$nav_link_hover_color !important;}
-nav_dropdown_background_color,Nav Dropdown Background Color,.nav-primary li.level0 ul  { background-color:$nav_dropdown_background_color !important;
-nav_dropdown_link_color,Nav Dropdown Link Color,.nav-primary li.level1 a  { color:$nav_dropdown_link_color !important;};
+nav_dropdown_background_color,Nav Dropdown Background Color,.nav-primary li.level0 ul  { background-color:$nav_dropdown_background_color !important;}
+nav_dropdown_link_color,Nav Dropdown Link Color,.nav-primary li.level1 a  { color:$nav_dropdown_link_color !important;}
 nav_dropdown_link_hover_color,Nav Dropdown Link Hover Color,.nav-primary li.level1 a:hover  { color:$nav_dropdown_link_hover_color !important;}
 button_background_color,Button Background Color,".button, .cart-table .product-cart-actions .button, #co-shipping-method-form .buttons-set .button, .footer .button  { background-color:$button_background_color !important;}"
 button_link_color,Button Link Color,a.button  { color:$button_link_color !important;}
