@@ -18,8 +18,11 @@ define([
             }
         },
 
-        initialize: function () {
+        initialize: function (element) {
             this._super();
+            //console.log('init');
+            console.log($("primary_link_hover_color").val());
+
         },
 
         initColorPickerCallback: function (element) {

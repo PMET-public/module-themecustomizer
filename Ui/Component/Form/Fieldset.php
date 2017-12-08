@@ -52,10 +52,14 @@ class Fieldset extends BaseFieldset
         foreach($elementData as $element){
             array_push($fields,['label' => __($element['frontend_label']),
                 'formElement' => 'input',
-                //'additionalClasses' => 'colorpicker',
+                'component' => 'MagentoEse_ThemeCustomizer/js/form/element/color-select',
+                'template' => 'ui/form/field',
+                'elementTmpl' =>'MagentoEse_ThemeCustomizer/form/element/color-select',
                 'id'=> $element['element_code']]);
         }
-
+       // item name="component" xsi:type="string">MagentoEse_ThemeCustomizer/js/form/element/color-select</item>
+        //            <item name="template" xsi:type="string">ui/form/field</item>
+        //            <item name="elementTmpl" xsi:type="string">MagentoEse_ThemeCustomizer/form/element/color-select</item>
        /* $fields = [
             [
                 'label' => __('Field Label From Code'),
@@ -81,9 +85,7 @@ class Fieldset extends BaseFieldset
             $fieldInstance->setData(
                 [
                     'config' => $fieldConfig,
-                    'name' => $name,
-                    'additionalClasses' => 'colorpicker'
-
+                    'name' => $name
                 ]
             );
 
