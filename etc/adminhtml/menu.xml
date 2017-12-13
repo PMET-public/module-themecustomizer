@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-    <add id="MagentoEse_ThemeCustomizer::skins_list" resource="MagentoEse_ThemeCustomizer::skins" title="Theme Customizer" action="magentoese_themecustomizer_skins/index/index" module="MagentoEse_ThemeCustomizer" sortOrder="100" parent="Magento_Backend::system_design" dependsOnModule="Magento_Backend"/>
+    <add id="MagentoEse_ThemeCustomizer::skins_list" translate="title" resource="MagentoEse_ThemeCustomizer::skins" title="Theme Customizer" action="magentoese_themecustomizer_skins/index/index" module="MagentoEse_ThemeCustomizer" sortOrder="100" parent="Magento_Backend::system_design" dependsOnModule="Magento_Backend"/>
     </menu>
 </config>

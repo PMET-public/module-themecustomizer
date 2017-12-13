@@ -9,7 +9,7 @@ background_color,Background Color,"body, .wrapper, .skip-link { background-color
 category_grid_background_color,Category Grid Background Color,.category-products{ background-color:$category_grid_background_color !important;}
 product_view_background_color,Product View Background Color,.product-view{ background-color:$product_view_background_color !important;}
 block_content_background_color,Block Content Background Color,.block-content{ background-color:$block_content_background_color !important;}
-nav_background_color,Nav Background Color,.navigation, .nav-sections-item-content { background-color:$nav_background_color !important;}
+nav_background_color,Nav Background Color,".navigation, .nav-sections-item-content { background-color:$nav_background_color !important;}"
 nav_link_color,Nav Link Color,.nav-primary a { color:$nav_link_color !important;}
 nav_link_hover_color,Nav Link Hover Color,.nav-primary a:hover { color:$nav_link_hover_color !important;}
 nav_dropdown_background_color,Nav Dropdown Background Color,.nav-primary li.level0 ul  { background-color:$nav_dropdown_background_color !important;}
