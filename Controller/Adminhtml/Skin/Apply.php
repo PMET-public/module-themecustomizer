@@ -13,11 +13,10 @@ class Apply extends \Magento\Backend\App\Action
 
 
     public function _construct(
-        \Magento\Backend\App\Action\Context $context,
-        \MagentoEse\ThemeCustomizer\Api\ElementRepositoryInterfaceFactory $elementRepository
+        \Magento\Backend\App\Action\Context $context
 
     ){
-        $this->elementRepository = $elementRepository;
+        //$this->elementRepository = $elementRepository;
       // parent::__construct($context,$elementRepository);
     }
 

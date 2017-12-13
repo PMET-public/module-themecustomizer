@@ -26,7 +26,7 @@ class Fieldset extends BaseFieldset
         array $data = [],
         FieldFactory $fieldFactory,
         \MagentoEse\ThemeCustomizer\Model\ResourceModel\Skin\CollectionFactory $skin,
-        \MagentoEse\ThemeCustomizer\Model\Elementfactory $element,
+        \MagentoEse\ThemeCustomizer\Model\ElementFactory $element,
         \Magento\Framework\App\Request\Http $request
     )
     {
