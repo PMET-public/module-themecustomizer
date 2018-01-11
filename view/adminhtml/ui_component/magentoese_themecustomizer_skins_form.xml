@@ -69,17 +69,6 @@
                 </item>
             </argument>
         </field>
-        <!--<field name="top_bar_color">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="dataType" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string" translate="true">Top Bar Color</item>
-                    <item name="formElement" xsi:type="string">input</item>
-                    <item name="sortOrder" xsi:type="number">10</item>
-                    <item name="dataScope" xsi:type="string">top_bar_color</item>
-                </item>
-            </argument>
-        </field>-->
     </fieldset>
     <fieldset name="css_styles" class="MagentoEse\ThemeCustomizer\Ui\Component\Form\Fieldset">
         <argument name="data" xsi:type="array">

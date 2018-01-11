@@ -14,7 +14,8 @@ class Save extends \Magento\Backend\App\Action
      * @see _isAllowed()
      */
     const ADMIN_RESOURCE = 'MagentoEse_ThemeCustomizer::skins';
-
+    protected $skinDirectory ='/static/frontend/Magento/luma/en_US/MagentoEse_ThemeCustomizer/css/';
+    protected $cssFilename = 'demo.css';
     /**
      * @var DataPersistorInterface
      */
@@ -26,9 +27,11 @@ class Save extends \Magento\Backend\App\Action
      */
     public function __construct(
         Action\Context $context,
-        DataPersistorInterface $dataPersistor
+        DataPersistorInterface $dataPersistor,
+        \Magento\Framework\App\ResourceConnection $resourceConnection
     ) {
         $this->dataPersistor = $dataPersistor;
+        $this->resourceConnection = $resourceConnection;
         parent::__construct($context);
     }
 
@@ -58,12 +61,16 @@ class Save extends \Magento\Backend\App\Action
             if ($id) {
                 $model->load($id);
             }
-
+            $oldThemeId = $model->getData('applied_to');
+            //remove theme_id from save. This will be set by Apply
+            unset($data['theme_id']);
             $model->setData($data);
 
             try {
                 $model->save();
                 $this->messageManager->addSuccess(__('You saved the configuration.'));
+                //apply CSS to theme
+                $this->deploy($model,$oldThemeId);
                 $this->dataPersistor->clear('magentoese_themecustomizer_skin');
                 if ($this->getRequest()->getParam('back')) {
                     return $resultRedirect->setPath('*/*/edit', ['skin_id' => $model->getId(), '_current' => true]);
@@ -76,8 +83,62 @@ class Save extends \Magento\Backend\App\Action
             }
 
             $this->dataPersistor->set('magentoese_themecustomizer_skin', $data);
-            return $resultRedirect->setPath('*/*/edit', ['skin_id' => $this->getRequest()->getParam('skin_id')]);
+             return $resultRedirect->setPath('*/*/edit', ['skin_id' => $this->getRequest()->getParam('skin_id')]);
         }
         return $resultRedirect->setPath('*/*/');
-    }    
+    }
+
+    private function deploy($model,$oldThemeId){
+        //if theme is not zero, apply theme and set other skin's apply_to = 0 where it = themeId
+        if($model->getData('applied_to')!=0){
+            //update magentoese_themecustomizer_skin set applied_to = 0 where apply_to = $oldThemeId
+            $connection = $this->resourceConnection->getConnection();
+            $sql='update magentoese_themecustomizer_skin set applied_to = 0 where applied_to ='. $model->getData('applied_to') .' and skin_id !='.$model->getData('skin_id');
+            $connection->query($sql);
+            $css_content = $this->generateCssContent($model);
+            $this->createCSSFile($css_content);
+            $this->messageManager->addSuccess(__('You have applied the skin.'));
+        }elseif($model->getData('applied_to')==0&&$oldThemeId!=0){
+            //remove css content
+            $this->createCSSFile('');
+            $this->messageManager->addSuccess(__('You have removed the skin.'));
+        }
+    }
+
+    private function generateCssContent($skinModel)
+    {
+        $elementData = $this->_objectManager->create('MagentoEse\ThemeCustomizer\Model\Element');
+        $elements = $elementData->load(1);
+        $css_content = '/* THIS FILE IS AUTO-GENERATED, DO NOT MAKE MODIFICATIONS DIRECTLY */' . "\n";
+        foreach ($elements->getCollection()->getData() as $element )
+        {
+            $inString = $element['css_code'];
+            $toFind = "$".$element['element_code'];
+            $replaceWith = $skinModel->getData($element['element_code']);
+            if($replaceWith != null){
+                $css_content.= str_replace($toFind,$replaceWith,$inString). "\n";
+            }
+        }
+
+        $css_content .= $skinModel->getData('additional_css');
+        return $css_content;
+    }
+    public function createCSSFile($contents)
+    {
+        $filename = '';
+        $filename = $_SERVER['DOCUMENT_ROOT'].$this->skinDirectory . $this->cssFilename;
+        //$filename = str_replace("pub","",$_SERVER['DOCUMENT_ROOT']).$filename;
+        if (!file_exists($filename)) {
+            mkdir($_SERVER['DOCUMENT_ROOT'].$this->skinDirectory,0744,true);
+            $fh = fopen($filename, 'w');
+            fclose($fh);
+        }
+        //reset the file
+        file_put_contents($filename, "");
+        //create new file and prep for insertion
+        $current = file_get_contents($filename);
+        $current .= $contents;
+        //rewrite it out
+        file_put_contents($filename, $current);
+    }
 }

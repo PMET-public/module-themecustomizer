@@ -9,6 +9,7 @@ class ApplyButton extends GenericButton implements ButtonProviderInterface
         return [
                 'label' => __('Apply'),
                 'class' => 'apply',
+                'method' => 'post',
                 'on_click' => 'deleteConfirm( \'' . __(
                     'This will apply this skin to the theme. Are you sure you want to do this?'
                 ) . '\', \'' . $this->getApplyUrl() . '\')',

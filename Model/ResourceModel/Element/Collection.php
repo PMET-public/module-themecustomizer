@@ -6,4 +6,5 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
     {
         $this->_init('MagentoEse\ThemeCustomizer\Model\Element','MagentoEse\ThemeCustomizer\Model\ResourceModel\Element');
     }
+
 }

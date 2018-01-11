@@ -24,6 +24,7 @@ class Apply extends \Magento\Backend\App\Action
     {
         // check if we know what should be deleted
         $skinId = $this->getRequest()->getParam('object_id');
+        $data = $this->getRequest()->getPostValue();
         /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
         if ($skinId) {
@@ -33,6 +34,7 @@ class Apply extends \Magento\Backend\App\Action
                 $model = $this->_objectManager->create('MagentoEse\ThemeCustomizer\Model\Skin');
                 $model->load($skinId);
                 $this->deploy($model);
+                //set theme id
                 // display success message
                 $this->messageManager->addSuccess(__('You have applied the skin.'));
                 // go to grid
@@ -54,7 +56,7 @@ class Apply extends \Magento\Backend\App\Action
     /**
      * @param $model \MagentoEse\ThemeCustomizer\Model\Skin
      */
-    private function deploy($model){
+    public function deploy($model){
         $css_content = $this->generateCssContent($model);
         $this->_createCSSFile($css_content);
     }

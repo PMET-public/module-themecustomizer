@@ -77,5 +77,13 @@
                 </item>
             </argument>
         </column>
+        <column name="theme_title">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Theme Applied To</item>
+                    <item name="sortOrder" xsi:type="number">110</item>
+                </item>
+            </argument>
+        </column>
     </columns>
 </listing>

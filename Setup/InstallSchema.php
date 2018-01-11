@@ -34,6 +34,12 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
             ),
             ['name'],
             ['type' => \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_UNIQUE]
+       /* )->addColumn(
+            'theme_id',
+            \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+            null,
+            [  'nullable' => true,'unsigned' => true, ],
+            'ID of theme skin is deployed to'
         )->addColumn(
             'top_bar_color',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
@@ -153,7 +159,7 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
             10,
             [ 'nullable' => true, ],
-            'button_background_color'
+            'button_background_color'*/
         )->addColumn(
             'additional_css',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
@@ -178,6 +184,12 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
             null,
             [ 'nullable' => false, 'default' => '1', ],
             'Is Active'
+        )->addColumn(
+        'applied_to',
+        \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
+        null,
+        [ 'nullable' => false, 'default' => '0', ],
+        'Applied To Theme'
         );
         $installer->getConnection()->createTable($table);
         //END   table setup

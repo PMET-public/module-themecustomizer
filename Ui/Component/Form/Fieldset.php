@@ -27,7 +27,8 @@ class Fieldset extends BaseFieldset
         FieldFactory $fieldFactory,
         \MagentoEse\ThemeCustomizer\Model\ResourceModel\Skin\CollectionFactory $skin,
         \MagentoEse\ThemeCustomizer\Model\ElementFactory $element,
-        \Magento\Framework\App\Request\Http $request
+        \Magento\Framework\App\Request\Http $request,
+        \Magento\Theme\Model\ResourceModel\Theme\CollectionFactory $themeCollection
     )
     {
         parent::__construct($context, $components, $data);
@@ -35,6 +36,7 @@ class Fieldset extends BaseFieldset
         $this->elements = $element;
         $this->skin = $skin;
         $this->request = $request;
+        $this->themeCollection = $themeCollection;
     }
 
 
@@ -49,6 +51,29 @@ class Fieldset extends BaseFieldset
         $elementList = $elements->load(1);
         $elementData = $elementList->getCollection()->getData();
         $fields = [];
+        /*foreach($elementData as $element){
+            array_push($fields,['label' => __($element['frontend_label']),
+                'formElement' => 'input',
+                'component' => 'MagentoEse_ThemeCustomizer/js/form/element/color-select',
+                'template' => 'ui/form/field',
+                'elementTmpl' =>'MagentoEse_ThemeCustomizer/form/element/color-select',
+                'id'=> $element['element_code']]);
+        }*/
+       /* array_push($fields,['label' => __('Theme'),
+            'formElement' => 'select',
+            'options' => $this->_getOptions(),
+            'id'=> 'theme_id']);*/
+
+        $fields = [
+
+            [
+                'label' => __('Apply to Theme'),
+                //'value' => 3,
+                'formElement' => 'select',
+                'options' => $this->getThemes(),
+                'id'=>'applied_to'
+            ]
+        ];
         foreach($elementData as $element){
             array_push($fields,['label' => __($element['frontend_label']),
                 'formElement' => 'input',
@@ -57,26 +82,6 @@ class Fieldset extends BaseFieldset
                 'elementTmpl' =>'MagentoEse_ThemeCustomizer/form/element/color-select',
                 'id'=> $element['element_code']]);
         }
-       // item name="component" xsi:type="string">MagentoEse_ThemeCustomizer/js/form/element/color-select</item>
-        //            <item name="template" xsi:type="string">ui/form/field</item>
-        //            <item name="elementTmpl" xsi:type="string">MagentoEse_ThemeCustomizer/form/element/color-select</item>
-       /* $fields = [
-            [
-                'label' => __('Field Label From Code'),
-                'value' => __('Field Value From Code'),
-                'formElement' => 'input',
-            ],
-            [
-                'label' => __('Another Field Label From Code'),
-                'value' => __('Another Field Value From Code'),
-                'formElement' => 'input',
-            ],
-            [
-                'label' => __('Yet Another Field Label From Code'),
-                'value' => __('Yet Another Field Value From Code'),
-                'formElement' => 'input',
-            ]
-        ];*/
 
         foreach ($fields as $fieldConfig) {
             $fieldInstance = $this->fieldFactory->create();
@@ -94,5 +99,25 @@ class Fieldset extends BaseFieldset
         }
 
         return parent::getChildComponents();
+    }
+    protected function getThemes()
+    {
+        $options = [[
+            'label' => __('--None--'),
+            'value' => 0
+        ]];
+        $themeFactory = $this->themeCollection->create();
+        $themes = $themeFactory->getItems();
+        foreach($themes as $theme){
+            if($theme->getData('area')=='frontend'){
+                array_push($options,[
+                    'label' => $theme->getData('theme_title'),
+                    'value' => $theme->getData('theme_id')
+                ]);
+            }
+        }
+
+
+        return $options;
     }
 }
