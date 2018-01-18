@@ -14,7 +14,9 @@ class Save extends \Magento\Backend\App\Action
      * @see _isAllowed()
      */
     const ADMIN_RESOURCE = 'MagentoEse_ThemeCustomizer::skins';
-    protected $skinDirectory ='/static/frontend/Magento/luma/en_US/MagentoEse_ThemeCustomizer/css/';
+    //protected $skinDirectory ='/static/frontend/Magento/luma/en_US/MagentoEse_ThemeCustomizer/css/';
+    protected $skinDirectoryPrefix ='/static/frontend/';
+    protected $skinDirectorySuffix ='/MagentoEse_ThemeCustomizer/css/';
     protected $cssFilename = 'demo.css';
     /**
      * @var DataPersistorInterface
@@ -28,10 +30,16 @@ class Save extends \Magento\Backend\App\Action
     public function __construct(
         Action\Context $context,
         DataPersistorInterface $dataPersistor,
-        \Magento\Framework\App\ResourceConnection $resourceConnection
+        \Magento\Framework\App\ResourceConnection $resourceConnection,
+        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
+        \Magento\Framework\View\Design\Theme\ThemeProviderInterface $themeProvider
     ) {
         $this->dataPersistor = $dataPersistor;
         $this->resourceConnection = $resourceConnection;
+        $this->scopeConfig = $scopeConfig;
+        $this->storeManager = $storeManager;
+        $this->themeProvider = $themeProvider;
         parent::__construct($context);
     }
 
@@ -96,11 +104,11 @@ class Save extends \Magento\Backend\App\Action
             $sql='update magentoese_themecustomizer_skin set applied_to = 0 where applied_to ='. $model->getData('applied_to') .' and skin_id !='.$model->getData('skin_id');
             $connection->query($sql);
             $css_content = $this->generateCssContent($model);
-            $this->createCSSFile($css_content);
+            $this->createCSSFile($css_content,$model->getData('applied_to'));
             $this->messageManager->addSuccess(__('You have applied the skin.'));
         }elseif($model->getData('applied_to')==0&&$oldThemeId!=0){
             //remove css content
-            $this->createCSSFile('');
+            $this->createCSSFile('',$oldThemeId);
             $this->messageManager->addSuccess(__('You have removed the skin.'));
         }
     }
@@ -123,22 +131,42 @@ class Save extends \Magento\Backend\App\Action
         $css_content .= $skinModel->getData('additional_css');
         return $css_content;
     }
-    public function createCSSFile($contents)
+    private function createCSSFile($contents,$themeId)
     {
-        $filename = '';
-        $filename = $_SERVER['DOCUMENT_ROOT'].$this->skinDirectory . $this->cssFilename;
-        //$filename = str_replace("pub","",$_SERVER['DOCUMENT_ROOT']).$filename;
-        if (!file_exists($filename)) {
-            mkdir($_SERVER['DOCUMENT_ROOT'].$this->skinDirectory,0744,true);
-            $fh = fopen($filename, 'w');
-            fclose($fh);
+        //find which locales to deploy to
+        $locales = $this->getAssignedLocales();
+        //get theme information to deploy to
+        $theme = $this->themeProvider->getThemeById($themeId);
+        foreach($locales as $locale){
+            $skinDirectory = $this->skinDirectoryPrefix.$theme->getThemePath().'/'.$locale.$this->skinDirectorySuffix;
+            $filename = '';
+            $filename = $_SERVER['DOCUMENT_ROOT'].$skinDirectory . $this->cssFilename;
+            //$filename = str_replace("pub","",$_SERVER['DOCUMENT_ROOT']).$filename;
+            if (!file_exists($filename)) {
+                mkdir($_SERVER['DOCUMENT_ROOT'].$skinDirectory,0744,true);
+                $fh = fopen($filename, 'w');
+                fclose($fh);
+            }
+            //reset the file
+            file_put_contents($filename, "");
+            //create new file and prep for insertion
+            $current = file_get_contents($filename);
+            $current .= $contents;
+            //rewrite it out
+            file_put_contents($filename, $current);
         }
-        //reset the file
-        file_put_contents($filename, "");
-        //create new file and prep for insertion
-        $current = file_get_contents($filename);
-        $current .= $contents;
-        //rewrite it out
-        file_put_contents($filename, $current);
+
+    }
+
+    private function getAssignedLocales(){
+        $storeList = $this->storeManager->getStores();
+        $locales = [];
+        foreach($storeList as $store){
+            $locale =  $this->scopeConfig->getValue('general/locale/code', \Magento\Store\Model\ScopeInterface::SCOPE_STORE, $store->getId());
+            if(!in_array($locale, $locales)){
+                $locales[]=$locale;
+            }
+        }
+        return $locales;
     }
 }
