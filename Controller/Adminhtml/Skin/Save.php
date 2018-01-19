@@ -96,7 +96,7 @@ class Save extends \Magento\Backend\App\Action
         return $resultRedirect->setPath('*/*/');
     }
 
-    private function deploy($model,$oldThemeId){
+    public function deploy($model,$oldThemeId){
         //if theme is not zero, apply theme and set other skin's apply_to = 0 where it = themeId
         if($model->getData('applied_to')!=0){
             //update magentoese_themecustomizer_skin set applied_to = 0 where apply_to = $oldThemeId
@@ -113,7 +113,7 @@ class Save extends \Magento\Backend\App\Action
         }
     }
 
-    private function generateCssContent($skinModel)
+    public function generateCssContent($skinModel)
     {
         $elementData = $this->_objectManager->create('MagentoEse\ThemeCustomizer\Model\Element');
         $elements = $elementData->load(1);
@@ -131,7 +131,7 @@ class Save extends \Magento\Backend\App\Action
         $css_content .= $skinModel->getData('additional_css');
         return $css_content;
     }
-    private function createCSSFile($contents,$themeId)
+    public function createCSSFile($contents,$themeId)
     {
         //find which locales to deploy to
         $locales = $this->getAssignedLocales();
@@ -158,7 +158,7 @@ class Save extends \Magento\Backend\App\Action
 
     }
 
-    private function getAssignedLocales(){
+    public function getAssignedLocales(){
         $storeList = $this->storeManager->getStores();
         $locales = [];
         foreach($storeList as $store){

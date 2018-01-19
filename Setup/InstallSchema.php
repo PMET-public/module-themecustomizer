@@ -2,18 +2,19 @@
 namespace MagentoEse\ThemeCustomizer\Setup;
 class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
 {
+    const SKIN_TABLE = 'magentoese_themecustomizer_skin';
+    const ELEMENT_TABLE  = 'magentoese_themecustomizer_elements';
     public function install(\Magento\Framework\Setup\SchemaSetupInterface $setup, \Magento\Framework\Setup\ModuleContextInterface $context)
     {
         $installer = $setup;
         $installer->startSetup();
-        $skinTableName = 'magentoese_themecustomizer_skin';
-        $elementTablename = 'magentoese_themecustomizer_elements';
+
         //START: install stuff
         //END:   install stuff
         
         //START table setup
         $table = $installer->getConnection()->newTable(
-            $installer->getTable($skinTableName)
+            $installer->getTable(self::SKIN_TABLE)
         )->addColumn(
             'skin_id',
             \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
@@ -28,138 +29,13 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
             'Name'
         )->addIndex(
             $installer->getIdxName(
-                $skinTableName,
+                self::SKIN_TABLE,
                 ['name'],
                 \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_UNIQUE
             ),
             ['name'],
             ['type' => \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_UNIQUE]
-       /* )->addColumn(
-            'theme_id',
-            \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
-            null,
-            [  'nullable' => true,'unsigned' => true, ],
-            'ID of theme skin is deployed to'
-        )->addColumn(
-            'top_bar_color',
-            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-            10,
-            [ 'nullable' => true, ],
-            'top_bar_color'
-        )->addColumn(
-            'primary_font_color',
-            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-            10,
-            [ 'nullable' => true, ],
-            'primary_font_color'
-        )->addColumn(
-            'primary_link_color',
-            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-            10,
-            [ 'nullable' => true, ],
-            'primary_link_color'
-        )->addColumn(
-            'primary_link_hover_color',
-            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-            10,
-            [ 'nullable' => true, ],
-            'primary_link_hover_color'
-        )->addColumn(
-            'primary_heading_color',
-            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-            10,
-            [ 'nullable' => true, ],
-            'primary_heading_color'
-        )->addColumn(
-            'primary_price_color',
-            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-            10,
-            [ 'nullable' => true, ],
-            'primary_price_color'
-        )->addColumn(
-            'background_color',
-            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-            10,
-            [ 'nullable' => true, ],
-            'background_color'
-        )->addColumn(
-            'category_grid_background_color',
-            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-            10,
-            [ 'nullable' => true, ],
-            'category_grid_background_color'
-        )->addColumn(
-            'product_view_background_color',
-            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-            10,
-            [ 'nullable' => true, ],
-            'product_view_background_color'
-        )->addColumn(
-            'block_content_background_color',
-            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-            10,
-            [ 'nullable' => true, ],
-            'block_content_background_color'
-        )->addColumn(
-            'nav_background_color',
-            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-            10,
-            [ 'nullable' => true, ],
-            'nav_background_color'
-        )->addColumn(
-            'nav_link_color',
-            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-            10,
-            [ 'nullable' => true, ],
-            'nav_link_color'
-        )->addColumn(
-            'nav_link_hover_color',
-            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-            10,
-            [ 'nullable' => true, ],
-            'nav_link_hover_color'
-        )->addColumn(
-            'nav_dropdown_background_color',
-            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-            10,
-            [ 'nullable' => true, ],
-            'nav_dropdown_background_color'
-        )->addColumn(
-            'nav_dropdown_link_color',
-            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-            10,
-            [ 'nullable' => true, ],
-            'nav_dropdown_link_color'
-        )->addColumn(
-            'nav_dropdown_link_hover_color',
-            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-            10,
-            [ 'nullable' => true, ],
-            'nav_dropdown_link_hover_color'
-        )->addColumn(
-            'button_background_color',
-            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-            10,
-            [ 'nullable' => true, ],
-            'button_background_color'
-        )->addColumn(
-            'button_link_color',
-            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-            10,
-            [ 'nullable' => true, ],
-            'button_link_color'
-        )->addColumn(
-            'button_link_hover_color',
-            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-            10,
-            [ 'nullable' => true, ],
-            'button_link_hover_color'
-        )->addColumn(
-            'button_background_color',
-            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-            10,
-            [ 'nullable' => true, ],
-            'button_background_color'*/
+
         )->addColumn(
             'additional_css',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
@@ -197,7 +73,7 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
 
         //START table setup
         $table = $installer->getConnection()->newTable(
-            $installer->getTable($elementTablename)
+            $installer->getTable(self::ELEMENT_TABLE)
         )->addColumn(
             'element_id',
             \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
@@ -212,7 +88,7 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
             'Unique Code'
         )->addIndex(
             $installer->getIdxName(
-                $elementTablename,
+                self::ELEMENT_TABLE,
                 ['element_code'],
                 \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_UNIQUE
             ),
