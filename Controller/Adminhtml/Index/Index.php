@@ -18,4 +18,8 @@ class Index extends \Magento\Backend\App\Action
     {
         return $this->resultPageFactory->create();  
     }
+    protected function _isAllowed()
+    {
+        return $this->_authorization->isAllowed(self::ADMIN_RESOURCE);
+    }
 }

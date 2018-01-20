@@ -9,5 +9,10 @@ class Index extends \Magento\Backend\App\Action
         $resultRedirect = $this->resultRedirectFactory->create();
         $resultRedirect->setPath('*/index/index');
         return $resultRedirect;
-    }     
+    }
+
+    protected function _isAllowed()
+    {
+        return $this->_authorization->isAllowed(self::ADMIN_RESOURCE);
+    }
 }

@@ -49,6 +49,11 @@ class Delete extends \Magento\Backend\App\Action
         // go to grid
         return $resultRedirect->setPath('*/*/');
         
-    }    
+    }
+
+    protected function _isAllowed()
+    {
+        return $this->_authorization->isAllowed(self::ADMIN_RESOURCE);
+    }
     
 }

@@ -16,5 +16,10 @@ class NewAction extends \Magento\Backend\App\Action
     public function execute()
     {
         return $this->resultPageFactory->create();  
-    }    
+    }
+
+    protected function _isAllowed()
+    {
+        return $this->_authorization->isAllowed(self::ADMIN_RESOURCE);
+    }
 }

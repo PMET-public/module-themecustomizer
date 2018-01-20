@@ -2,8 +2,12 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
     <acl>
         <resources>
-            <resource id="Magento_Backend::admin">
-                <resource id="MagentoEse_ThemeCustomizer::skins" title="Manage Skins"/>
+           <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::content">
+                    <resource id="Magento_Backend::design">
+                        <resource id="MagentoEse_ThemeCustomizer::skins" title="Manage Skins" translate="title" sortOrder="100"/>
+                    </resource>
+                </resource>
             </resource>
         </resources>
     </acl>
