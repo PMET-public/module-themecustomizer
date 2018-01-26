@@ -1,4 +1,7 @@
 <?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ */
 namespace MagentoEse\ThemeCustomizer\Ui\Component\Listing\DataProviders\Magentoese\Themecustomizer;
 
 class Skins extends \Magento\Ui\DataProvider\AbstractDataProvider

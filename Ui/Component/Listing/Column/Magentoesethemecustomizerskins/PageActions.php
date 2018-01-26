@@ -1,4 +1,7 @@
 <?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ */
 namespace MagentoEse\ThemeCustomizer\Ui\Component\Listing\Column\Magentoesethemecustomizerskins;
 
 class PageActions extends \Magento\Ui\Component\Listing\Columns\Column

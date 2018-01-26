@@ -1,4 +1,7 @@
 <?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ */
 namespace MagentoEse\ThemeCustomizer\Controller\Adminhtml\Skin;
 
 class NewAction extends \Magento\Backend\App\Action

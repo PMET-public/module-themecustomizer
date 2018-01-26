@@ -1,4 +1,7 @@
 <?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ */
 namespace MagentoEse\ThemeCustomizer\Controller\Adminhtml\Skin;
 
 use Magento\Backend\App\Action;
@@ -7,9 +10,11 @@ class Delete extends \Magento\Backend\App\Action
 {  
     const ADMIN_RESOURCE = 'MagentoEse_ThemeCustomizer::skins';
 
-    public function __construct(Action\Context $context, Save $resetCss)
+    public function __construct(Action\Context $context, Save $resetCss,
+                                \MagentoEse\ThemeCustomizer\Model\SkinFactory $skinFactory )
     {
         $this->resetCss = $resetCss;
+        $this->skinFactory = $skinFactory;
         parent::__construct($context);
     }
 
@@ -23,7 +28,7 @@ class Delete extends \Magento\Backend\App\Action
             $title = "";
             try {
                 // init model and delete
-                $model = $this->_objectManager->create('MagentoEse\ThemeCustomizer\Model\Skin');
+                $model = $this->skinFactory->create();
                 $model->load($id);
                 //if there is a theme attached to this skin, we need to reset the css
                 $themeId = $model->getData('applied_to');

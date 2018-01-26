@@ -1,4 +1,7 @@
 <?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ */
 namespace MagentoEse\ThemeCustomizer\Model\Skin;
 use MagentoEse\ThemeCustomizer\Model\ResourceModel\Skin\CollectionFactory;
 use Magento\Framework\App\Request\DataPersistorInterface;

@@ -1,3 +1,6 @@
+//**
+// * Copyright © Magento, Inc. All rights reserved.
+// *
 define([
     'Magento_Ui/js/form/element/abstract',
     'mageUtils',

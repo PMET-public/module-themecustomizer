@@ -1,4 +1,7 @@
 <?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ */
 namespace MagentoEse\ThemeCustomizer\Controller\Adminhtml\Skin;
 
 use Magento\Backend\App\Action;
@@ -33,13 +36,17 @@ class Save extends \Magento\Backend\App\Action
         \Magento\Framework\App\ResourceConnection $resourceConnection,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
-        \Magento\Framework\View\Design\Theme\ThemeProviderInterface $themeProvider
+        \Magento\Framework\View\Design\Theme\ThemeProviderInterface $themeProvider,
+        \MagentoEse\ThemeCustomizer\Model\SkinFactory $skinFactory,
+        \MagentoEse\ThemeCustomizer\Model\ElementFactory $elementFactory
     ) {
         $this->dataPersistor = $dataPersistor;
         $this->resourceConnection = $resourceConnection;
         $this->scopeConfig = $scopeConfig;
         $this->storeManager = $storeManager;
         $this->themeProvider = $themeProvider;
+        $this->skinFactory = $skinFactory;
+        $this->elementFactory = $elementFactory;
         parent::__construct($context);
     }
 
@@ -63,7 +70,7 @@ class Save extends \Magento\Backend\App\Action
             }
 
             /** @var MagentoEse\ThemeCustomizer\Model\Skin $model */
-            $model = $this->_objectManager->create('MagentoEse\ThemeCustomizer\Model\Skin');
+            $model = $this->skinFactory->create();
 
             $id = $this->getRequest()->getParam('skin_id');
             if ($id) {
@@ -115,7 +122,7 @@ class Save extends \Magento\Backend\App\Action
 
     public function generateCssContent($skinModel)
     {
-        $elementData = $this->_objectManager->create('MagentoEse\ThemeCustomizer\Model\Element');
+        $elementData = $this->elementFactory->create();
         $elements = $elementData->load(1);
         $css_content = '/* THIS FILE IS AUTO-GENERATED, DO NOT MAKE MODIFICATIONS DIRECTLY */' . "\n";
         foreach ($elements->getCollection()->getData() as $element )

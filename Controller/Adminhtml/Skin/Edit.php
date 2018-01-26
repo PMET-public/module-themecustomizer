@@ -1,4 +1,7 @@
 <?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ */
 namespace MagentoEse\ThemeCustomizer\Controller\Adminhtml\Skin;
 
 class Edit extends \Magento\Backend\App\Action

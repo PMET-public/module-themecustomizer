@@ -1,4 +1,7 @@
 <?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ */
 namespace MagentoEse\ThemeCustomizer\Controller\Adminhtml\Index;
 class Index extends \Magento\Backend\App\Action
 {

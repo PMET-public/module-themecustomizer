@@ -1,11 +1,7 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: jbritts
- * Date: 11/30/17
- * Time: 11:32 AM
+ * Copyright © Magento, Inc. All rights reserved.
  */
-
 namespace MagentoEse\ThemeCustomizer\Model\Install;
 use Magento\Framework\Setup\SampleData\Context as SampleDataContext;
 
