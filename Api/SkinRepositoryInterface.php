@@ -5,10 +5,13 @@
 namespace MagentoEse\ThemeCustomizer\Api;
 
 use MagentoEse\ThemeCustomizer\Api\Data\SkinInterface;
-use Magento\Framework\Api\SortOrder;
 use Magento\Framework\Api\SearchCriteriaInterface;
 
-interface SkinRepositoryInterface 
+/**
+ * Interface SkinRepositoryInterface
+ * @package MagentoEse\ThemeCustomizer\Api
+ */
+interface SkinRepositoryInterface
 {
     public function save(SkinInterface $page);
 

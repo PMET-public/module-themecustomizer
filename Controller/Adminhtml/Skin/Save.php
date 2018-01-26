@@ -8,27 +8,81 @@ use Magento\Backend\App\Action;
 use MagentoEse\ThemeCustomizer\Model\Page;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\Exception\LocalizedException;
-            
+
+/**
+ * Class Save
+ * @package MagentoEse\ThemeCustomizer\Controller\Adminhtml\Skin
+ */
 class Save extends \Magento\Backend\App\Action
 {
-    /**
-     * Authorization level of a basic admin session
-     *
-     * @see _isAllowed()
-     */
+
     const ADMIN_RESOURCE = 'MagentoEse_ThemeCustomizer::skins';
-    //protected $skinDirectory ='/static/frontend/Magento/luma/en_US/MagentoEse_ThemeCustomizer/css/';
+
+    /**
+     * @var string
+     */
     protected $skinDirectoryPrefix ='/static/frontend/';
+
+    /**
+     * @var string
+     */
     protected $skinDirectorySuffix ='/MagentoEse_ThemeCustomizer/css/';
+
+    /**
+     * @var string
+     */
     protected $cssFilename = 'demo.css';
+
+    /**
+     * @var Action\Context
+     */
+    protected $context;
+
     /**
      * @var DataPersistorInterface
      */
     protected $dataPersistor;
 
     /**
+     * @var \Magento\Framework\App\ResourceConnection
+     */
+    protected $resourceConnection;
+
+    /**
+     * @var \Magento\Framework\App\Config\ScopeConfigInterface
+     */
+    protected $scopeConfig;
+
+    /**
+     * @var \Magento\Store\Model\StoreManagerInterface
+     */
+    protected $storeManager;
+
+    /**
+     * @var \Magento\Framework\View\Design\Theme\ThemeProviderInterface
+     */
+    protected $themeProvider;
+
+    /**
+     * @var \MagentoEse\ThemeCustomizer\Model\SkinFactory
+     */
+    protected $skinFactory;
+
+    /**
+     * @var \MagentoEse\ThemeCustomizer\Model\ElementFactory
+     */
+    protected $elementFactory;
+
+    /**
+     * Save constructor.
      * @param Action\Context $context
      * @param DataPersistorInterface $dataPersistor
+     * @param \Magento\Framework\App\ResourceConnection $resourceConnection
+     * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
+     * @param \Magento\Store\Model\StoreManagerInterface $storeManager
+     * @param \Magento\Framework\View\Design\Theme\ThemeProviderInterface $themeProvider
+     * @param \MagentoEse\ThemeCustomizer\Model\SkinFactory $skinFactory
+     * @param \MagentoEse\ThemeCustomizer\Model\ElementFactory $elementFactory
      */
     public function __construct(
         Action\Context $context,
@@ -51,10 +105,7 @@ class Save extends \Magento\Backend\App\Action
     }
 
     /**
-     * Save action
-     *
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-     * @return \Magento\Framework\Controller\ResultInterface
+     * @return $this
      */
     public function execute()
     {
@@ -103,7 +154,11 @@ class Save extends \Magento\Backend\App\Action
         return $resultRedirect->setPath('*/*/');
     }
 
-    public function deploy($model,$oldThemeId){
+    /**
+     * @param \MagentoEse\ThemeCustomizer\Model\Skin $model
+     * @param int $oldThemeId
+     */
+    public function deploy(\MagentoEse\ThemeCustomizer\Model\Skin $model, int $oldThemeId){
         //if theme is not zero, apply theme and set other skin's apply_to = 0 where it = themeId
         if($model->getData('applied_to')!=0){
             //update magentoese_themecustomizer_skin set applied_to = 0 where apply_to = $oldThemeId
@@ -120,7 +175,11 @@ class Save extends \Magento\Backend\App\Action
         }
     }
 
-    public function generateCssContent($skinModel)
+    /**
+     * @param \MagentoEse\ThemeCustomizer\Model\Skin $skinModel
+     * @return string
+     */
+    public function generateCssContent(\MagentoEse\ThemeCustomizer\Model\Skin $skinModel)
     {
         $elementData = $this->elementFactory->create();
         $elements = $elementData->load(1);
@@ -138,7 +197,12 @@ class Save extends \Magento\Backend\App\Action
         $css_content .= $skinModel->getData('additional_css');
         return $css_content;
     }
-    public function createCSSFile($contents,$themeId)
+
+    /**
+     * @param string $contents
+     * @param int $themeId
+     */
+    public function createCSSFile(string $contents, int $themeId)
     {
         //find which locales to deploy to
         $locales = $this->getAssignedLocales();
@@ -165,6 +229,9 @@ class Save extends \Magento\Backend\App\Action
 
     }
 
+    /**
+     * @return array
+     */
     public function getAssignedLocales(){
         $storeList = $this->storeManager->getStores();
         $locales = [];
@@ -177,6 +244,9 @@ class Save extends \Magento\Backend\App\Action
         return $locales;
     }
 
+    /**
+     * @return bool
+     */
     protected function _isAllowed()
     {
         return $this->_authorization->isAllowed(self::ADMIN_RESOURCE);
