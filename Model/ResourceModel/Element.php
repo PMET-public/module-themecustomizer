@@ -3,11 +3,6 @@
  * Copyright © Magento, Inc. All rights reserved.
  */
 namespace MagentoEse\ThemeCustomizer\Model\ResourceModel;
-
-/**
- * Class Element
- * @package MagentoEse\ThemeCustomizer\Model\ResourceModel
- */
 class Element extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
 {
     protected function _construct()

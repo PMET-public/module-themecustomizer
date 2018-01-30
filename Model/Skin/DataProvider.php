@@ -3,27 +3,22 @@
  * Copyright © Magento, Inc. All rights reserved.
  */
 namespace MagentoEse\ThemeCustomizer\Model\Skin;
-
 use MagentoEse\ThemeCustomizer\Model\ResourceModel\Skin\CollectionFactory;
 use Magento\Framework\App\Request\DataPersistorInterface;
-
-/**
- * Class DataProvider
- * @package MagentoEse\ThemeCustomizer\Model\Skin
- */
 class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 {
 
-    /**
-     * @var CollectionFactory
-     */
-    protected $collectionFactory;
+    protected $collection;
 
     /**
      * @var DataPersistorInterface
      */
     protected $dataPersistor;
 
+    /**
+     * @var array
+     */
+    protected $loadedData;
 
     /**
      * @param string $name

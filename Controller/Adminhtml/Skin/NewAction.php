@@ -4,29 +4,10 @@
  */
 namespace MagentoEse\ThemeCustomizer\Controller\Adminhtml\Skin;
 
-/**
- * Class NewAction
- * @package MagentoEse\ThemeCustomizer\Controller\Adminhtml\Skin
- */
 class NewAction extends \Magento\Backend\App\Action
 {
-    const ADMIN_RESOURCE = 'MagentoEse_ThemeCustomizer::skins';
-
-    /**
-     * @var \Magento\Backend\App\Action\Context
-     */
-    protected $context;
-
-    /**
-     * @var \Magento\Framework\View\Result\PageFactory
-     */
+    const ADMIN_RESOURCE = 'MagentoEse_ThemeCustomizer::skins';       
     protected $resultPageFactory;
-
-    /**
-     * NewAction constructor.
-     * @param \Magento\Backend\App\Action\Context $context
-     * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
-     */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
         \Magento\Framework\View\Result\PageFactory $resultPageFactory)
@@ -34,18 +15,12 @@ class NewAction extends \Magento\Backend\App\Action
         $this->resultPageFactory = $resultPageFactory;        
         parent::__construct($context);
     }
-
-    /**
-     * @return \Magento\Framework\View\Result\Page
-     */
+    
     public function execute()
     {
         return $this->resultPageFactory->create();  
     }
 
-    /**
-     * @return bool
-     */
     protected function _isAllowed()
     {
         return $this->_authorization->isAllowed(self::ADMIN_RESOURCE);

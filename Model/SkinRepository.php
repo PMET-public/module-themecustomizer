@@ -4,41 +4,20 @@
  */
 namespace MagentoEse\ThemeCustomizer\Model;
 
+use MagentoEse\ThemeCustomizer\Api\SkinRepositoryInterface;
 use MagentoEse\ThemeCustomizer\Api\Data\SkinInterface;
+use MagentoEse\ThemeCustomizer\Model\SkinFactory;
 use MagentoEse\ThemeCustomizer\Model\ResourceModel\Skin\CollectionFactory;
+
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Api\SearchResultsInterfaceFactory;
-
-/**
- * Class SkinRepository
- * @package MagentoEse\ThemeCustomizer\Model
- */
 class SkinRepository implements \MagentoEse\ThemeCustomizer\Api\SkinRepositoryInterface
 {
-    /**
-     * @var SkinFactory
-     */
     protected $objectFactory;
-
-    /**
-     * @var CollectionFactory
-     */
     protected $collectionFactory;
-
-    /**
-     * @var SearchResultsInterfaceFactory
-     */
-    protected $searchResultsFactory;
-
-    /**
-     * SkinRepository constructor.
-     * @param SkinFactory $objectFactory
-     * @param CollectionFactory $collectionFactory
-     * @param SearchResultsInterfaceFactory $searchResultsFactory
-     */
     public function __construct(
         SkinFactory $objectFactory,
         CollectionFactory $collectionFactory,
@@ -49,12 +28,7 @@ class SkinRepository implements \MagentoEse\ThemeCustomizer\Api\SkinRepositoryIn
         $this->collectionFactory    = $collectionFactory;
         $this->searchResultsFactory = $searchResultsFactory;
     }
-
-    /**
-     * @param SkinInterface $object
-     * @return SkinInterface
-     * @throws CouldNotSaveException
-     */
+    
     public function save(SkinInterface $object)
     {
         try
@@ -68,11 +42,6 @@ class SkinRepository implements \MagentoEse\ThemeCustomizer\Api\SkinRepositoryIn
         return $object;
     }
 
-    /**
-     * @param $id
-     * @return Skin
-     * @throws NoSuchEntityException
-     */
     public function getById($id)
     {
         $object = $this->objectFactory->create();
@@ -81,13 +50,8 @@ class SkinRepository implements \MagentoEse\ThemeCustomizer\Api\SkinRepositoryIn
             throw new NoSuchEntityException(__('Object with id "%1" does not exist.', $id));
         }
         return $object;        
-    }
+    }       
 
-    /**
-     * @param SkinInterface $object
-     * @return bool
-     * @throws CouldNotDeleteException
-     */
     public function delete(SkinInterface $object)
     {
         try {
@@ -96,21 +60,13 @@ class SkinRepository implements \MagentoEse\ThemeCustomizer\Api\SkinRepositoryIn
             throw new CouldNotDeleteException(__($exception->getMessage()));
         }
         return true;    
-    }
+    }    
 
-    /**
-     * @param $id
-     * @return bool
-     */
     public function deleteById($id)
     {
         return $this->delete($this->getById($id));
-    }
+    }    
 
-    /**
-     * @param SearchCriteriaInterface $criteria
-     * @return mixed
-     */
     public function getList(SearchCriteriaInterface $criteria)
     {
         $searchResults = $this->searchResultsFactory->create();

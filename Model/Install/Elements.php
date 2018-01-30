@@ -3,30 +3,10 @@
  * Copyright © Magento, Inc. All rights reserved.
  */
 namespace MagentoEse\ThemeCustomizer\Model\Install;
-
 use Magento\Framework\Setup\SampleData\Context as SampleDataContext;
 
-/**
- * Class Elements
- * @package MagentoEse\ThemeCustomizer\Model\Install
- */
 class Elements
 {
-    /**
-     * @var SampleDataContext
-     */
-    protected $sampleDataContext;
-
-    /**
-     * @var \MagentoEse\ThemeCustomizer\Model\ElementFactory
-     */
-    protected $element;
-
-    /**
-     * Elements constructor.
-     * @param SampleDataContext $sampleDataContext
-     * @param \MagentoEse\ThemeCustomizer\Model\ElementFactory $element
-     */
     public function __construct(
         SampleDataContext $sampleDataContext,
         \MagentoEse\ThemeCustomizer\Model\ElementFactory $element
@@ -36,11 +16,7 @@ class Elements
         $this->element = $element;
 
     }
-
-    /**
-     * @param array $fixtures
-     */
-    public function install(array $fixtures){
+    public function install($fixtures){
         foreach ($fixtures as $fileName) {
             $fileName = $this->fixtureManager->getFixture($fileName);
             if (!file_exists($fileName)) {

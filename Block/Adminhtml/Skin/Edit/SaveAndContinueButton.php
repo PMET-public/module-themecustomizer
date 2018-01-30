@@ -3,18 +3,9 @@
  * Copyright © Magento, Inc. All rights reserved.
  */
 namespace MagentoEse\ThemeCustomizer\Block\Adminhtml\Skin\Edit;
-
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
-
-/**
- * Class SaveAndContinueButton
- * @package MagentoEse\ThemeCustomizer\Block\Adminhtml\Skin\Edit
- */
 class SaveAndContinueButton extends GenericButton implements ButtonProviderInterface
-{
-    /**
-     * @return array
-     */
+{     
     public function getButtonData()
     {
         

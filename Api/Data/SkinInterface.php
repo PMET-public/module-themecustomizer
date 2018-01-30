@@ -3,10 +3,6 @@
  * Copyright © Magento, Inc. All rights reserved.
  */
 namespace MagentoEse\ThemeCustomizer\Api\Data;
-/**\
- * Interface SkinInterface
- * @package MagentoEse\ThemeCustomizer\Api\Data
- */
 interface SkinInterface 
 {
 }
