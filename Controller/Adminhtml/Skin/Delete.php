@@ -10,6 +10,22 @@ class Delete extends \Magento\Backend\App\Action
 {  
     const ADMIN_RESOURCE = 'MagentoEse_ThemeCustomizer::skins';
 
+    /**
+     * @var Save
+     */
+    protected $resetCss;
+
+    /**
+     * @var \MagentoEse\ThemeCustomizer\Model\SkinFactory
+     */
+    protected $skinFactory;
+
+    /**
+     * Delete constructor.
+     * @param Action\Context $context
+     * @param Save $resetCss
+     * @param \MagentoEse\ThemeCustomizer\Model\SkinFactory $skinFactory
+     */
     public function __construct(Action\Context $context, Save $resetCss,
                                 \MagentoEse\ThemeCustomizer\Model\SkinFactory $skinFactory )
     {
@@ -17,6 +33,7 @@ class Delete extends \Magento\Backend\App\Action
         $this->skinFactory = $skinFactory;
         parent::__construct($context);
     }
+
 
     public function execute()
     {
@@ -56,6 +73,9 @@ class Delete extends \Magento\Backend\App\Action
         
     }
 
+    /**
+     * @return bool
+     */
     protected function _isAllowed()
     {
         return $this->_authorization->isAllowed(self::ADMIN_RESOURCE);

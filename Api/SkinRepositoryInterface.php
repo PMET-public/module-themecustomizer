@@ -5,18 +5,37 @@
 namespace MagentoEse\ThemeCustomizer\Api;
 
 use MagentoEse\ThemeCustomizer\Api\Data\SkinInterface;
-use Magento\Framework\Api\SortOrder;
 use Magento\Framework\Api\SearchCriteriaInterface;
 
 interface SkinRepositoryInterface 
 {
+    /**
+     * @param SkinInterface $page
+     * @return mixed
+     */
     public function save(SkinInterface $page);
 
-    public function getById($id);
+    /**
+     * @param int $id
+     * @return mixed
+     */
+    public function getById(int $id);
 
+    /**
+     * @param SearchCriteriaInterface $criteria
+     * @return mixed
+     */
     public function getList(SearchCriteriaInterface $criteria);
 
+    /**
+     * @param SkinInterface $page
+     * @return mixed
+     */
     public function delete(SkinInterface $page);
 
-    public function deleteById($id);
+    /**
+     * @param int $id
+     * @return mixed
+     */
+    public function deleteById(int $id);
 }

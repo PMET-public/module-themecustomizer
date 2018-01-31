@@ -3,10 +3,16 @@
  * Copyright © Magento, Inc. All rights reserved.
  */
 namespace MagentoEse\ThemeCustomizer\Setup;
+
 class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
 {
     const SKIN_TABLE = 'magentoese_themecustomizer_skin';
     const ELEMENT_TABLE  = 'magentoese_themecustomizer_elements';
+
+    /**
+     * @param \Magento\Framework\Setup\SchemaSetupInterface $setup
+     * @param \Magento\Framework\Setup\ModuleContextInterface $context
+     */
     public function install(\Magento\Framework\Setup\SchemaSetupInterface $setup, \Magento\Framework\Setup\ModuleContextInterface $context)
     {
         $installer = $setup;

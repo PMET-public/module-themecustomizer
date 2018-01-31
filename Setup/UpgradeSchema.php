@@ -11,6 +11,10 @@ use Magento\Framework\Setup\SampleData\Context as SampleDataContext;
 
 class UpgradeSchema implements UpgradeSchemaInterface {
 
+    /**
+     * UpgradeSchema constructor.
+     * @param SampleDataContext $sampleDataContext
+     */
     public function __construct(
         SampleDataContext $sampleDataContext
     ) {
@@ -18,6 +22,10 @@ class UpgradeSchema implements UpgradeSchemaInterface {
         $this->csvReader = $sampleDataContext->getCsvReader();
     }
 
+    /**
+     * @param SchemaSetupInterface $setup
+     * @param ModuleContextInterface $context
+     */
     public function upgrade( SchemaSetupInterface $setup, ModuleContextInterface $context ) {
 
         //add columns based on fixtures file

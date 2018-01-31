@@ -3,24 +3,24 @@
  * Copyright © Magento, Inc. All rights reserved.
  */
 namespace MagentoEse\ThemeCustomizer\Model\Skin;
+
 use MagentoEse\ThemeCustomizer\Model\ResourceModel\Skin\CollectionFactory;
 use Magento\Framework\App\Request\DataPersistorInterface;
+
 class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 {
 
-    protected $collection;
+
+    protected $loadedData;
 
     /**
      * @var DataPersistorInterface
      */
     protected $dataPersistor;
 
-    /**
-     * @var array
-     */
-    protected $loadedData;
 
     /**
+     * DataProvider constructor.
      * @param string $name
      * @param string $primaryFieldName
      * @param string $requestFieldName
@@ -30,9 +30,9 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
      * @param array $data
      */
     public function __construct(
-        $name,
-        $primaryFieldName,
-        $requestFieldName,
+        string $name,
+        string $primaryFieldName,
+        string $requestFieldName,
         CollectionFactory $collectionFactory,
         DataPersistorInterface $dataPersistor,
         array $meta = [],
@@ -45,8 +45,6 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
     }
 
     /**
-     * Prepares Meta
-     *
      * @param array $meta
      * @return array
      */
@@ -56,9 +54,7 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
     }
 
     /**
-     * Get data
-     *
-     * @return array
+     * @return mixed
      */
     public function getData()
     {

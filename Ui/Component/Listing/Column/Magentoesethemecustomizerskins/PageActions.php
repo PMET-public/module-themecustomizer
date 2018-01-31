@@ -6,6 +6,10 @@ namespace MagentoEse\ThemeCustomizer\Ui\Component\Listing\Column\Magentoesetheme
 
 class PageActions extends \Magento\Ui\Component\Listing\Columns\Column
 {
+    /**
+     * @param array $dataSource
+     * @return array
+     */
     public function prepareDataSource(array $dataSource)
     {
         if (isset($dataSource["data"]["items"])) {
