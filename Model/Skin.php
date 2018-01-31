@@ -18,4 +18,26 @@ class Skin extends \Magento\Framework\Model\AbstractModel implements \MagentoEse
     {
         return [self::CACHE_TAG . '_' . $this->getId()];
     }
+
+    public function setName(string $name){
+        $this->addData(['name'=>$name]);
+    }
+
+    public function setTheme(int $themeId){
+        $this->addData(['applied_to'=>$themeId]);
+    }
+    public function setSkinId($skinId){
+        $this->addData(['skin_id'=>$skinId]);
+    }
+    public function getName(){
+        return $this->getData('name');
+    }
+
+    public function getTheme(){
+        return $this->getData('applied_to');
+    }
+    public function getSkinId(){
+        return $this->getData('skin_id');
+    }
+
 }

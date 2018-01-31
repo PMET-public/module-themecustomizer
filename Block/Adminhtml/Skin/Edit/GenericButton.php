@@ -24,9 +24,9 @@ class GenericButton
         return $this->getUrl('*/*/delete', ['object_id' => $this->getObjectId()]);
     }
 
-    public function getApplyUrl()
+    public function getDuplicateUrl()
     {
-        return $this->getUrl('*/*/apply', ['object_id' => $this->getObjectId()]);
+        return $this->getUrl('*/*/duplicate', ['object_id' => $this->getObjectId()]);
     }
 
     public function getUrl($route = '', $params = [])

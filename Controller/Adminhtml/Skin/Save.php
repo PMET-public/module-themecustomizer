@@ -110,7 +110,7 @@ class Save extends \Magento\Backend\App\Action
             if ($id) {
                 $model->load($id);
             }
-            $oldThemeId = $model->getData('applied_to');
+            $oldThemeId = $model->getTheme();
             //remove theme_id from save. This will be set by Apply
             unset($data['theme_id']);
             $model->setData($data);
@@ -126,7 +126,7 @@ class Save extends \Magento\Backend\App\Action
                 }
                 return $resultRedirect->setPath('*/*/');
             } catch (LocalizedException $e) {
-                $this->messageManager->addError($e->getMessage());
+                $this->messageManager->addError(__('A skin with the name ').$model->getName().__(' already exists. The name of the skin must be unique.'));
             } catch (\Exception $e) {
                 $this->messageManager->addException($e, __('Something went wrong while saving the data.'));
             }
@@ -150,11 +150,11 @@ class Save extends \Magento\Backend\App\Action
             $connection->query($sql);
             $css_content = $this->generateCssContent($model);
             $this->createCSSFile($css_content,$model->getData('applied_to'));
-            $this->messageManager->addSuccess(__('You have applied the skin.'));
+            $this->messageManager->addSuccess(__('You have applied the skin. Clear your browser cache if necessary.'));
         }elseif($model->getData('applied_to')==0&&$oldThemeId!=0){
             //remove css content
             $this->createCSSFile('',$oldThemeId);
-            $this->messageManager->addSuccess(__('You have removed the skin.'));
+            $this->messageManager->addSuccess(__('You have removed the skin. Clear your browser cache if necessary.'));
         }
     }
 

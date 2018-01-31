@@ -18,6 +18,7 @@
             <item name="back" xsi:type="string">MagentoEse\ThemeCustomizer\Block\Adminhtml\Skin\Edit\BackButton</item>
             <item name="delete" xsi:type="string">MagentoEse\ThemeCustomizer\Block\Adminhtml\Skin\Edit\DeleteButton</item>
             <item name="reset" xsi:type="string">MagentoEse\ThemeCustomizer\Block\Adminhtml\Skin\Edit\ResetButton</item>
+            <item name="duplicate" xsi:type="string">MagentoEse\ThemeCustomizer\Block\Adminhtml\Skin\Edit\DuplicateButton</item>
             <item name="save" xsi:type="string">MagentoEse\ThemeCustomizer\Block\Adminhtml\Skin\Edit\SaveButton</item>
             <item name="save_and_continue" xsi:type="string">MagentoEse\ThemeCustomizer\Block\Adminhtml\Skin\Edit\SaveAndContinueButton</item>
         </item>
