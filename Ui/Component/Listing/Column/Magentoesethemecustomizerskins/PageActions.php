@@ -20,11 +20,20 @@ class PageActions extends \Magento\Ui\Component\Listing\Columns\Column
                 {
                     $id = $item["skin_id"];
                 }
-                $item[$name]["view"] = [
-                    "href"=>$this->getContext()->getUrl(
-                        "magentoese_themecustomizer_skins/skin/edit",["skin_id"=>$id]),
-                    "label"=>__("Edit")
-                ];
+                if($item["read_only"]==0){
+                    $item[$name]["view"] = [
+                        "href"=>$this->getContext()->getUrl(
+                            "magentoese_themecustomizer_skins/skin/edit",["skin_id"=>$id]),
+                        "label"=>__("Edit")
+                    ];
+                }else{
+                    $item[$name]["view"] = [
+                        "href"=>$this->getContext()->getUrl(
+                            "magentoese_themecustomizer_skins/skin/duplicate",["object_id"=>$id]),
+                        "label"=>__("Duplicate")
+                    ];
+                }
+
             }
         }
 

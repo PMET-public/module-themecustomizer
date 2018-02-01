@@ -58,6 +58,7 @@
         <paging name="listing_paging"/>
     </listingToolbar>
     <columns name="magentoese_themecustomizer_skins_columns">
+        <!-- Checkboxes
         <selectionsColumn name="ids">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -67,7 +68,7 @@
                     <item name="sortOrder" xsi:type="number">10</item>
                 </item>
             </argument>
-        </selectionsColumn>
+        </selectionsColumn>-->
         <column name="skin_id">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">

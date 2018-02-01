@@ -27,7 +27,6 @@ class UpgradeSchema implements UpgradeSchemaInterface {
      * @param ModuleContextInterface $context
      */
     public function upgrade( SchemaSetupInterface $setup, ModuleContextInterface $context ) {
-
         //add columns based on fixtures file
         $fixtures = ['MagentoEse_ThemeCustomizer::fixtures/elements.csv'];
 

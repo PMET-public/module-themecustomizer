@@ -18,4 +18,3 @@ nav_dropdown_link_hover_color,Nav Dropdown Link Hover Color,.nav-primary li.leve
 button_background_color,Button Background Color,".button, .cart-table .product-cart-actions .button, #co-shipping-method-form .buttons-set .button, .footer .button  { background-color:$button_background_color !important;}"
 button_link_color,Button Link Color,a.button  { color:$button_link_color !important;}
 button_link_hover_color,Button Link Hover Color,a.button:hover  { color:$button_link_hover_color !important;}
-button_background_color,Button Background Color,".input-text:focus {border-color:$button_background_color !important} .slideshow-next:hover:before {border-color:transparent transparent transparent $button_background_color important} .slideshow-pager span.cycle-pager-active:before, .slideshow-pager span:hover:before { background-color:$button_background_color !important}"

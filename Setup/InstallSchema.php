@@ -46,12 +46,6 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
             ['type' => \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_UNIQUE]
 
         )->addColumn(
-            'additional_css',
-            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-            '2M',
-            [ 'nullable' => true, ],
-            'Additional CSS'
-        )->addColumn(
             'creation_date',
             \Magento\Framework\DB\Ddl\Table::TYPE_TIMESTAMP,
             null,
@@ -70,11 +64,23 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
             [ 'nullable' => false, 'default' => '1', ],
             'Is Active'
         )->addColumn(
-        'applied_to',
-        \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
-        null,
-        [ 'nullable' => false, 'default' => '0', ],
-        'Applied To Theme'
+            'applied_to',
+            \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
+            null,
+            [ 'nullable' => false, 'default' => '0', ],
+            'Applied To Theme'
+        )->addColumn(
+            'read_only',
+            \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
+            null,
+            [ 'nullable' => false, 'default' => '0', ],
+            '1=read only configuration'
+        )->addColumn(
+            'additional_css',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+            '2M',
+            [ 'nullable' => true, ],
+            'Additional CSS'
         );
         $installer->getConnection()->createTable($table);
         //END   table setup
