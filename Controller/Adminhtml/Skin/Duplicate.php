@@ -10,11 +10,23 @@ class Duplicate extends \Magento\Backend\App\Action
      */
     protected $skinFactory;
 
+    /**
+     * @var \Magento\Framework\Stdlib\DateTime\DateTime
+     */
+    protected $dateTime;
 
+    /**
+     * Duplicate constructor.
+     * @param Action\Context $context
+     * @param \MagentoEse\ThemeCustomizer\Model\SkinFactory $skinFactory
+     * @param \Magento\Framework\Stdlib\DateTime\DateTime $datetime
+     */
     public function __construct(Action\Context $context,
-                                \MagentoEse\ThemeCustomizer\Model\SkinFactory $skinFactory )
+                                \MagentoEse\ThemeCustomizer\Model\SkinFactory $skinFactory,
+                                \Magento\Framework\Stdlib\DateTime\DateTime $dateTime)
     {
         $this->skinFactory = $skinFactory;
+        $this->dateTime = $dateTime;
         parent::__construct($context);
     }
 
@@ -31,7 +43,7 @@ class Duplicate extends \Magento\Backend\App\Action
                 $model = $this->skinFactory->create();
                 $model->load($id);
                 //update name of model
-                $newName = 'Copy of '.$model->getName();
+                $newName = 'Copy of '.$model->getName().' ['.$this->dateTime->gmtDate().']';
                 $model->setName($newName);
                //set id of model to null so it saves a new
                 $model->setSkinId(null);
@@ -42,9 +54,9 @@ class Duplicate extends \Magento\Backend\App\Action
                 return $resultRedirect->setPath('*/*/edit', ['skin_id' => $model->getId(), '_current' => true]);
             } catch (\Exception $e) {
                 // display error message
-                $this->messageManager->addError(__('A skin with the name ').$newName.__(' already exists. The name of the skin must be unique. Change the name of this skin and save before continuing'));
+                $this->messageManager->addError(__('A skin with the name ').$newName.__(' already exists. The name of the skin must be unique. Change the name of the existing skin and try again'));
                 // go back to edit form
-                return $resultRedirect->setPath('*/*/edit', ['skin_id' => $id]);
+                return $resultRedirect->setPath('*/*/', ['skin_id' => $id]);
             }
         }
         // display error message
