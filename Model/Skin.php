@@ -25,57 +25,64 @@ class Skin extends \Magento\Framework\Model\AbstractModel implements \MagentoEse
     /**
      * @param string $name
      */
-    public function setName(string $name){
+    public function setName(string $name)
+    {
         $this->addData(['name'=>$name]);
     }
 
     /**
      * @param int $themeId
      */
-    public function setTheme(int $themeId){
+    public function setTheme(int $themeId)
+    {
         $this->addData(['applied_to'=>$themeId]);
     }
 
     /**
      * @param $skinId
      */
-    public function setSkinId($skinId){
+    public function setSkinId($skinId)
+    {
         $this->addData(['skin_id'=>$skinId]);
     }
 
     /**
      * @param bool $readOnly
      */
-    public function setReadOnly(bool $readOnly){
+    public function setReadOnly(bool $readOnly)
+    {
         $this->addData(['read_only'=>$readOnly]);
     }
 
     /**
      * @return mixed
      */
-    public function getName(){
+    public function getName()
+    {
         return $this->getData('name');
     }
 
     /**
      * @return mixed
      */
-    public function getTheme(){
+    public function getTheme()
+    {
         return $this->getData('applied_to');
     }
 
     /**
      * @return mixed
      */
-    public function getSkinId(){
+    public function getSkinId()
+    {
         return $this->getData('skin_id');
     }
 
     /**
      * @return mixed
      */
-    public function getReadOnly(){
+    public function getReadOnly()
+    {
         return $this->getData('read_only');
     }
-
 }

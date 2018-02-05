@@ -17,7 +17,6 @@ class Uninstall implements UninstallInterface
     public function uninstall(SchemaSetupInterface $setup, ModuleContextInterface $context)
     {
         $uninstaller = $setup;
-
         $uninstaller->getConnection()->dropTable(InstallSchema::ELEMENT_TABLE);
         $uninstaller->getConnection()->dropTable(InstallSchema::SKIN_TABLE);
     }

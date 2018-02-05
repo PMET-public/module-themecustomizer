@@ -1,14 +1,17 @@
 //**
 // * Copyright © Magento, Inc. All rights reserved.
 // *
-define([
+define(
+    [
     'Magento_Ui/js/form/element/abstract',
     'mageUtils',
     'jquery',
     'jquery/colorpicker/js/colorpicker'
-], function (Element, utils, $) {
+    ],
+    function (Element, utils, $) {
     'use strict';
-    return Element.extend({
+    return Element.extend(
+        {
         defaults: {
             visible: true,
             label: '',
@@ -27,8 +30,9 @@ define([
         initColorPickerCallback: function (element) {
             var self = this;
             $(element).css('background-color','#'+$(element)[0].value);
-            $(element).ColorPicker({
-                onSubmit: function(hsb, hex, rgb, el) {
+            $(element).ColorPicker(
+                {
+                onSubmit: function (hsb, hex, rgb, el) {
                     self.value('#'+hex);
                     $(el).css('background-color','#'+hex);
                     $(el).ColorPickerHide();
@@ -40,9 +44,15 @@ define([
                 onLoad: function () {
                     $(this).ColorPickerSetColor(this.value);
                 }
-            }).bind('keyup', function(){
-                $(this).ColorPickerSetColor(this.value);
-            });
+                }
+            ).bind(
+                'keyup',
+                function () {
+                    $(this).ColorPickerSetColor(this.value);
+                    }
+            );
         }
-    });
-});
+        }
+    );
+    }
+);

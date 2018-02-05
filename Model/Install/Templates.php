@@ -26,18 +26,19 @@ class Templates
         $this->fixtureManager = $sampleDataContext->getFixtureManager();
         $this->csvReader = $sampleDataContext->getCsvReader();
         $this->template = $template;
-
     }
 
     /**
      * @param array $fixtures
      */
-    public function install(array $fixtures){
+    public function install(array $fixtures)
+    {
         foreach ($fixtures as $fileName) {
             $fileName = $this->fixtureManager->getFixture($fileName);
             if (!file_exists($fileName)) {
                 continue;
             }
+
             $rows = $this->csvReader->getData($fileName);
             $header = array_shift($rows);
             foreach ($rows as $row) {
@@ -47,9 +48,6 @@ class Templates
                 $model->save();
                 unset($dataArray);
             }
-
         }
-
     }
-
 }

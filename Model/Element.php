@@ -12,5 +12,4 @@ class Element extends \Magento\Framework\Model\AbstractModel
     {
         $this->_init('MagentoEse\ThemeCustomizer\Model\ResourceModel\Element');
     }
-
 }

@@ -16,7 +16,7 @@ class Save extends \Magento\Backend\App\Action
      * @see _isAllowed()
      */
     const ADMIN_RESOURCE = 'MagentoEse_ThemeCustomizer::skins';
-    //protected $skinDirectory ='/static/frontend/Magento/luma/en_US/MagentoEse_ThemeCustomizer/css/';
+
     protected $skinDirectoryPrefix ='/static/frontend/';
 
     protected $skinDirectorySuffix ='/MagentoEse_ThemeCustomizer/css/';
@@ -99,6 +99,7 @@ class Save extends \Magento\Backend\App\Action
             if (isset($data['is_active']) && $data['is_active'] === 'true') {
                 $data['is_active'] = MagentoEse\ThemeCustomizer\Model\Skin::STATUS_ENABLED;
             }
+
             if (empty($data['skin_id'])) {
                 $data['skin_id'] = null;
             }
@@ -110,6 +111,7 @@ class Save extends \Magento\Backend\App\Action
             if ($id) {
                 $model->load($id);
             }
+
             $oldThemeId = $model->getTheme();
             //remove theme_id from save. This will be set by Apply
             unset($data['theme_id']);
@@ -119,11 +121,12 @@ class Save extends \Magento\Backend\App\Action
                 $model->save();
                 $this->messageManager->addSuccess(__('You saved the configuration.'));
                 //apply CSS to theme
-                $this->deploy($model,$oldThemeId);
+                $this->deploy($model, $oldThemeId);
                 $this->dataPersistor->clear('magentoese_themecustomizer_skin');
                 if ($this->getRequest()->getParam('back')) {
                     return $resultRedirect->setPath('*/*/edit', ['skin_id' => $model->getId(), '_current' => true]);
                 }
+
                 return $resultRedirect->setPath('*/*/');
             } catch (LocalizedException $e) {
                 $this->messageManager->addError(__('A skin with the name ').$model->getName().__(' already exists. The name of the skin must be unique.'));
@@ -134,6 +137,7 @@ class Save extends \Magento\Backend\App\Action
             $this->dataPersistor->set('magentoese_themecustomizer_skin', $data);
              return $resultRedirect->setPath('*/*/edit', ['skin_id' => $this->getRequest()->getParam('skin_id')]);
         }
+
         return $resultRedirect->setPath('*/*/');
     }
 
@@ -141,19 +145,20 @@ class Save extends \Magento\Backend\App\Action
      * @param \MagentoEse\ThemeCustomizer\Model\Skin $model
      * @param int $oldThemeId
      */
-    public function deploy(\MagentoEse\ThemeCustomizer\Model\Skin $model,$oldThemeId){
+    public function deploy(\MagentoEse\ThemeCustomizer\Model\Skin $model, $oldThemeId)
+    {
         //if theme is not zero, apply theme and set other skin's apply_to = 0 where it = themeId
-        if($model->getData('applied_to')!=0){
+        if ($model->getData('applied_to')!=0) {
             //update magentoese_themecustomizer_skin set applied_to = 0 where apply_to = $oldThemeId
             $connection = $this->resourceConnection->getConnection();
             $sql='update magentoese_themecustomizer_skin set applied_to = 0 where applied_to ='. $model->getData('applied_to') .' and skin_id !='.$model->getData('skin_id');
             $connection->query($sql);
             $css_content = $this->generateCssContent($model);
-            $this->createCSSFile($css_content,$model->getData('applied_to'));
+            $this->createCSSFile($css_content, $model->getData('applied_to'));
             $this->messageManager->addSuccess(__('You have applied the skin. Clear your browser cache if necessary.'));
-        }elseif($model->getData('applied_to')==0&&$oldThemeId!=0){
+        } elseif ($model->getData('applied_to')==0 && $oldThemeId!=0) {
             //remove css content
-            $this->createCSSFile('',$oldThemeId);
+            $this->createCSSFile('', $oldThemeId);
             $this->messageManager->addSuccess(__('You have removed the skin. Clear your browser cache if necessary.'));
         }
     }
@@ -167,13 +172,12 @@ class Save extends \Magento\Backend\App\Action
         $elementData = $this->elementFactory->create();
         $elements = $elementData->load(1);
         $css_content = '/* THIS FILE IS AUTO-GENERATED, DO NOT MAKE MODIFICATIONS DIRECTLY */' . "\n";
-        foreach ($elements->getCollection()->getData() as $element )
-        {
+        foreach ($elements->getCollection()->getData() as $element) {
             $inString = $element['css_code'];
             $toFind = "$".$element['element_code'];
             $replaceWith = $skinModel->getData($element['element_code']);
-            if($replaceWith != null){
-                $css_content.= str_replace($toFind,$replaceWith,$inString). "\n";
+            if ($replaceWith != null) {
+                $css_content.= str_replace($toFind, $replaceWith, $inString). "\n";
             }
         }
 
@@ -191,16 +195,17 @@ class Save extends \Magento\Backend\App\Action
         $locales = $this->getAssignedLocales();
         //get theme information to deploy to
         $theme = $this->themeProvider->getThemeById($themeId);
-        foreach($locales as $locale){
+        foreach ($locales as $locale) {
             $skinDirectory = $this->skinDirectoryPrefix.$theme->getThemePath().'/'.$locale.$this->skinDirectorySuffix;
             $filename = '';
             $filename = $_SERVER['DOCUMENT_ROOT'].$skinDirectory . $this->cssFilename;
             //$filename = str_replace("pub","",$_SERVER['DOCUMENT_ROOT']).$filename;
             if (!file_exists($filename)) {
-                mkdir($_SERVER['DOCUMENT_ROOT'].$skinDirectory,0744,true);
+                mkdir($_SERVER['DOCUMENT_ROOT'].$skinDirectory, 0744, true);
                 $fh = fopen($filename, 'w');
                 fclose($fh);
             }
+
             //reset the file
             file_put_contents($filename, "");
             //create new file and prep for insertion
@@ -209,21 +214,22 @@ class Save extends \Magento\Backend\App\Action
             //rewrite it out
             file_put_contents($filename, $current);
         }
-
     }
 
     /**
      * @return array
      */
-    public function getAssignedLocales(){
+    public function getAssignedLocales()
+    {
         $storeList = $this->storeManager->getStores();
         $locales = [];
-        foreach($storeList as $store){
+        foreach ($storeList as $store) {
             $locale =  $this->scopeConfig->getValue('general/locale/code', \Magento\Store\Model\ScopeInterface::SCOPE_STORE, $store->getId());
-            if(!in_array($locale, $locales)){
+            if (!in_array($locale, $locales)) {
                 $locales[]=$locale;
             }
         }
+
         return $locales;
     }
 

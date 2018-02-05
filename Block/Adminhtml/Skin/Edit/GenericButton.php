@@ -11,13 +11,13 @@ class GenericButton
     public function __construct(
         \Magento\Backend\Block\Widget\Context $context
     ) {
-        $this->context = $context;    
+        $this->context = $context;
     }
     
     public function getBackUrl()
     {
         return $this->getUrl('*/*/');
-    }    
+    }
     
     public function getDeleteUrl()
     {
@@ -32,10 +32,10 @@ class GenericButton
     public function getUrl($route = '', $params = [])
     {
         return $this->context->getUrlBuilder()->getUrl($route, $params);
-    }    
+    }
     
     public function getObjectId()
     {
         return $this->context->getRequest()->getParam('skin_id');
-    }     
+    }
 }

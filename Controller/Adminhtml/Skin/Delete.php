@@ -7,7 +7,8 @@ namespace MagentoEse\ThemeCustomizer\Controller\Adminhtml\Skin;
 use Magento\Backend\App\Action;
 
 class Delete extends \Magento\Backend\App\Action
-{  
+{
+
     const ADMIN_RESOURCE = 'MagentoEse_ThemeCustomizer::skins';
 
     /**
@@ -26,9 +27,12 @@ class Delete extends \Magento\Backend\App\Action
      * @param Save $resetCss
      * @param \MagentoEse\ThemeCustomizer\Model\SkinFactory $skinFactory
      */
-    public function __construct(Action\Context $context, Save $resetCss,
-                                \MagentoEse\ThemeCustomizer\Model\SkinFactory $skinFactory )
-    {
+    public function __construct(
+        Action\Context $context,
+        Save $resetCss,
+        \MagentoEse\ThemeCustomizer\Model\SkinFactory $skinFactory
+    ) {
+    
         $this->resetCss = $resetCss;
         $this->skinFactory = $skinFactory;
         parent::__construct($context);
@@ -48,10 +52,10 @@ class Delete extends \Magento\Backend\App\Action
                 $model->load($id);
                 //if there is a theme attached to this skin, we need to reset the css
                 $themeId = $model->getData('applied_to');
-                if($themeId!=0){
+                if ($themeId!=0) {
                     //set model applied_to to 0 to trigger reset of css
                     $model->addData(['applied_to'=>0]);
-                    $this->resetCss->deploy($model,$themeId);
+                    $this->resetCss->deploy($model, $themeId);
                 }
                 $model->delete();
                 // display success message
@@ -69,7 +73,6 @@ class Delete extends \Magento\Backend\App\Action
         $this->messageManager->addError(__('We can not find a skin to delete.'));
         // go to grid
         return $resultRedirect->setPath('*/*/');
-        
     }
 
     /**
@@ -79,5 +82,4 @@ class Delete extends \Magento\Backend\App\Action
     {
         return $this->_authorization->isAllowed(self::ADMIN_RESOURCE);
     }
-    
 }

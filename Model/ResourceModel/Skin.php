@@ -9,6 +9,6 @@ class Skin extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
 {
     protected function _construct()
     {
-        $this->_init('magentoese_themecustomizer_skin','skin_id');
+        $this->_init('magentoese_themecustomizer_skin', 'skin_id');
     }
 }

@@ -9,7 +9,8 @@ use Magento\Framework\Setup\SchemaSetupInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\SampleData\Context as SampleDataContext;
 
-class UpgradeSchema implements UpgradeSchemaInterface {
+class UpgradeSchema implements UpgradeSchemaInterface
+{
 
     /**
      * UpgradeSchema constructor.
@@ -26,7 +27,8 @@ class UpgradeSchema implements UpgradeSchemaInterface {
      * @param SchemaSetupInterface $setup
      * @param ModuleContextInterface $context
      */
-    public function upgrade( SchemaSetupInterface $setup, ModuleContextInterface $context ) {
+    public function upgrade(SchemaSetupInterface $setup, ModuleContextInterface $context)
+    {
         //add columns based on fixtures file
         $fixtures = ['MagentoEse_ThemeCustomizer::fixtures/elements.csv'];
 
@@ -36,6 +38,7 @@ class UpgradeSchema implements UpgradeSchemaInterface {
             if (!file_exists($fileName)) {
                 continue;
             }
+
             $rows = $this->csvReader->getData($fileName);
             $header = array_shift($rows);
             foreach ($rows as $row) {
@@ -45,17 +48,20 @@ class UpgradeSchema implements UpgradeSchemaInterface {
                 $columnName = $dataArray['element_code'];
 
                 if ($connection->tableColumnExists($tableName, $columnName) === false) {
-                    $connection->addColumn($tableName, $columnName, array(
+                    $connection->addColumn(
+                        $tableName,
+                        $columnName,
+                        [
                         'type'      => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                         'nullable'  => true,
                         'length'    => 10,
                         'comment'   => $dataArray['frontend_label']
-                    ));
+                        ]
+                    );
                 }
+
                 unset($dataArray);
             }
-
         }
-
     }
 }

@@ -19,12 +19,14 @@ class Duplicate extends \Magento\Backend\App\Action
      * Duplicate constructor.
      * @param Action\Context $context
      * @param \MagentoEse\ThemeCustomizer\Model\SkinFactory $skinFactory
-     * @param \Magento\Framework\Stdlib\DateTime\DateTime $datetime
+     * @param \Magento\Framework\Stdlib\DateTime\DateTime $dateTime
      */
-    public function __construct(Action\Context $context,
-                                \MagentoEse\ThemeCustomizer\Model\SkinFactory $skinFactory,
-                                \Magento\Framework\Stdlib\DateTime\DateTime $dateTime)
-    {
+    public function __construct(
+        Action\Context $context,
+        \MagentoEse\ThemeCustomizer\Model\SkinFactory $skinFactory,
+        \Magento\Framework\Stdlib\DateTime\DateTime $dateTime
+    ) {
+    
         $this->skinFactory = $skinFactory;
         $this->dateTime = $dateTime;
         parent::__construct($context);
@@ -63,9 +65,5 @@ class Duplicate extends \Magento\Backend\App\Action
         $this->messageManager->addError(__('We can not find a skin to duplicate.'));
         // go to grid
         return $resultRedirect->setPath('*/*/');
-
     }
-
-
-
 }

@@ -18,9 +18,6 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
         $installer = $setup;
         $installer->startSetup();
 
-        //START: install stuff
-        //END:   install stuff
-        
         //START table setup
         $table = $installer->getConnection()->newTable(
             $installer->getTable(self::SKIN_TABLE)
@@ -44,7 +41,6 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
             ),
             ['name'],
             ['type' => \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_UNIQUE]
-
         )->addColumn(
             'creation_date',
             \Magento\Framework\DB\Ddl\Table::TYPE_TIMESTAMP,
@@ -124,6 +120,6 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
         );
         $installer->getConnection()->createTable($table);
         //END   table setup
-$installer->endSetup();
+        $installer->endSetup();
     }
 }

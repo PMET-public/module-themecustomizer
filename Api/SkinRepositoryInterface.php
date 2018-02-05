@@ -7,7 +7,7 @@ namespace MagentoEse\ThemeCustomizer\Api;
 use MagentoEse\ThemeCustomizer\Api\Data\SkinInterface;
 use Magento\Framework\Api\SearchCriteriaInterface;
 
-interface SkinRepositoryInterface 
+interface SkinRepositoryInterface
 {
     /**
      * @param SkinInterface $page

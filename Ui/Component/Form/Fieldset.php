@@ -4,7 +4,6 @@
  */
 namespace MagentoEse\ThemeCustomizer\Ui\Component\Form;
 
-
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
 use Magento\Framework\View\Element\UiComponentInterface;
 use Magento\Ui\Component\Form\FieldFactory;
@@ -57,8 +56,7 @@ class Fieldset extends BaseFieldset
         \MagentoEse\ThemeCustomizer\Model\ElementFactory $element,
         \Magento\Framework\App\Request\Http $request,
         \Magento\Theme\Model\ResourceModel\Theme\CollectionFactory $themeCollection
-    )
-    {
+    ) {
         parent::__construct($context, $components, $data);
         $this->fieldFactory = $fieldFactory;
         $this->elements = $element;
@@ -86,8 +84,8 @@ class Fieldset extends BaseFieldset
                 'id'=>'applied_to'
             ]
         ];
-        foreach($elementData as $element){
-            array_push($fields,['label' => __($element['frontend_label']),
+        foreach ($elementData as $element) {
+            array_push($fields, ['label' => __($element['frontend_label']),
                 'formElement' => 'input',
                 'component' => 'MagentoEse_ThemeCustomizer/js/form/element/color-select',
                 'template' => 'ui/form/field',
@@ -124,9 +122,9 @@ class Fieldset extends BaseFieldset
         ]];
         $themeFactory = $this->themeCollection->create();
         $themes = $themeFactory->getItems();
-        foreach($themes as $theme){
-            if($theme->getData('area')=='frontend'){
-                array_push($options,[
+        foreach ($themes as $theme) {
+            if ($theme->getData('area')=='frontend') {
+                array_push($options, [
                     'label' => $theme->getData('theme_title'),
                     'value' => $theme->getData('theme_id')
                 ]);

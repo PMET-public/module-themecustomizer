@@ -9,7 +9,6 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
 
     protected function _construct()
     {
-        $this->_init('MagentoEse\ThemeCustomizer\Model\Element','MagentoEse\ThemeCustomizer\Model\ResourceModel\Element');
+        $this->_init('MagentoEse\ThemeCustomizer\Model\Element', 'MagentoEse\ThemeCustomizer\Model\ResourceModel\Element');
     }
-
 }

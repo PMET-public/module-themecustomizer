@@ -8,7 +8,7 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
 {
     protected function _construct()
     {
-        $this->_init('MagentoEse\ThemeCustomizer\Model\Skin','MagentoEse\ThemeCustomizer\Model\ResourceModel\Skin');
+        $this->_init('MagentoEse\ThemeCustomizer\Model\Skin', 'MagentoEse\ThemeCustomizer\Model\ResourceModel\Skin');
     }
 
     protected function _initSelect()

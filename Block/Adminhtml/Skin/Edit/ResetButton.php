@@ -3,9 +3,12 @@
  * Copyright © Magento, Inc. All rights reserved.
  */
 namespace MagentoEse\ThemeCustomizer\Block\Adminhtml\Skin\Edit;
+
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
+
 class ResetButton extends GenericButton implements ButtonProviderInterface
-{     
+{
+     
     public function getButtonData()
     {
         

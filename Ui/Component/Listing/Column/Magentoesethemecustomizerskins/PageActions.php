@@ -16,28 +16,30 @@ class PageActions extends \Magento\Ui\Component\Listing\Columns\Column
             foreach ($dataSource["data"]["items"] as & $item) {
                 $name = $this->getData("name");
                 $id = "X";
-                if(isset($item["skin_id"]))
-                {
+                if (isset($item["skin_id"])) {
                     $id = $item["skin_id"];
                 }
-                if($item["read_only"]==0){
+
+                if ($item["read_only"]==0) {
                     $item[$name]["view"] = [
                         "href"=>$this->getContext()->getUrl(
-                            "magentoese_themecustomizer_skins/skin/edit",["skin_id"=>$id]),
+                            "magentoese_themecustomizer_skins/skin/edit",
+                            ["skin_id"=>$id]
+                        ),
                         "label"=>__("Edit")
                     ];
-                }else{
+                } else {
                     $item[$name]["view"] = [
                         "href"=>$this->getContext()->getUrl(
-                            "magentoese_themecustomizer_skins/skin/duplicate",["object_id"=>$id]),
+                            "magentoese_themecustomizer_skins/skin/duplicate",
+                            ["object_id"=>$id]
+                        ),
                         "label"=>__("Duplicate")
                     ];
                 }
-
             }
         }
 
         return $dataSource;
-    }    
-    
+    }
 }

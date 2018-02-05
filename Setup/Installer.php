@@ -29,7 +29,7 @@ class Installer implements Setup\SampleData\InstallerInterface
     ) {
         $this->elements = $elements;
         $this->templates = $templates;
-        }
+    }
 
     public function install()
     {
