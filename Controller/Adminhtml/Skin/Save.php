@@ -117,7 +117,7 @@ class Save extends \Magento\Backend\App\Action
             unset($data['theme_id']);
             $model->setData($data);
 
-            try {
+            //try {
                 $model->save();
                 $this->messageManager->addSuccess(__('You saved the configuration.'));
                 //apply CSS to theme
@@ -128,15 +128,15 @@ class Save extends \Magento\Backend\App\Action
                 }
 
                 return $resultRedirect->setPath('*/*/');
-            } catch (LocalizedException $e) {
-                $this->messageManager->addError(__('A skin with the name ').$model->getName().__(' already exists. The name of the skin must be unique.'));
-            } catch (\Exception $e) {
-                $this->messageManager->addException($e, __('Something went wrong while saving the data.'));
-            }
-
+            }// catch (LocalizedException $e) {
+             //   $this->messageManager->addError(__('A skin with the name ').$model->getName().__(' already exists. The name of the skin must be unique.'));
+            //} catch (\Exception $e) {
+            //    $this->messageManager->addException($e, __('Something went wrong while saving the data.'));
+            //}
+//
             $this->dataPersistor->set('magentoese_themecustomizer_skin', $data);
              return $resultRedirect->setPath('*/*/edit', ['skin_id' => $this->getRequest()->getParam('skin_id')]);
-        }
+        //}
 
         return $resultRedirect->setPath('*/*/');
     }
