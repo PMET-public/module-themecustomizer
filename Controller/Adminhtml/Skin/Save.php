@@ -17,9 +17,7 @@ class Save extends \Magento\Backend\App\Action
      */
     const ADMIN_RESOURCE = 'MagentoEse_ThemeCustomizer::skins';
 
-    protected $skinDirectoryPrefix ='/static/frontend/';
-
-    protected $skinDirectorySuffix ='/MagentoEse_ThemeCustomizer/css/';
+    protected $skinDirectory ='/media/';
 
     protected $cssFilename = 'demo.css';
 
@@ -77,7 +75,9 @@ class Save extends \Magento\Backend\App\Action
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Framework\View\Design\Theme\ThemeProviderInterface $themeProvider,
         \MagentoEse\ThemeCustomizer\Model\SkinFactory $skinFactory,
-        \MagentoEse\ThemeCustomizer\Model\ElementFactory $elementFactory
+        \MagentoEse\ThemeCustomizer\Model\ElementFactory $elementFactory,
+        \Magento\Theme\Model\ThemeFactory $themeFactory,
+        \Magento\Config\Model\ResourceModel\Config $resourceConfig
     ) {
         $this->dataPersistor = $dataPersistor;
         $this->resourceConnection = $resourceConnection;
@@ -86,6 +86,8 @@ class Save extends \Magento\Backend\App\Action
         $this->themeProvider = $themeProvider;
         $this->skinFactory = $skinFactory;
         $this->elementFactory = $elementFactory;
+        $this->themeFactory = $themeFactory;
+        $this->resourceConfig = $resourceConfig;
         parent::__construct($context);
     }
 
@@ -117,7 +119,7 @@ class Save extends \Magento\Backend\App\Action
             unset($data['theme_id']);
             $model->setData($data);
 
-            //try {
+            try {
                 $model->save();
                 $this->messageManager->addSuccess(__('You saved the configuration.'));
                 //apply CSS to theme
@@ -128,15 +130,15 @@ class Save extends \Magento\Backend\App\Action
                 }
 
                 return $resultRedirect->setPath('*/*/');
-            }// catch (LocalizedException $e) {
-             //   $this->messageManager->addError(__('A skin with the name ').$model->getName().__(' already exists. The name of the skin must be unique.'));
-            //} catch (\Exception $e) {
-            //    $this->messageManager->addException($e, __('Something went wrong while saving the data.'));
-            //}
-//
+            } catch (LocalizedException $e) {
+                $this->messageManager->addError(__('A skin with the name ').$model->getName().__(' already exists. The name of the skin must be unique.'));
+            } catch (\Exception $e) {
+                $this->messageManager->addException($e, __('Something went wrong while saving the data.'));
+            }
+
             $this->dataPersistor->set('magentoese_themecustomizer_skin', $data);
              return $resultRedirect->setPath('*/*/edit', ['skin_id' => $this->getRequest()->getParam('skin_id')]);
-        //}
+        }
 
         return $resultRedirect->setPath('*/*/');
     }
@@ -192,45 +194,54 @@ class Save extends \Magento\Backend\App\Action
     public function createCSSFile(string $contents, int $themeId)
     {
         //find which locales to deploy to
-        $locales = $this->getAssignedLocales();
+        $cssFilename = $this->assignCSSToStore($themeId);
         //get theme information to deploy to
         $theme = $this->themeProvider->getThemeById($themeId);
-        foreach ($locales as $locale) {
-            $skinDirectory = $this->skinDirectoryPrefix.$theme->getThemePath().'/'.$locale.$this->skinDirectorySuffix;
-            $filename = '';
-            $filename = $_SERVER['DOCUMENT_ROOT'].$skinDirectory . $this->cssFilename;
-            //$filename = str_replace("pub","",$_SERVER['DOCUMENT_ROOT']).$filename;
-            if (!file_exists($filename)) {
-                mkdir($_SERVER['DOCUMENT_ROOT'].$skinDirectory, 0744, true);
-                $fh = fopen($filename, 'w');
-                fclose($fh);
-            }
-
-            //reset the file
-            file_put_contents($filename, "");
-            //create new file and prep for insertion
-            $current = file_get_contents($filename);
-            $current .= $contents;
-            //rewrite it out
-            file_put_contents($filename, $current);
+        $skinDirectory = $this->skinDirectory;
+        $filename = $_SERVER['DOCUMENT_ROOT'].$skinDirectory . $cssFilename;
+        if (!file_exists($filename)) {
+            $fh = fopen($filename, 'w');
+            fclose($fh);
         }
+        file_put_contents($filename, "");
+        //create new file and prep for insertion
+        $current = file_get_contents($filename);
+        $current .= $contents;
+        //rewrite it out
+        file_put_contents($filename, $current);
     }
 
     /**
-     * @return array
+     * @return string
      */
-    public function getAssignedLocales()
+    public function assignCSSToStore(int $themeId)
     {
+        $theme = $this->themeFactory->create();
+        $theme->load($themeId);
         $storeList = $this->storeManager->getStores();
-        $locales = [];
         foreach ($storeList as $store) {
-            $locale =  $this->scopeConfig->getValue('general/locale/code', \Magento\Store\Model\ScopeInterface::SCOPE_STORE, $store->getId());
-            if (!in_array($locale, $locales)) {
-                $locales[]=$locale;
+            $code = $store->getCode();
+            //get theme from store
+            $assignedThemeId = $this->scopeConfig->getValue(
+                \Magento\Framework\View\DesignInterface::XML_PATH_THEME_ID,
+                \Magento\Store\Model\ScopeInterface::SCOPE_STORE,
+                $code
+            );
+            if($assignedThemeId == $themeId){
+                //get design/head/includes for the store
+                //$doh = \Magento\Store\Model\ScopeInterface::SCOPE_STORES;
+                $content = $this->scopeConfig->getValue('design/head/includes', \Magento\Store\Model\ScopeInterface::SCOPE_STORE, $store->getId());
+                //replace existing theme customizer code
+                $content = preg_replace("/(<!-- START THEME CUSTOMIZER -->)(.*)(<!-- END THEME CUSTOMIZER -->)/","",$content);
+                //append new theme customizer code
+                $content .= '<!-- START THEME CUSTOMIZER --><link  rel="stylesheet" type="text/css"  media="all" href="{{MEDIA_URL}}'.preg_replace("/[^A-Za-z0-9]/", '', $theme->getThemeTitle()).'.css" /><!-- END THEME CUSTOMIZER -->';
+                //save new value
+                $this->resourceConfig->saveConfig("design/head/includes", $content, \Magento\Store\Model\ScopeInterface::SCOPE_STORES, $store->getId());
             }
+
         }
 
-        return $locales;
+        return preg_replace("/[^A-Za-z0-9]/", '', $theme->getThemeTitle()).'.css';
     }
 
     /**
