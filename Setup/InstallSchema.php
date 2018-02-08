@@ -112,6 +112,12 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
             [ 'nullable' => false, ],
             'Front End Label'
         )->addColumn(
+            'ui',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+            20,
+            [ 'nullable' => false, ],
+            'type of front end interface'
+        )->addColumn(
             'css_code',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
             '2M',
