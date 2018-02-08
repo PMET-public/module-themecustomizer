@@ -57,6 +57,16 @@ class Save extends \Magento\Backend\App\Action
     protected $elementFactory;
 
     /**
+     * @var \Magento\Theme\Model\ThemeFactory
+     */
+    protected $themeFactory;
+
+    /**
+     * @var \Magento\Config\Model\ResourceModel\Config
+     */
+    protected $resourceConfig;
+
+    /**
      * Save constructor.
      * @param Action\Context $context
      * @param DataPersistorInterface $dataPersistor
@@ -66,6 +76,8 @@ class Save extends \Magento\Backend\App\Action
      * @param \Magento\Framework\View\Design\Theme\ThemeProviderInterface $themeProvider
      * @param \MagentoEse\ThemeCustomizer\Model\SkinFactory $skinFactory
      * @param \MagentoEse\ThemeCustomizer\Model\ElementFactory $elementFactory
+     * @param \Magento\Theme\Model\ThemeFactory $themeFactory
+     * @param \Magento\Config\Model\ResourceModel\Config $resourceConfig
      */
     public function __construct(
         Action\Context $context,
@@ -212,6 +224,7 @@ class Save extends \Magento\Backend\App\Action
     }
 
     /**
+     * @param int $themeId
      * @return string
      */
     public function assignCSSToStore(int $themeId)
