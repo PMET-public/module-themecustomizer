@@ -33,7 +33,7 @@ class Skin extends \Magento\Framework\Model\AbstractModel implements \MagentoEse
     /**
      * @param int $themeId
      */
-    public function setTheme(int $themeId)
+    public function setThemeId(int $themeId)
     {
         $this->addData(['applied_to'=>$themeId]);
     }
@@ -55,7 +55,7 @@ class Skin extends \Magento\Framework\Model\AbstractModel implements \MagentoEse
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getName()
     {
@@ -63,15 +63,15 @@ class Skin extends \Magento\Framework\Model\AbstractModel implements \MagentoEse
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getTheme()
+    public function getThemeId()
     {
         return $this->getData('applied_to');
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getSkinId()
     {
@@ -79,7 +79,7 @@ class Skin extends \Magento\Framework\Model\AbstractModel implements \MagentoEse
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getReadOnly()
     {

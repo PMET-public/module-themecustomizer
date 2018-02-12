@@ -50,7 +50,7 @@ class Duplicate extends \Magento\Backend\App\Action
                //set id of model to null so it saves a new
                 $model->setSkinId(null);
                 //reset theme applied to and readonly
-                $model->setTheme(0);
+                $model->setThemeId(0);
                 $model->setReadOnly(0);
                 $model->save();
                 return $resultRedirect->setPath('*/*/edit', ['skin_id' => $model->getId(), '_current' => true]);

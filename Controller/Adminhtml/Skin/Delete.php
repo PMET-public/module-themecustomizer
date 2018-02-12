@@ -51,7 +51,7 @@ class Delete extends \Magento\Backend\App\Action
                 $model = $this->skinFactory->create();
                 $model->load($id);
                 //if there is a theme attached to this skin, we need to reset the css
-                $themeId = $model->getData('applied_to');
+                $themeId = $model->getThemeId();
                 if ($themeId!=0) {
                     //set model applied_to to 0 to trigger reset of css
                     $model->addData(['applied_to'=>0]);

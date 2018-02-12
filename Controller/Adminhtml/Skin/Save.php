@@ -17,7 +17,7 @@ class Save extends \Magento\Backend\App\Action
      */
     const ADMIN_RESOURCE = 'MagentoEse_ThemeCustomizer::skins';
 
-    protected $skinDirectory ='/media/';
+    protected $skinDirectory ='/media/ThemeCustomizer/';
 
     protected $cssFilename = 'demo.css';
 
@@ -126,7 +126,7 @@ class Save extends \Magento\Backend\App\Action
                 $model->load($id);
             }
 
-            $oldThemeId = $model->getTheme();
+            $oldThemeId = $model->getThemeId();
             //remove theme_id from save. This will be set by Apply
             unset($data['theme_id']);
             $model->setData($data);
@@ -161,17 +161,22 @@ class Save extends \Magento\Backend\App\Action
      */
     public function deploy(\MagentoEse\ThemeCustomizer\Model\Skin $model, $oldThemeId)
     {
-        //if theme is not zero, apply theme and set other skin's apply_to = 0 where it = themeId
-        if ($model->getData('applied_to')!=0) {
-            //update magentoese_themecustomizer_skin set applied_to = 0 where apply_to = $oldThemeId
+
+        if($model->getThemeId()!=0&&$model->getThemeId()!=$oldThemeId&&!is_null($oldThemeId)){
+            //when changing skin to a new theme, remove old skin
+            $this->createCSSFile('', $oldThemeId);
+        }
+        if ($model->getThemeId()!=0) {
+            //assign where skin is unassigned
             $connection = $this->resourceConnection->getConnection();
             $sql='update magentoese_themecustomizer_skin set applied_to = 0 where applied_to ='. $model->getData('applied_to') .' and skin_id !='.$model->getData('skin_id');
             $connection->query($sql);
             $css_content = $this->generateCssContent($model);
-            $this->createCSSFile($css_content, $model->getData('applied_to'));
+            $this->createCSSFile($css_content, $model->getThemeId());
             $this->messageManager->addSuccess(__('You have applied the skin. Clear your browser cache if necessary.'));
-        } elseif ($model->getData('applied_to')==0 && $oldThemeId!=0) {
-            //remove css content
+
+        } elseif ($model->getThemeId()==0 && $oldThemeId!=0) {
+            //remove css content when skin is going to be unassigned
             $this->createCSSFile('', $oldThemeId);
             $this->messageManager->addSuccess(__('You have removed the skin. Clear your browser cache if necessary.'));
         }
@@ -205,12 +210,17 @@ class Save extends \Magento\Backend\App\Action
      */
     public function createCSSFile(string $contents, int $themeId)
     {
-        //find which locales to deploy to
+        //find which stores to deploy to
         $cssFilename = $this->assignCSSToStore($themeId);
         //get theme information to deploy to
         $theme = $this->themeProvider->getThemeById($themeId);
         $skinDirectory = $this->skinDirectory;
         $filename = $_SERVER['DOCUMENT_ROOT'].$skinDirectory . $cssFilename;
+        if (!file_exists($_SERVER['DOCUMENT_ROOT'].$skinDirectory)) {
+            mkdir($_SERVER['DOCUMENT_ROOT'].$skinDirectory,0744,true);
+            $fh = fopen($filename, 'w');
+            fclose($fh);
+        }
         if (!file_exists($filename)) {
             $fh = fopen($filename, 'w');
             fclose($fh);
@@ -247,7 +257,7 @@ class Save extends \Magento\Backend\App\Action
                 //replace existing theme customizer code
                 $content = preg_replace("/(<!-- START THEME CUSTOMIZER -->)(.*)(<!-- END THEME CUSTOMIZER -->)/","",$content);
                 //append new theme customizer code
-                $content .= '<!-- START THEME CUSTOMIZER --><link  rel="stylesheet" type="text/css"  media="all" href="{{MEDIA_URL}}'.preg_replace("/[^A-Za-z0-9]/", '', $theme->getThemeTitle()).'.css" /><!-- END THEME CUSTOMIZER -->';
+                $content .= '<!-- START THEME CUSTOMIZER --><link  rel="stylesheet" type="text/css"  media="all" href="{{MEDIA_URL}}ThemeCustomizer/'.preg_replace("/[^A-Za-z0-9]/", '', $theme->getThemeTitle()).'.css" /><!-- END THEME CUSTOMIZER -->';
                 //save new value
                 $this->resourceConfig->saveConfig("design/head/includes", $content, \Magento\Store\Model\ScopeInterface::SCOPE_STORES, $store->getId());
             }
