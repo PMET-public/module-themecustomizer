@@ -173,12 +173,12 @@ class Save extends \Magento\Backend\App\Action
             $connection->query($sql);
             $css_content = $this->generateCssContent($model);
             $this->createCSSFile($css_content, $model->getThemeId());
-            $this->messageManager->addSuccess(__('You have applied the skin. Clear your browser cache if necessary.'));
+            $this->messageManager->addSuccess(__('You have applied the skin. Clear your browser and Magento cache if necessary.'));
 
         } elseif ($model->getThemeId()==0 && $oldThemeId!=0) {
             //remove css content when skin is going to be unassigned
             $this->createCSSFile('', $oldThemeId);
-            $this->messageManager->addSuccess(__('You have removed the skin. Clear your browser cache if necessary.'));
+            $this->messageManager->addSuccess(__('You have removed the skin. Clear your browser and Magento cache if necessary.'));
         }
     }
 
