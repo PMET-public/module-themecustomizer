@@ -1,5 +1,5 @@
 name,read_only,top_bar_color,primary_font_color,primary_link_color,primary_link_hover_color,primary_heading_color,primary_price_color,background_color,category_grid_background_color,product_view_background_color,block_content_background_color,nav_background_color,nav_link_color,nav_link_hover_color,nav_dropdown_background_color,nav_dropdown_link_color,nav_dropdown_link_hover_color,button_background_color,button_link_color,button_link_hover_color
 Blank Theme Template,1,#000033,,,,,,,,,,,,,,,,,,
-Luma Theme Template,1,#ffffff,,,,,,,,,,,,,,,,,,
-Venia Theme Template,1,#f718f7,,,,,,,,,,,,,,,,,,
-Brentmill Theme Template,1,#f3EE00,,,,,,,,,,,,,,,,,,
+Luma Theme Template,1,#ffffff,,#006bb4,,,,,,,,#f0f0f0,#f0f0f0,,,,,#eee,,#68a8e0
+Venia Theme Template,1,#f718f7,#7e807e,#7e807e,#111,,,,,,,,,,,,,#ff957c,,
+Brentmill Theme Template,1,#747474,#3c3c3c,#3c3c3c,#747474,,,#ffffff,,,,#ffffff,#a8a8a8,#dadada,#ffffff,#747474,#dadada,#db011c,#ffffff,#ffffff
