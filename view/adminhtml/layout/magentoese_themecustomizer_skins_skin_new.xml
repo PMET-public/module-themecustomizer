@@ -8,6 +8,9 @@
         <css src="jquery/colorpicker/css/colorpicker.css"/>
     </head>
     <referenceBlock name="content">
+        <block class="MagentoEse\ThemeCustomizer\Block\Adminhtml\Help" name="help" template="help.phtml"/>
+    </referenceBlock>
+    <referenceBlock name="content">
         <uiComponent name="magentoese_themecustomizer_skins_form"/>
     </referenceBlock>
 </page>

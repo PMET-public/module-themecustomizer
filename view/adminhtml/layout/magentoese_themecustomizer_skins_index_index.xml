@@ -7,6 +7,7 @@
         <title>Theme Customizer</title>
     </head>
     <referenceBlock name="content">
+        <block class="MagentoEse\ThemeCustomizer\Block\Adminhtml\Help" name="help" template="help.phtml"/>
         <uiComponent name="magentoese_themecustomizer_skins"/>
     </referenceBlock>
 </page>
