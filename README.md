@@ -4,7 +4,7 @@ A Magnento 2.2.x compatible extension to allow easy overrides for theme colors v
 
 #### Please note
 
-> The primary use of this exention is to quickly customize a theme for demonstration purposes. It is NOT recommeded for use in a production environment 
+> The primary use of this exention is to quickly customize a theme for demonstration purposes. It is NOT recommeded for use in a production environment. Requires module-sctools only for menu placement. 
 
 #### Concepts
 - ***Element*** - The definition of a theme override. Includes css code, and UI Definitions
