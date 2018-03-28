@@ -12,6 +12,7 @@ A Magnento 2.2.x compatible extension to allow easy overrides for theme colors v
 - ***Template*** - A read only skin that can be duplicated as the start of a customization. Templates defined include existing themes -- Blank, Luma, Venia & Brentmill
 
 #### Usage
+- The theme you want to customize should be assigned at the Store View. There is no accounting for theme inheritance from Store or Website at this time.
 - The UI is avilable under **SC Tools->Theme Customizer**
 - The first screen shows a list of defined templates and any skins that are created.  Templates can only be duplicated. Skins can be edited, duplicated and applied to themes.
 - If you want to make changes to an exising theme, you can duplicate its template, but that is not necessary. Only the elements you define in the skin will be overridden. All others will inherit the parent theme settings. For example, you can create a new skin and only edit the Primary Font Color. When applied to the Luma theme the Primary Font Color will be the only change, with all other colors remaining the same as the Luma theme.
