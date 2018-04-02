@@ -78,6 +78,7 @@ Resulting css files are saved to the pub/media directory with the theme as the f
 | 1.0.0 | Initial Release |
 
 #### Backlog
+- Filter by template vs. skin
 - Define Fonts for theme elements
 - Save skin as template
 - Mass delete skins
