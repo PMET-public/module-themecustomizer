@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * Copyright © Magento, Inc. All rights reserved.
+  * See COPYING.txt for license details.
+  */
+-->
+
+<sections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../../../../dev/tests/acceptance/vendor/magento/magento2-functional-testing-framework/src/Magento/FunctionalTestingFramework/Page/etc/SectionObject.xsd">
+    <section name="ThemeCustomizerSection">
+        <!--inputs-->
+        <element name="username" type="input" selector="#username"/>
+        <element name="login" type="input" selector="#login"/>
+        <element name="topBarColor" type="text" selector="top_bar_color"/>
+        <element name="themeSelector" type="select" selector="applied_to"/>
+
+        <!--buttons-->
+        <element name="loginButton" type="button" selector=".action-login.action-primary"/>
+        <element name="saveAndContinueEditButton" type="button" selector="#save_and_continue"/>
+        <element name="saveButton" type="button" selector="#save"/>
+        <element name="duplicateButton" type="button" selector="#duplicate"/>
+        <element name="deleteButton" type="button" selector="#delete"/>
+
+        <!--navigation-->
+        <element name="sctoolsMenu" type="text" selector="#menu-magentoese-sctools-sctoolsmenu"/>
+        <element name="themeCustomizerLink" type="text" selector=".item-skins-list span"/>
+
+    </section>
+</sections>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * Copyright © Magento, Inc. All rights reserved.
+  * See COPYING.txt for license details.
+  */
+-->
+
+<entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../../../../dev/tests/acceptance/vendor/magento/magento2-functional-testing-framework/src/Magento/FunctionalTestingFramework/DataGenerator/etc/dataProfileSchema.xsd">
+    <entity name="assertionData" type="assertion">
+        <data key="dashboardUrl">dashboard</data>
+        <data key="themeCustomizerUrl">magentoese_themecustomizer_skins/index</data>
+        <data key="logoutUrl">{{_ENV.MAGENTO_BASE_URL}}admin/admin/auth/logout</data>
+        <data key="neonGreen">#73ff00</data>
+        <data key="neonGreenRGB">rgb(115, 255, 0)</data>
+        <data key="yellow">#FFFAAA</data>
+        <data key="yellowRGB">rgb(255, 250, 170)</data>
+        <data key="themeSelected">Magento Luma</data>
+    </entity>
+</entities>

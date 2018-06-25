@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * Copyright © Magento, Inc. All rights reserved.
+  * See COPYING.txt for license details.
+  */
+-->
+
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../../../../dev/tests/acceptance/vendor/magento/magento2-functional-testing-framework/src/Magento/FunctionalTestingFramework/Test/etc/testSchema.xsd">
+    <test name="ThemeCustomizerTest">
+        <!--test metadata-->
+        <annotations>
+            <title value="Admin Login Test"/>
+            <!-- features is module name -->
+            <features value="MagentoEse_ThemeCustomizer"/>
+            <stories value="I should be able to login backend"/>
+            <group value="ThemeCustomizer"/>
+        </annotations>
+
+        <before>
+            <!-- Login and navigate to page -->
+            <actionGroup ref="ThemeCustomizerLoginActionGroup" stepKey="ThemeCustomizerLogin"/>
+        </before>
+
+        <!--make copy of existing skin-->
+        <amOnPage stepKey="ThemeCustomizerDuplicateSkin" url="/admin/magentoese_themecustomizer_skins/skin/duplicate/object_id/6"/>
+        <waitForPageLoad stepKey="waitForDuplication" time="30"/>
+        <!--edit skin and save-->
+        <fillField stepKey="editTopBar" selector="{{ThemeCustomizerSection.topBarColor}}" userInput="{{assertionData.yellow}}"/>
+        <selectOption stepKey="selectThemeToDeploy" selector="{{ThemeCustomizerSection.themeSelector}}" userInput="{{assertionData.themeSelected}}"/>
+        <click stepKey="saveAndExit" selector="{{ThemeCustomizerSection.saveButton}}"/>
+        <!--check for changes-->
+        <actionGroup ref="ThemeCustomizerCheckPageActionGroup" stepKey="checkHomePageForChanges"/>
+        <!--create new skin-->
+        <!--Logout of admin -->
+        <!--<actionGroup ref="ThemeCustomizerLogoutActionGroup" stepKey="ThemeCustomizerLogout"/>-->
+
+    </test>
+</tests>

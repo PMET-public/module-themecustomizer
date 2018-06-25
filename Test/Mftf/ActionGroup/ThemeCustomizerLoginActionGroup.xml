@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * Copyright © Magento, Inc. All rights reserved.
+  * See COPYING.txt for license details.
+  */
+-->
+
+<actionGroups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:noNamespaceSchemaLocation="../../../../../../dev/tests/acceptance/vendor/magento/magento2-functional-testing-framework/src/Magento/FunctionalTestingFramework/Test/etc/actionGroupSchema.xsd">
+    <actionGroup name="ThemeCustomizerLoginActionGroup">
+        <!--Navigate to backend-->
+        <amOnPage url="{{ThemeCustomizerPage.url}}" stepKey="navigateToBackend"/>
+        <!--fill in the username-->
+        <fillField stepKey="fillInUsername" selector="{{ThemeCustomizerSection.username}}" userInput="{{_ENV.MAGENTO_ADMIN_USERNAME}}"/>
+        <!--fill in password -->
+        <fillField stepKey="finnInPassword" selector="{{ThemeCustomizerSection.login}}"   userInput="{{_ENV.MAGENTO_ADMIN_PASSWORD}}"/>
+        <!--click login-->
+        <click stepKey="clickLogin" selector="{{ThemeCustomizerSection.loginButton}}"/>
+
+        <waitForPageLoad stepKey="waitForAdminToLoad" time="30"/>
+        <!--assert we logged in successfully-->
+        <seeInCurrentUrl stepKey="assertWeAreOnTheDashboard" url="{{assertionData.dashboardUrl}}"/>
+        <!--navigate to theme customizer-->
+
+        <click stepKey="clickScMenu" selector="{{ThemeCustomizerSection.sctoolsMenu}}"/>
+        <!--<waitForElement stepKey="waitForTCmenu" selector="{{ThemeCustomizerSection.themeCustomizerLink}}"/>-->
+        <!--<see selector="{{ThemeCustomizerSection.themeCustomizerLink}}" stepKey="tcMenueVisible"/>-->
+        <!--<click stepKey="clickTCMenu" selector="{{ThemeCustomizerSection.themeCustomizerLink}}"/>-->
+        <!--Using direct url until element visibility issue can be resolved-->
+        <amOnPage stepKey="goToTcMain" url="admin/magentoese_themecustomizer_skins/index/index"/>
+        <!--check if page loads-->
+        <waitForPageLoad stepKey="waitForPageToLoad" time="20"/>
+        <!--assert we logged in successfully-->
+        <seeInCurrentUrl stepKey="assertWeAreOnThemeCusomizer" url="{{assertionData.themeCustomizerUrl}}"/>
+    </actionGroup>
+    <actionGroup name="ThemeCustomizerLogoutActionGroup">
+        <amOnUrl stepKey="logout" url="{{assertionData.logoutUrl}}"/>
+    </actionGroup>
+</actionGroups>
