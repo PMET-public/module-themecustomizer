@@ -257,7 +257,7 @@ class Save extends \Magento\Backend\App\Action
                 //replace existing theme customizer code
                 $content = preg_replace("/(<!-- START THEME CUSTOMIZER -->)(.*)(<!-- END THEME CUSTOMIZER -->)/","",$content);
                 //append new theme customizer code
-                $content .= '<!-- START THEME CUSTOMIZER --><link  rel="stylesheet" type="text/css"  media="all" href="media/ThemeCustomizer/'.preg_replace("/[^A-Za-z0-9]/", '', $theme->getThemeTitle()).'.css" /><!-- END THEME CUSTOMIZER -->';
+                $content .= '<!-- START THEME CUSTOMIZER --><link  rel="stylesheet" type="text/css"  media="all" href="'.$this->storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB).'media/ThemeCustomizer/'.preg_replace("/[^A-Za-z0-9]/", '', $theme->getThemeTitle()).'.css" /><!-- END THEME CUSTOMIZER -->';
                 //save new value
                 $this->resourceConfig->saveConfig("design/head/includes", $content, \Magento\Store\Model\ScopeInterface::SCOPE_STORES, $store->getId());
             }
