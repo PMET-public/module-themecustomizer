@@ -108,7 +108,8 @@
                 <item name="config" xsi:type="array">
                     <item name="dataType" xsi:type="string">text</item>
                     <item name="formElement" xsi:type="string">textarea</item>
-                    <item name="sortOrder" xsi:type="number">1000</item>
+                    <item name="additionalClasses" xsi:type="string">textarea-css</item>
+		    <item name="sortOrder" xsi:type="number">1000</item>
                     <item name="dataScope" xsi:type="string">additional_css</item>
                     <item name="label" xsi:type="string" translate="true">Will be appended to very end of stylesheet, highest specificity.</item>
                 </item>
