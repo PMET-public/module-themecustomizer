@@ -6,6 +6,7 @@
     <head>
         <title>Theme Customizer</title>
         <css src="jquery/colorpicker/css/colorpicker.css"/>
+        <css src="MagentoEse_ThemeCustomizer::css/main.css"/>
     </head>
     <referenceBlock name="content">
         <block class="MagentoEse\ThemeCustomizer\Block\Adminhtml\Help" name="help" template="help.phtml"/>
