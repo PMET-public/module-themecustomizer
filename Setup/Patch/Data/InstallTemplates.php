@@ -10,7 +10,7 @@ use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\Setup\SampleData\Context as SampleDataContext;
 use MagentoEse\ThemeCustomizer\Model\SkinFactory;
 
-class InstallTemplates implements DataPatchInterface
+class InstallTemplates implements DataPatchInterface, PatchVersionInterface
 {
 
     /**
@@ -68,13 +68,6 @@ class InstallTemplates implements DataPatchInterface
         }
     }
 
-    /**
-     * @return array|string[]
-     */
-    public function getAliases()
-    {
-        return [];
-    }
 
     /**
      * @return array|string[]
@@ -90,5 +83,14 @@ class InstallTemplates implements DataPatchInterface
     public static function getVersion()
     {
         return '0.0.7';
+    }
+
+
+    /**
+     * @return array|string[]
+     */
+    public function getAliases()
+    {
+        return [];
     }
 }

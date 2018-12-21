@@ -9,7 +9,7 @@ use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\Setup\SampleData\Context as SampleDataContext;
 use MagentoEse\ThemeCustomizer\Model\ElementFactory;
 
-class InstallElements implements DataPatchInterface
+class InstallElements implements DataPatchInterface, PatchVersionInterface
 {
 
     /**
@@ -69,13 +69,6 @@ class InstallElements implements DataPatchInterface
     }
 
 
-    /**
-     * @return array|string[]
-     */
-    public function getAliases()
-    {
-        return [];
-    }
 
     /**
      * @return array|string[]
@@ -92,4 +85,13 @@ class InstallElements implements DataPatchInterface
     {
         return '0.0.7';
     }
+
+    /**
+     * @return array|string[]
+     */
+    public function getAliases()
+    {
+        return [];
+    }
+
 }
