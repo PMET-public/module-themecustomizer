@@ -2,17 +2,27 @@
 /**
  * Copyright © Magento, Inc. All rights reserved.
  */
-namespace MagentoEse\ThemeCustomizer\Model\Install;
 
+namespace MagentoEse\ThemeCustomizer\Setup\Patch\Data;
+
+use Magento\Framework\Setup\Patch\PatchVersionInterface;
+use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\Setup\SampleData\Context as SampleDataContext;
+use MagentoEse\ThemeCustomizer\Model\SkinFactory;
 
-class Templates
+class InstallTemplates implements DataPatchInterface
 {
 
     /**
-     * @var \MagentoEse\ThemeCustomizer\Model\SkinFactory
+     * @var SkinFactory
      */
     protected $template;
+
+    /** @var \Magento\Framework\File\Csv  */
+    protected $csvReader;
+
+    /** @var \Magento\Framework\Setup\SampleData\FixtureManager  */
+    protected $fixtureManager;
 
     /**
      * Templates constructor.
@@ -21,11 +31,18 @@ class Templates
      */
     public function __construct(
         SampleDataContext $sampleDataContext,
-        \MagentoEse\ThemeCustomizer\Model\SkinFactory $template
+        SkinFactory $template
     ) {
         $this->fixtureManager = $sampleDataContext->getFixtureManager();
         $this->csvReader = $sampleDataContext->getCsvReader();
         $this->template = $template;
+    }
+
+    /**
+     * @return DataPatchInterface|void
+     */
+    public function apply(){
+        $this->install(['MagentoEse_ThemeCustomizer::fixtures/templates.csv']);
     }
 
     /**
@@ -49,5 +66,29 @@ class Templates
                 unset($dataArray);
             }
         }
+    }
+
+    /**
+     * @return array|string[]
+     */
+    public function getAliases()
+    {
+        return [];
+    }
+
+    /**
+     * @return array|string[]
+     */
+    public static function getDependencies()
+    {
+        return [InstallElements::class];
+    }
+
+    /**
+     * @return string
+     */
+    public static function getVersion()
+    {
+        return '0.0.7';
     }
 }
