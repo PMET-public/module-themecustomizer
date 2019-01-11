@@ -56,13 +56,13 @@ class Duplicate extends \Magento\Backend\App\Action
                 return $resultRedirect->setPath('*/*/edit', ['skin_id' => $model->getId(), '_current' => true]);
             } catch (\Exception $e) {
                 // display error message
-                $this->messageManager->addError(__('A skin with the name ').$newName.__(' already exists. The name of the skin must be unique. Change the name of the existing skin and try again'));
+                $this->messageManager->addErrorMessage(__('A skin with the name ').$newName.__(' already exists. The name of the skin must be unique. Change the name of the existing skin and try again'));
                 // go back to edit form
                 return $resultRedirect->setPath('*/*/', ['skin_id' => $id]);
             }
         }
         // display error message
-        $this->messageManager->addError(__('We can not find a skin to duplicate.'));
+        $this->messageManager->addErrorMessage(__('We can not find a skin to duplicate.'));
         // go to grid
         return $resultRedirect->setPath('*/*/');
     }
