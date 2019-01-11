@@ -48,7 +48,7 @@ class InstallTemplates implements DataPatchInterface, PatchVersionInterface
     /**
      * @param array $fixtures
      */
-    public function install(array $fixtures)
+    private function install(array $fixtures)
     {
         foreach ($fixtures as $fileName) {
             $fileName = $this->fixtureManager->getFixture($fileName);

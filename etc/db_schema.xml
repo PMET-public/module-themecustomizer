@@ -36,8 +36,6 @@
     </constraint>
   </table>
 
-
-
   <table name="magentoese_themecustomizer_elements" engine="innodb" resource="default">
     <column xsi:type="int" name="element_id" padding="10" unsigned="true" nullable="false" identity="true"/>
     <column xsi:type="varchar" name="element_code" nullable="false" length="255"/>
@@ -51,5 +49,4 @@
       <column name="element_code"/>
     </constraint>
   </table>
-
 </schema>
