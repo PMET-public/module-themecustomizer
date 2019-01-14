@@ -7,8 +7,8 @@ namespace MagentoEse\ThemeCustomizer\Controller\Adminhtml\Skin;
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\Exception\LocalizedException;
-            
-class Save extends \Magento\Backend\App\Action
+
+class Save extends Action
 {
     /**
      * Authorization level of a basic admin session
@@ -17,7 +17,7 @@ class Save extends \Magento\Backend\App\Action
      */
     const ADMIN_RESOURCE = 'MagentoEse_ThemeCustomizer::skins';
 
-    protected $skinDirectory ='/media/ThemeCustomizer/';
+    protected $skinDirectory ='/pub/media/ThemeCustomizer/';
 
     protected $cssFilename = 'demo.css';
 
@@ -66,6 +66,9 @@ class Save extends \Magento\Backend\App\Action
      */
     protected $resourceConfig;
 
+    /** @var \Magento\Framework\Filesystem\DirectoryList  */
+    protected $directory;
+
     /**
      * Save constructor.
      * @param Action\Context $context
@@ -101,6 +104,9 @@ class Save extends \Magento\Backend\App\Action
         $this->themeFactory = $themeFactory;
         $this->resourceConfig = $resourceConfig;
         parent::__construct($context);
+        ///need to work out constructor conflicts to put this in DI
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        $this->directory = $objectManager->get('\Magento\Framework\Filesystem\DirectoryList');
     }
 
 
@@ -133,7 +139,7 @@ class Save extends \Magento\Backend\App\Action
 
             try {
                 $model->save();
-                $this->messageManager->addSuccess(__('You saved the configuration.'));
+                $this->messageManager->addSuccessMessage(__('You saved the configuration.'));
                 //apply CSS to theme
                 $this->deploy($model, $oldThemeId);
                 $this->dataPersistor->clear('magentoese_themecustomizer_skin');
@@ -143,9 +149,9 @@ class Save extends \Magento\Backend\App\Action
 
                 return $resultRedirect->setPath('*/*/');
             } catch (LocalizedException $e) {
-                $this->messageManager->addError(__('A skin with the name ').$model->getName().__(' already exists. The name of the skin must be unique.'));
+                $this->messageManager->addErrorMessage(__('A skin with the name ').$model->getName().__(' already exists. The name of the skin must be unique.'));
             } catch (\Exception $e) {
-                $this->messageManager->addException($e, __('Something went wrong while saving the data.'));
+                $this->messageManager->addExceptionMessage($e, __('Something went wrong while saving the data.'));
             }
 
             $this->dataPersistor->set('magentoese_themecustomizer_skin', $data);
@@ -173,12 +179,13 @@ class Save extends \Magento\Backend\App\Action
             $connection->query($sql);
             $css_content = $this->generateCssContent($model);
             $this->createCSSFile($css_content, $model->getThemeId());
-            $this->messageManager->addSuccess(__('You have applied the skin. Clear your browser and Magento cache if necessary.'));
+            $this->messageManager->addSuccessMessage(__('You have applied the skin. Clear your browser and Magento cache if necessary.'));
+
 
         } elseif ($model->getThemeId()==0 && $oldThemeId!=0) {
             //remove css content when skin is going to be unassigned
             $this->createCSSFile('', $oldThemeId);
-            $this->messageManager->addSuccess(__('You have removed the skin. Clear your browser and Magento cache if necessary.'));
+            $this->messageManager->addSuccessMessage(__('You have removed the skin. Clear your browser and Magento cache if necessary.'));
         }
     }
 
@@ -210,27 +217,29 @@ class Save extends \Magento\Backend\App\Action
      */
     public function createCSSFile(string $contents, int $themeId)
     {
-        //find which stores to deploy to
-        $cssFilename = $this->assignCSSToStore($themeId);
-        //get theme information to deploy to
-        $theme = $this->themeProvider->getThemeById($themeId);
-        $skinDirectory = $this->skinDirectory;
-        $filename = $_SERVER['DOCUMENT_ROOT'].$skinDirectory . $cssFilename;
-        if (!file_exists($_SERVER['DOCUMENT_ROOT'].$skinDirectory)) {
-            mkdir($_SERVER['DOCUMENT_ROOT'].$skinDirectory,0744,true);
-            $fh = fopen($filename, 'w');
-            fclose($fh);
+        if($themeId !=0) {
+            //find which stores to deploy to
+            $cssFilename = $this->assignCSSToStore($themeId);
+            //get theme information to deploy to
+            $theme = $this->themeProvider->getThemeById($themeId);
+            $skinDirectory = $this->skinDirectory;
+            $filename = $this->directory->getRoot() . $skinDirectory . $cssFilename;
+            if (!file_exists($this->directory->getRoot() . $skinDirectory)) {
+                mkdir($this->directory->getRoot() . $skinDirectory, 0744, true);
+                $fh = fopen($filename, 'w');
+                fclose($fh);
+            }
+            if (!file_exists($filename)) {
+                $fh = fopen($filename, 'w');
+                fclose($fh);
+            }
+            file_put_contents($filename, "");
+            //create new file and prep for insertion
+            $current = file_get_contents($filename);
+            $current .= $contents;
+            //rewrite it out
+            file_put_contents($filename, $current);
         }
-        if (!file_exists($filename)) {
-            $fh = fopen($filename, 'w');
-            fclose($fh);
-        }
-        file_put_contents($filename, "");
-        //create new file and prep for insertion
-        $current = file_get_contents($filename);
-        $current .= $contents;
-        //rewrite it out
-        file_put_contents($filename, $current);
     }
 
     /**

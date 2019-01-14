@@ -1,0 +1,49 @@
+{
+    "magentoese_themecustomizer_skin": {
+        "column": {
+            "skin_id": true,
+            "name": true,
+            "creation_date": true,
+            "update_date": true,
+            "is_active": true,
+            "applied_to": true,
+            "read_only": true,
+            "additional_css": true,
+            "top_bar_color": true,
+            "primary_font_color": true,
+            "primary_link_color": true,
+            "primary_link_hover_color": true,
+            "primary_heading_color": true,
+            "primary_price_color": true,
+            "background_color": true,
+            "category_grid_background_color": true,
+            "product_view_background_color": true,
+            "block_content_background_color": true,
+            "nav_background_color": true,
+            "nav_link_color": true,
+            "nav_link_hover_color": true,
+            "nav_dropdown_background_color": true,
+            "nav_dropdown_link_color": true,
+            "nav_dropdown_link_hover_color": true,
+            "button_background_color": true,
+            "button_link_color": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MAGENTOESE_THEMECUSTOMIZER_SKIN_NAME": true
+        }
+    },
+    "magentoese_themecustomizer_elements": {
+        "column": {
+            "element_id": true,
+            "element_code": true,
+            "frontend_label": true,
+            "ui": true,
+            "css_code": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MAGENTOESE_THEMECUSTOMIZER_ELEMENTS_ELEMENT_CODE": true
+        }
+    }
+}

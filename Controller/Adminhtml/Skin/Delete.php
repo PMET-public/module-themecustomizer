@@ -5,8 +5,9 @@
 namespace MagentoEse\ThemeCustomizer\Controller\Adminhtml\Skin;
 
 use Magento\Backend\App\Action;
+use MagentoEse\ThemeCustomizer\Model\SkinFactory;
 
-class Delete extends \Magento\Backend\App\Action
+class Delete extends Action
 {
 
     const ADMIN_RESOURCE = 'MagentoEse_ThemeCustomizer::skins';
@@ -17,7 +18,7 @@ class Delete extends \Magento\Backend\App\Action
     protected $resetCss;
 
     /**
-     * @var \MagentoEse\ThemeCustomizer\Model\SkinFactory
+     * @var SkinFactory
      */
     protected $skinFactory;
 
@@ -25,12 +26,12 @@ class Delete extends \Magento\Backend\App\Action
      * Delete constructor.
      * @param Action\Context $context
      * @param Save $resetCss
-     * @param \MagentoEse\ThemeCustomizer\Model\SkinFactory $skinFactory
+     * @param SkinFactory $skinFactory
      */
     public function __construct(
         Action\Context $context,
         Save $resetCss,
-        \MagentoEse\ThemeCustomizer\Model\SkinFactory $skinFactory
+        SkinFactory $skinFactory
     ) {
     
         $this->resetCss = $resetCss;
@@ -59,18 +60,18 @@ class Delete extends \Magento\Backend\App\Action
                 }
                 $model->delete();
                 // display success message
-                $this->messageManager->addSuccess(__('You have deleted the skin.'));
+                $this->messageManager->addSuccessMessage(__('You have deleted the skin.'));
                 // go to grid
                 return $resultRedirect->setPath('*/*/');
             } catch (\Exception $e) {
                 // display error message
-                $this->messageManager->addError($e->getMessage());
+                $this->messageManager->addErrorMessage($e->getMessage());
                 // go back to edit form
                 return $resultRedirect->setPath('*/*/edit', ['skin_id' => $id]);
             }
         }
         // display error message
-        $this->messageManager->addError(__('We can not find a skin to delete.'));
+        $this->messageManager->addErrorMessage(__('We can not find a skin to delete.'));
         // go to grid
         return $resultRedirect->setPath('*/*/');
     }

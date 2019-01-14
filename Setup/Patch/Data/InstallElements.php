@@ -2,26 +2,35 @@
 /**
  * Copyright © Magento, Inc. All rights reserved.
  */
-namespace MagentoEse\ThemeCustomizer\Model\Install;
+namespace MagentoEse\ThemeCustomizer\Setup\Patch\Data;
 
+use Magento\Framework\Setup\Patch\PatchVersionInterface;
+use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\Setup\SampleData\Context as SampleDataContext;
+use MagentoEse\ThemeCustomizer\Model\ElementFactory;
 
-class Elements
+class InstallElements implements DataPatchInterface, PatchVersionInterface
 {
 
     /**
-     * @var \MagentoEse\ThemeCustomizer\Model\ElementFactory
+     * @var ElementFactory
      */
     protected $element;
 
+    /** @var \Magento\Framework\File\Csv  */
+    protected $csvReader;
+
+    /** @var \Magento\Framework\Setup\SampleData\FixtureManager  */
+    protected $fixtureManager;
+
     /**
-     * Elements constructor.
+     * InstallElements constructor.
      * @param SampleDataContext $sampleDataContext
-     * @param \MagentoEse\ThemeCustomizer\Model\ElementFactory $element
+     * @param ElementFactory $element
      */
     public function __construct(
         SampleDataContext $sampleDataContext,
-        \MagentoEse\ThemeCustomizer\Model\ElementFactory $element
+        ElementFactory $element
     ) {
         $this->fixtureManager = $sampleDataContext->getFixtureManager();
         $this->csvReader = $sampleDataContext->getCsvReader();
@@ -29,7 +38,15 @@ class Elements
     }
 
     /**
+     * @return DataPatchInterface|void
+     */
+    public function apply(){
+        $this->install(['MagentoEse_ThemeCustomizer::fixtures/elements.csv']);
+    }
+
+    /**
      * @param array $fixtures
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function install(array $fixtures)
     {
@@ -50,4 +67,31 @@ class Elements
             }
         }
     }
+
+
+
+    /**
+     * @return array|string[]
+     */
+    public static function getDependencies()
+    {
+        return [];
+    }
+
+    /**
+     * @return string
+     */
+    public static function getVersion()
+    {
+        return '0.0.7';
+    }
+
+    /**
+     * @return array|string[]
+     */
+    public function getAliases()
+    {
+        return [];
+    }
+
 }

@@ -11,11 +11,13 @@
     <test name="ThemeCustomizerTest">
         <!--test metadata-->
         <annotations>
-            <title value="Admin Login Test"/>
+            <title value="Theme Customizer Test"/>
             <!-- features is module name -->
             <features value="MagentoEse_ThemeCustomizer"/>
-            <stories value="I should be able to login backend"/>
+            <stories value="I should be able to copy and edit a skin"/>
             <group value="ThemeCustomizer"/>
+            <description value="Tests the working of Theme Customizer"/>
+            <severity value="CRITICAL"/>
         </annotations>
 
         <before>

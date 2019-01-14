@@ -3,7 +3,7 @@
     * Copyright © Magento, Inc. All rights reserved.
  */-->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
-    <module name="MagentoEse_ThemeCustomizer" setup_version="0.0.7">
+    <module name="MagentoEse_ThemeCustomizer">
         <sequence>
             <module name="MagentoEse_SCTools"/>
         </sequence>

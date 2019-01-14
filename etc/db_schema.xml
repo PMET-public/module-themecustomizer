@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+
+  <table name="magentoese_themecustomizer_skin" engine="innodb" resource="default">
+    <column xsi:type="int" name="skin_id" padding="10" unsigned="true" nullable="false" identity="true"/>
+    <column xsi:type="varchar" name="name" nullable="false" length="255"/>
+    <column xsi:type="timestamp" name="creation_date" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"/>
+    <column xsi:type="timestamp" name="update_date" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"/>
+    <column xsi:type="smallint" name="is_active" padding="6" unsigned="false" nullable="false" identity="false" default="1"/>
+    <column xsi:type="smallint" name="applied_to" padding="6" unsigned="false" nullable="false" identity="false" default="0"/>
+    <column xsi:type="smallint" name="read_only" padding="6" unsigned="false" nullable="false" identity="false" default="0"/>
+    <column xsi:type="mediumtext" name="additional_css" nullable="true"/>
+    <column xsi:type="varchar" name="top_bar_color" nullable="true" length="10"/>
+    <column xsi:type="varchar" name="primary_font_color" nullable="true" length="10"/>
+    <column xsi:type="varchar" name="primary_link_color" nullable="true" length="10"/>
+    <column xsi:type="varchar" name="primary_link_hover_color" nullable="true" length="10"/>
+    <column xsi:type="varchar" name="primary_heading_color" nullable="true" length="10"/>
+    <column xsi:type="varchar" name="primary_price_color" nullable="true" length="10"/>
+    <column xsi:type="varchar" name="background_color" nullable="true" length="10"/>
+    <column xsi:type="varchar" name="category_grid_background_color" nullable="true" length="10"/>
+    <column xsi:type="varchar" name="product_view_background_color" nullable="true" length="10"/>
+    <column xsi:type="varchar" name="block_content_background_color" nullable="true" length="10"/>
+    <column xsi:type="varchar" name="nav_background_color" nullable="true" length="10"/>
+    <column xsi:type="varchar" name="nav_link_color" nullable="true" length="10"/>
+    <column xsi:type="varchar" name="nav_link_hover_color" nullable="true" length="10"/>
+    <column xsi:type="varchar" name="nav_dropdown_background_color" nullable="true" length="10"/>
+    <column xsi:type="varchar" name="nav_dropdown_link_color" nullable="true" length="10"/>
+    <column xsi:type="varchar" name="nav_dropdown_link_hover_color" nullable="true" length="10"/>
+    <column xsi:type="varchar" name="button_background_color" nullable="true" length="10"/>
+    <column xsi:type="varchar" name="button_link_color" nullable="true" length="10"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="skin_id"/>
+    </constraint>
+    <constraint xsi:type="unique" referenceId="MAGENTOESE_THEMECUSTOMIZER_SKIN_NAME">
+      <column name="name"/>
+    </constraint>
+  </table>
+
+  <table name="magentoese_themecustomizer_elements" engine="innodb" resource="default">
+    <column xsi:type="int" name="element_id" padding="10" unsigned="true" nullable="false" identity="true"/>
+    <column xsi:type="varchar" name="element_code" nullable="false" length="255"/>
+    <column xsi:type="varchar" name="frontend_label" nullable="false" length="255"/>
+    <column xsi:type="varchar" name="ui" nullable="false" length="20"/>
+    <column xsi:type="mediumtext" name="css_code" nullable="true"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="element_id"/>
+    </constraint>
+    <constraint xsi:type="unique" referenceId="MAGENTOESE_THEMECUSTOMIZER_ELEMENTS_ELEMENT_CODE">
+      <column name="element_code"/>
+    </constraint>
+  </table>
+</schema>
