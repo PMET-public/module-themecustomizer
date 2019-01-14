@@ -223,7 +223,6 @@ class Save extends Action
             //get theme information to deploy to
             $theme = $this->themeProvider->getThemeById($themeId);
             $skinDirectory = $this->skinDirectory;
-            $this->messageManager->addErrorMessage($this->directory->getRoot());
             $filename = $this->directory->getRoot() . $skinDirectory . $cssFilename;
             if (!file_exists($this->directory->getRoot() . $skinDirectory)) {
                 mkdir($this->directory->getRoot() . $skinDirectory, 0744, true);
