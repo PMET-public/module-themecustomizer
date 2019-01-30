@@ -28,6 +28,7 @@
     <column xsi:type="varchar" name="nav_dropdown_link_hover_color" nullable="true" length="10"/>
     <column xsi:type="varchar" name="button_background_color" nullable="true" length="10"/>
     <column xsi:type="varchar" name="button_link_color" nullable="true" length="10"/>
+    <column xsi:type="varchar" name="button_link_hover_color" nullable="true" length="10"/>
     <constraint xsi:type="primary" referenceId="PRIMARY">
       <column name="skin_id"/>
     </constraint>

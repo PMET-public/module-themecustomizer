@@ -26,7 +26,8 @@
             "nav_dropdown_link_color": true,
             "nav_dropdown_link_hover_color": true,
             "button_background_color": true,
-            "button_link_color": true
+            "button_link_color": true,
+            "button_link_hover_color": true
         },
         "constraint": {
             "PRIMARY": true,
