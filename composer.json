@@ -2,7 +2,8 @@
     "name": "magentoese/module-themecustomizer",
     "type": "magento2-module",
     "require": {
-        "magento/framework": "*"
+        "magento/framework": "*",
+        "magentoese/module-sctools": "*"
     },
     "autoload": {
         "files": [ "registration.php" ],
