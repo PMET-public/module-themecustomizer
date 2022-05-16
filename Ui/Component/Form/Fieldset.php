@@ -49,13 +49,13 @@ class Fieldset extends BaseFieldset
      */
     public function __construct(
         ContextInterface $context,
-        array $components = [],
-        array $data = [],
         FieldFactory $fieldFactory,
         \MagentoEse\ThemeCustomizer\Model\ResourceModel\Skin\CollectionFactory $skin,
         \MagentoEse\ThemeCustomizer\Model\ElementFactory $element,
         \Magento\Framework\App\Request\Http $request,
-        \Magento\Theme\Model\ResourceModel\Theme\CollectionFactory $themeCollection
+        \Magento\Theme\Model\ResourceModel\Theme\CollectionFactory $themeCollection,
+        array $components = [],
+        array $data = []
     ) {
         parent::__construct($context, $components, $data);
         $this->fieldFactory = $fieldFactory;
