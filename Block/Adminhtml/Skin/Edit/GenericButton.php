@@ -4,8 +4,17 @@
  */
 namespace MagentoEse\ThemeCustomizer\Block\Adminhtml\Skin\Edit;
 
+use Magento\Backend\Block\Widget\Context;
+
 class GenericButton
 {
+    
+    /**
+     * 
+     * @var Context
+     */
+    protected $context;
+
     //putting all the button methods in here.  No "right", but the whole
     //button/GenericButton thing seems -- not that great -- to begin with
     public function __construct(
