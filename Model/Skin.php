@@ -59,9 +59,12 @@ class Skin extends \Magento\Framework\Model\AbstractModel implements \MagentoEse
         return $this->getData('name');
     }
 
-    public function setName(string $name): void
+    /**
+     * @param string $name
+     */
+    public function setName(string $name) : void
     {
-        $this->name = $name;
+        $this->addData(['name'=>$name]);
     }
 
     public function getAppliedTo(): mixed
