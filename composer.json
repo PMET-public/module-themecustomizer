@@ -5,8 +5,8 @@
     "require": {
         "magento/framework": "*",
         "magentoese/module-sctools": "*",
-        "magento/module-data-install": "*",
-        "magento/module-data-install-graphql": "*"
+        "magentoese/module-data-install": "*",
+        "magentoese/module-data-install-graphql": "*"
     },
     "autoload": {
         "files": [ "registration.php" ],
