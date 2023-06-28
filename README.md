@@ -1,6 +1,6 @@
 # Theme Customizer
 
-A Magnento 2.2.x compatible extension to allow easy overrides for theme colors via the Admin UI. The user has the ability to create skins, which is a set of css overides for a particular theme. The skins are maintaned and saved separately from the theme, so they can be applied to or removed from any theme as necessary.
+A Magnento 2.4.x compatible extension to allow easy overrides for theme colors via the Admin UI. The user has the ability to create skins, which is a set of css overides for a particular theme. The skins are maintaned and saved separately from the theme, so they can be applied to or removed from any theme as necessary.
 
 #### Please note
 
@@ -20,6 +20,41 @@ A Magnento 2.2.x compatible extension to allow easy overrides for theme colors v
 - There is an **Additional CSS** field to put in any additional css changes that arent covered by the defined fields.
 - To apply a skin to a theme, just select the theme and save the skin.  If the theme has a different skin selected, it will be switched to your latest change.
 - You may need to flush the Magento and browser caches. The general rule of thumb is the first time a skin is applied to a theme, the Magento cache will need to be flushed. A change to a deployed skin will usually only require a browser cache flush.
+
+#### Data Installer Support
+Support is included for [Data Installer](https://github.com/PMET-public/module-data-install) import and GraphQL export. Supported data file name is `theme_customizer.json`
+
+Export Query : `identifiers` - comma delimited list of configuration ids
+
+    query{
+        themeCustomizer(identifiers: [12]) {
+            items {
+                additional_css
+                applied_to
+                background_color
+                block_content_background_color
+                button_background_color
+                button_link_color
+                button_link_hover_color
+                category_grid_background_color
+                name
+                nav_background_color
+                nav_dropdown_background_color
+                nav_dropdown_link_color
+                nav_dropdown_link_hover_color
+                nav_link_color
+                nav_link_hover_color
+                primary_font_color
+                primary_heading_color
+                primary_link_color
+                primary_link_hover_color
+                primary_price_color
+                product_view_background_color
+                top_bar_color
+            }
+        }
+    }
+
 ### Developer Notes
 **Database**
 
@@ -72,10 +107,7 @@ Script is added to Content->Design->Configuration->HTML Head for each store usin
 **CSS File location**
 Resulting css files are saved to the pub/media directory with the theme as the file name. Example:  MagentoLuma.css
 
-#### Release Notes
-| Version | Notes |
-| ------ | ------ |
-| 1.0.0 | Initial Release |
+
 
 #### Backlog
 - Filter by template vs. skin
