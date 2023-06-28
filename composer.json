@@ -6,7 +6,7 @@
         "magento/framework": "*",
         "magentoese/module-sctools": "*",
         "magentoese/module-data-install": "*",
-        "magentoese/module-data-install-graphql": "*"
+        "magentoese/module-data-install-graph-ql": "*"
     },
     "autoload": {
         "files": [ "registration.php" ],
