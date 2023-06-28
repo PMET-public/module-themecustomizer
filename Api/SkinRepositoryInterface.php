@@ -10,16 +10,22 @@ use Magento\Framework\Api\SearchCriteriaInterface;
 interface SkinRepositoryInterface
 {
     /**
-     * @param SkinInterface $page
+     * @param SkinInterface $skin
      * @return mixed
      */
-    public function save(SkinInterface $page);
+    public function save(SkinInterface $skin);
 
     /**
      * @param int $id
      * @return mixed
      */
     public function getById(int $id);
+
+    /**
+     * @param string $name
+     * @return mixed
+     */
+    public function getByName(string $name);
 
     /**
      * @param SearchCriteriaInterface $criteria

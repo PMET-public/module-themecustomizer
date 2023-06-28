@@ -1,0 +1,37 @@
+# Copyright 2023 Adobe, Inc. All rights reserved.
+# See LICENSE for license details.
+
+type Query {
+    themeCustomizer(
+        identifiers: [String] @doc(description: "IDs of customizer configurations to retrieve") 
+    ): ThemeCustomizations @resolver (class: "\\MagentoEse\\ThemeCustomizer\\Model\\Resolver\\ThemeCustomizer") @doc(description:"Array of customizer configurations")
+ }
+
+type ThemeCustomizations @doc(description: "Retrieves all requested Theme Customizer configurations") {
+    items: [ThemeCustomizer] @doc(description: "An array containing the configuations")
+}
+
+type ThemeCustomizer {
+    name: String
+    applied_to: String
+    additional_css: String
+    top_bar_color: String
+    primary_font_color: String
+    primary_link_color: String
+    primary_link_hover_color: String
+    primary_heading_color: String
+    primary_price_color: String
+    background_color: String
+    category_grid_background_color: String
+    product_view_background_color: String
+    block_content_background_color: String
+    nav_background_color: String
+    nav_link_color: String
+    nav_link_hover_color: String
+    nav_dropdown_background_color: String
+    nav_dropdown_link_color: String
+    nav_dropdown_link_hover_color: String
+    button_background_color: String
+    button_link_color: String
+    button_link_hover_color: String
+}

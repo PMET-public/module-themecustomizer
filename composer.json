@@ -1,10 +1,12 @@
 {
     "name": "magentoese/module-themecustomizer",
     "type": "magento2-module",
-    "version": "1.0.1",
+    "version": "2.0.0",
     "require": {
         "magento/framework": "*",
-        "magentoese/module-sctools": "*"
+        "magentoese/module-sctools": "*",
+        "magento/module-data-install": "*",
+        "magento/module-data-install-graphql": "*"
     },
     "autoload": {
         "files": [ "registration.php" ],

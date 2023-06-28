@@ -1,0 +1,14 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    
+    <preference for="MagentoEse\ThemeCustomizer\Api\SkinRepositoryInterface" 
+    type="MagentoEse\ThemeCustomizer\Model\SkinRepository" />
+     <preference for="MagentoEse\ThemeCustomizer\Api\Data\SkinInterface" 
+    type="MagentoEse\ThemeCustomizer\Model\Skin" />
+
+    <!-- Data installer -->
+    <type name="MagentoEse\DataInstall\Model\Conf">
+        <plugin name="addThemeCustomizerConfiguration" type="MagentoEse\ThemeCustomizer\Plugin\DataInstaller\AfterGetProcessConfiguration" sortOrder="100"/>
+    </type>
+
+</config>

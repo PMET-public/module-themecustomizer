@@ -75,6 +75,13 @@ class SkinRepository implements \MagentoEse\ThemeCustomizer\Api\SkinRepositoryIn
         return $object;
     }
 
+    public function getByName(string $name)
+    {
+        $object = $this->objectFactory->create();
+        $object->load($name, 'name');
+        return $object;
+    }
+
     /**
      * @param SkinInterface $object
      * @return bool
