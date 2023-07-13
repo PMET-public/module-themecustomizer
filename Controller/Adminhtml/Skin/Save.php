@@ -262,7 +262,7 @@ class Save extends Action
             if($assignedThemeId == $themeId){
                 //get design/head/includes for the store
                 //$doh = \Magento\Store\Model\ScopeInterface::SCOPE_STORES;
-                $content = $this->scopeConfig->getValue('design/head/includes', \Magento\Store\Model\ScopeInterface::SCOPE_STORE, $store->getId());
+                $content = $this->scopeConfig->getValue('design/head/includes', \Magento\Store\Model\ScopeInterface::SCOPE_STORE, $store->getId()) ?? '';
                 //replace existing theme customizer code
                 $content = preg_replace("/(<!-- START THEME CUSTOMIZER -->)(.*)(<!-- END THEME CUSTOMIZER -->)/","",$content);
                 //append new theme customizer code
