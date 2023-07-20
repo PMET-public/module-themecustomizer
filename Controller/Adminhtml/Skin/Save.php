@@ -132,7 +132,7 @@ class Save extends Action
                 $model->load($id);
             }
 
-            $oldThemeId = $model->getThemeId();
+            $oldThemeId = $model->getAppliedTo();
             //remove theme_id from save. This will be set by Apply
             unset($data['theme_id']);
             $model->setData($data);
@@ -168,21 +168,21 @@ class Save extends Action
     public function deploy(\MagentoEse\ThemeCustomizer\Model\Skin $model, $oldThemeId)
     {
 
-        if($model->getThemeId()!=0&&$model->getThemeId()!=$oldThemeId&&!is_null($oldThemeId)){
+        if($model->getAppliedTo()!=0&&$model->getAppliedTo()!=$oldThemeId&&!is_null($oldThemeId)){
             //when changing skin to a new theme, remove old skin
             $this->createCSSFile('', $oldThemeId);
         }
-        if ($model->getThemeId()!=0) {
+        if ($model->getAppliedTo()!=0) {
             //assign where skin is unassigned
             $connection = $this->resourceConnection->getConnection();
             $sql='update magentoese_themecustomizer_skin set applied_to = 0 where applied_to ='. $model->getData('applied_to') .' and skin_id !='.$model->getData('skin_id');
             $connection->query($sql);
             $css_content = $this->generateCssContent($model);
-            $this->createCSSFile($css_content, $model->getThemeId());
+            $this->createCSSFile($css_content, $model->getAppliedTo());
             $this->messageManager->addSuccessMessage(__('You have applied the skin. Clear your browser and Magento cache if necessary.'));
 
 
-        } elseif ($model->getThemeId()==0 && $oldThemeId!=0) {
+        } elseif ($model->getAppliedTo()==0 && $oldThemeId!=0) {
             //remove css content when skin is going to be unassigned
             $this->createCSSFile('', $oldThemeId);
             $this->messageManager->addSuccessMessage(__('You have removed the skin. Clear your browser and Magento cache if necessary.'));
