@@ -28,12 +28,12 @@ class SkinTest extends \PHPUnit\Framework\TestCase
         );
     }
 
-    public function testGetThemeId()
+    public function testGetAppliedTo()
     {
         $id = 22;
-        $this->skin->setThemeId($id);
+        $this->skin->setAppliedTo($id);
         $this->assertEquals($id,
-            $this->skin->getThemeId()
+            $this->skin->getAppliedTo()
         );
     }
 
