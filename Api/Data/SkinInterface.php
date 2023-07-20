@@ -37,6 +37,21 @@ interface SkinInterface
     public function setAppliedTo(string $appliedTo): void;
 
     /**
+     * Get the Theme Id.
+     *
+     * @return mixed
+     */
+    public function getThemeId(): mixed;
+
+    /**
+     * Set the Theme Id.
+     *
+     * @param string $appliedTo
+     * @return void
+     */
+    public function setThemeId(string $appliedTo): void;
+
+    /**
      * Get the additional_css.
      *
      * @return mixed

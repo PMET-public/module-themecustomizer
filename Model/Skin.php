@@ -77,6 +77,16 @@ class Skin extends \Magento\Framework\Model\AbstractModel implements \MagentoEse
         $this->appliedTo = $appliedTo;
     }
 
+    public function getThemeId(): mixed
+    {
+        return $this->getData('applied_to');
+    }
+
+    public function setThemeId(string $appliedTo): void
+    {
+        $this->appliedTo = $appliedTo;
+    }
+
     public function getAdditionalCss(): mixed
     {
         return $this->getData('additional_css');
